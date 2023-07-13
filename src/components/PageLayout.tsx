@@ -1,20 +1,17 @@
 import { HexColor } from "@yext/studio";
+import * as React from "react";
+import Header from "./Header";
 
-export interface PageLayoutProps {
-  children: React.ReactNode;
+export interface LayoutProps {
+  children?: React.ReactNode;
   backgroundColor?: HexColor;
 }
 
-export const initialProps = {
-  backgroundColor: "#FFFFFF",
-};
-
-const PageLayout = ({ children, backgroundColor }: PageLayoutProps) => {
+export default function Layout({ children, backgroundColor }: LayoutProps) {
   return (
-    <div className="min-h-screen" style={{ backgroundColor }}>
-      <main>{children}</main>
+    <div className={`min-h-screen`} style={{ backgroundColor }}>
+      <Header backgroundColor="#EDF0EB" iconName="home" />
+      <main className="pt-24">{children}</main>
     </div>
   );
-};
-
-export default PageLayout;
+}

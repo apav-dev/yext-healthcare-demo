@@ -1,8 +1,8 @@
 {
   "features": [
     {
-      "name": "product",
-      "streamId": "skis",
+      "name": "doctor",
+      "streamId": "doctors",
       "templateType": "JS",
       "entityPageSet": {
         "plugin": {}
@@ -11,12 +11,7 @@
   ],
   "streams": [
     {
-      "$id": "skis",
-      "filter": {
-        "entityTypes": [
-          "ce_product"
-        ]
-      },
+      "$id": "doctors",
       "localization": {
         "locales": [
           "en"
@@ -25,11 +20,19 @@
       },
       "fields": [
         "name",
-        "c_price",
-        "description",
-        "photoGallery",
-        "slug"
-      ]
+        "slug",
+        "npi",
+        "c_description",
+        "headshot",
+        "c_specialty.name",
+        "c_locationsPracticingAt.address",
+        "c_locationsPracticingAt.geocodedCoordinate"
+      ],
+      "filter": {
+        "entityTypes": [
+          "ce_doctor"
+        ]
+      }
     }
   ]
 }

@@ -2,18 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-.centered-container {
-  @apply mx-auto px-5 md:px-14 max-w-screen-xl;
+@font-face {
+  font-family: "PTSerif-Bold";
+  src: url(./assets/fonts/PTSerif-Bold.ttf);
 }
 
-.section {
-  @apply mt-8 mb-16;
+@font-face {
+  font-family: "PTSerif-Regular";
+  src: url(./assets/fonts/PTSerif-Regular.ttf);
 }
 
-.primary-cta {
-  @apply bg-sky-500 hover:bg-sky-600;
+@font-face {
+  font-family: "PTSans-Bold";
+  src: url(./assets/fonts/PTSerif-Bold.ttf);
 }
 
-.secondary-cta {
-  @apply bg-sky-700 hover:bg-sky-800;
+@font-face {
+  font-family: "PTSans-Regular";
+  src: url(./assets/fonts/PTSerif-Regular.ttf);
 }

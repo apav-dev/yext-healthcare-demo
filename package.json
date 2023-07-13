@@ -27,7 +27,8 @@
     "@yext/search-headless-react": "^2.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "tailwind-merge": "^1.6.2"
+    "react-icons": "^4.10.1",
+    "tailwind-merge": "^1.13.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.49",
@@ -35,9 +36,9 @@
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "@vitejs/plugin-react": "^3.1.0",
-    "@yext/pages": "1.0.0-beta.20",
-    "@yext/studio": "^0.12.0",
-    "@yext/studio-plugin": "^0.12.0",
+    "@yext/pages": "1.0.0-beta.23",
+    "@yext/studio": "^0.13.0",
+    "@yext/studio-plugin": "^0.14.0",
     "autoprefixer": "^10.4.8",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.7",

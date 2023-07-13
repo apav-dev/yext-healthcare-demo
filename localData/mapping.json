@@ -1,5 +1,14 @@
 {
-	"product": [
-		"skis__en__408b6cfef8e6aafd9275e0cdc36f7c44.json"
+	"doctor": [
+		"doctors__en__32deee2b290cb3f7294385225b9a0f7a.json",
+		"doctors__en__b381272de06ac916579bebef23864aba.json",
+		"doctors__en__b432268d0d5a397842f2940fef309910.json",
+		"doctors__en__93b8dad450bc8d3c802495143e2de3ab.json",
+		"doctors__en__dd9f806f7e040de8e6309a6208290770.json",
+		"doctors__en__2f7bfaa50670b599e279bd7aa5c81926.json",
+		"doctors__en__3d59a8717cc39e78e97d870aa1cf0812.json",
+		"doctors__en__cbbaaf1d6067c516035ba03a1a78e216.json",
+		"doctors__en__6c25100b910d25273ceaa77fb9077280.json",
+		"doctors__en__e63dafdf2e52df69511cdc2cb601cc02.json"
 	]
 }
