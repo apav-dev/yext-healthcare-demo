@@ -6,7 +6,7 @@ export interface VStackProps {
 }
 
 const VStack = ({ classname, children }: VStackProps) => {
-  return <div className={twMerge("flex flex-col", classname)}>{children}</div>;
+  return <div className={twMerge(`flex flex-col`, classname)}>{children}</div>;
 };
 
 export default VStack;

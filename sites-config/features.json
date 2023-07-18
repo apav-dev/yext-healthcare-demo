@@ -26,7 +26,13 @@
         "headshot",
         "c_specialty.name",
         "c_locationsPracticingAt.address",
-        "c_locationsPracticingAt.geocodedCoordinate"
+        "c_locationsPracticingAt.geocodedCoordinate",
+        "c_insurances",
+        "c_education",
+        "c_boardCertifications",
+        "c_practiceNames",
+        "c_languagesSpoken",
+        "c_gender"
       ],
       "filter": {
         "entityTypes": [

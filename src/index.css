@@ -21,3 +21,29 @@
   font-family: "PTSans-Regular";
   src: url(./assets/fonts/PTSerif-Regular.ttf);
 }
+
+.Locator {
+  position: relative;
+  display: flex;
+  flex: 1;
+  overflow: auto;
+  /* border-bottom: 1px solid theme(colors.brand-gray.300); */
+
+  &-content {
+    width: 100%;
+    overflow-y: auto;
+
+    @screen sm {
+      flex-basis: 350px;
+    }
+
+    @screen md {
+      flex-basis: 450px;
+    }
+  }
+
+  &-map {
+    flex: 1;
+    height: 100%;
+  }
+}

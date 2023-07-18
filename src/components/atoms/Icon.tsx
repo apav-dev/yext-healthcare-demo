@@ -1,28 +1,40 @@
-// import HospitalIcon from "../Icons/HomeIcon";
-// import FileCertificateIcon from "../Icons/FileCertificateIcon";
-// import HashtagIcon from "../Icons/HashtagIcon";
-// import HomeIcon from "../Icons/HomeIcon";
-// import LanguageIcon from "../Icons/LanguageIcon";
-// import SchoolIcon from "../Icons/SchoolIcon";
-// import StethoscopeIcon from "../Icons/Stethoscopeicon";
-// import MarsVenusIcon from "../Icons/MarsVenusIcon";
-// import StarIcon from "../Icons/StarIcon";
 import { FaStar } from "react-icons/fa";
 import { FaHandHoldingMedical } from "react-icons/fa";
 import { BiHomeHeart } from "react-icons/bi";
+import {
+  FaSchool,
+  FaHospital,
+  FaStethoscope,
+  FaLanguage,
+  FaVenusMars,
+  FaHashtag,
+} from "react-icons/fa";
+import { TbFileCertificate } from "react-icons/tb";
 import { IconType } from "react-icons";
+import { twMerge } from "tailwind-merge";
+import { TailwindSize } from "../../types/tailwind";
 
-export type IconName = "home" | "star" | "hand";
+export type IconName =
+  | "home"
+  | "star"
+  | "hand"
+  | "file-certificate"
+  | "hashtag"
+  | "school"
+  | "hospital"
+  | "language"
+  | "stethoscope"
+  | "venus-mars";
 
 const icons: Record<IconName, IconType> = {
-  // "file-certificate": FileCertificateIcon,
-  // hashtag: HashtagIcon,
+  "file-certificate": TbFileCertificate,
+  hashtag: FaHashtag,
   home: BiHomeHeart,
-  // hospital: HospitalIcon,
-  // language: LanguageIcon,
-  // school: SchoolIcon,
-  // stethoscope: StethoscopeIcon,
-  // "venus-mars": MarsVenusIcon,
+  hospital: FaHospital,
+  language: FaLanguage,
+  school: FaSchool,
+  stethoscope: FaStethoscope,
+  "venus-mars": FaVenusMars,
   star: FaStar,
   hand: FaHandHoldingMedical,
 };
@@ -36,8 +48,9 @@ export interface IconProps {
     | "blue"
     | "green"
     | "dark-green";
-  width?: number;
-  height?: number;
+  width?: TailwindSize;
+  height?: TailwindSize;
+  classname?: string;
 }
 
 const colors = {
@@ -49,19 +62,30 @@ const colors = {
   "dark-green": "#27AE60",
 };
 
-export const initialProps: Required<IconProps> = {
+export const initialProps: IconProps = {
   name: "star",
   color: "dark-gray",
-  width: 20,
-  height: 20,
+  width: "20",
+  height: "20",
+  classname: "",
 };
 
-export default function Icon({ name, color, width, height }: IconProps) {
-  const IconComponent = icons[name ?? initialProps.name];
+export default function Icon({
+  name,
+  color,
+  width,
+  height,
+  classname,
+}: IconProps) {
+  const IconComponent = icons[name ?? "star"];
+  const computedClassname = twMerge(
+    `h-${height} w-${width} text-${color}`,
+    classname ?? initialProps.classname
+  );
   return (
     <IconComponent
-      className={`h-${height} w-${width}`}
-      style={{ fill: color ? colors[color] : colors[initialProps.color] }}
+      className={computedClassname}
+      // style={{ fill: color ? colors[color] : colors[initialProps.color] }}
     />
   );
 }
