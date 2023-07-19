@@ -19,6 +19,8 @@ import AppointmentGrid from "../components/AppointmentGrid";
 import BodyText from "../components/atoms/BodyText";
 import Insurances from "../components/Insurances";
 import DoctorBackground from "../components/DoctorBackground";
+import { ScrollableContainer } from "../components/ScrollingContainer";
+import { ScrollableSection } from "../components/atoms/ScrollableSection";
 
 export const config: TemplateConfig = {
   stream: {
@@ -74,6 +76,7 @@ const DoctorPage: Template<TemplateRenderProps> = ({
     c_languagesSpoken,
     c_gender,
     npi,
+    c_locationsPracticingAt,
   } = document as Doctor;
   const specialty = c_specialty[0].name;
 
@@ -81,77 +84,93 @@ const DoctorPage: Template<TemplateRenderProps> = ({
     <PageLayout>
       <CenteredContainer classname="max-w-5xl">
         <Section>
-          <ResponsiveStack>
+          <ResponsiveStack className="gap-x-6">
             <DoctorCard
               headshot={headshot}
               name={name}
               specialty={specialty}
               rating={4.5}
+              // containerClassname="pr-6"
             />
-            <DoctorLocationsMap />
+            <DoctorLocationsMap locations={c_locationsPracticingAt} />
           </ResponsiveStack>
         </Section>
         <Section>
           <AppointmentGrid />
         </Section>
       </CenteredContainer>
-      <Section title="About" innerContainerClassname="max-w-5xl">
-        <BodyText text={c_description} className="whitespace-pre-line pt-16" />
-      </Section>
-      <Section
-        title="Education & Background"
-        outerContainerClassname="bg-light-green"
-        innerContainerClassname="max-w-5xl"
-      >
-        <DoctorBackground
-          items={[
-            {
-              icon: "school",
-              name: "Education",
-              details: c_education,
-            },
-            {
-              icon: "file-certificate",
-              name: "Board Certifications",
-              details: c_boardCertifications,
-            },
-            {
-              icon: "hospital",
-              name: "Practice Names",
-              details: c_practiceNames,
-            },
-            {
-              icon: "stethoscope",
-              name: "Specialties",
-              details: [c_specialty[0].name ?? ""],
-            },
-            {
-              icon: "language",
-              name: "Languages Spoken",
-              details: c_languagesSpoken,
-            },
-            {
-              icon: "venus-mars",
-              name: "Gender",
-              details: [c_gender],
-            },
-            {
-              icon: "hashtag",
-              name: "NPI Number",
-              details: [npi],
-            },
-          ]}
-        />
-      </Section>
-      <Section title="Reviews"></Section>
-      <Section
-        title="Insurances Accepted"
-        outerContainerClassname="bg-light-green"
-        innerContainerClassname="max-w-5xl"
-      >
-        <Insurances insurances={c_insurances} />
-      </Section>
-      <Section title="FAQs" innerContainerClassname="max-w-5xl"></Section>
+      {/* <NavBar labels={["About", "Insurances", "Locations"]} /> */}
+
+      <ScrollableContainer>
+        <ScrollableSection title="About" outerContainerClassname="scroll-mt-24">
+          <BodyText
+            text={c_description}
+            className="whitespace-pre-line pt-16"
+          />
+        </ScrollableSection>
+        <ScrollableSection
+          title="Education & Background"
+          outerContainerClassname="bg-light-green scroll-mt-24"
+          innerContainerClassname="max-w-5xl"
+        >
+          <DoctorBackground
+            items={[
+              {
+                icon: "school",
+                name: "Education",
+                details: c_education,
+              },
+              {
+                icon: "file-certificate",
+                name: "Board Certifications",
+                details: c_boardCertifications,
+              },
+              {
+                icon: "hospital",
+                name: "Practice Names",
+                details: c_practiceNames,
+              },
+              {
+                icon: "stethoscope",
+                name: "Specialties",
+                details: [c_specialty[0].name ?? ""],
+              },
+              {
+                icon: "language",
+                name: "Languages Spoken",
+                details: c_languagesSpoken,
+              },
+              {
+                icon: "venus-mars",
+                name: "Gender",
+                details: [c_gender],
+              },
+              {
+                icon: "hashtag",
+                name: "NPI Number",
+                details: [npi],
+              },
+            ]}
+          />
+        </ScrollableSection>
+
+        <ScrollableSection
+          title="Reviews"
+          outerContainerClassname="scroll-mt-24"
+        ></ScrollableSection>
+        <ScrollableSection
+          title="Insurances Accepted"
+          outerContainerClassname="bg-light-green scroll-mt-24"
+          innerContainerClassname="max-w-5xl"
+        >
+          <Insurances insurances={c_insurances} />
+        </ScrollableSection>
+        <ScrollableSection
+          title="FAQs"
+          innerContainerClassname="max-w-5xl"
+          outerContainerClassname="scroll-mt-24"
+        ></ScrollableSection>
+      </ScrollableContainer>
     </PageLayout>
   );
 };

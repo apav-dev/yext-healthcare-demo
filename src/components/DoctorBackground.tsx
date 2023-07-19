@@ -15,7 +15,7 @@ export interface DoctorBackgroundProps {
 
 export default function DoctorBackground({ items }: DoctorBackgroundProps) {
   return (
-    <GridContainer classname="pt-16 gap-y-10" columnGap="10">
+    <GridContainer classname="pt-16 gap-y-10 sm:grid-cols-2" columnGap="10">
       {items?.map((item, i) => (
         <HStack key={`item-${i}`}>
           {item.name && (

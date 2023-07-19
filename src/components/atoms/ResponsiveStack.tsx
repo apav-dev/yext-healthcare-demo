@@ -1,7 +1,9 @@
 import * as React from "react";
+import { twMerge } from "tailwind-merge";
 
 export interface ResponsiveStackProps {
   children?: React.ReactNode;
+  className?: string;
   // className?: string;
   // direction?: "row" | "column";
   // justifyContent?: "start" | "end" | "center" | "between" | "around";
@@ -20,6 +22,7 @@ export interface ResponsiveStackProps {
 
 const ResponsiveStack = ({
   children,
+  className,
 }: // className,
 // direction,
 // justifyContent,
@@ -27,7 +30,11 @@ const ResponsiveStack = ({
 // wrap,
 // gap,
 ResponsiveStackProps) => {
-  return <div className={`flex flex-col sm:flex-row `}>{children}</div>;
+  return (
+    <div className={twMerge(`flex flex-col sm:flex-row`, className)}>
+      {children}
+    </div>
+  );
 };
 
 export default ResponsiveStack;

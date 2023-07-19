@@ -6,12 +6,14 @@ import BodyText from "./atoms/BodyText";
 import Avatar from "./atoms/Avatar";
 import Icon, { IconName } from "./atoms/Icon";
 import GridContainer from "./atoms/GridContainer";
+import { twMerge } from "tailwind-merge";
 
 export interface DoctorCardProps {
   name: string;
   specialty: string;
   headshot: ComplexImageType | ImageType;
   rating: number;
+  containerClassname?: string;
 }
 
 const sellingPoints: { icon: IconName; name: string }[] = [
@@ -30,9 +32,10 @@ export default function DoctorCard({
   specialty,
   headshot,
   rating,
+  containerClassname,
 }: DoctorCardProps) {
   return (
-    <VStack classname="gap-y-9">
+    <VStack classname={twMerge("gap-y-9", containerClassname)}>
       <HStack>
         <HStack classname="gap-2.5">
           <Avatar image={headshot} />
@@ -59,20 +62,22 @@ export default function DoctorCard({
         // columnGap="0"
         // rowGap="6"
       >
-        {sellingPoints.map((sellingPoint, i) => (
-          <HStack key={`sp-${i}`}>
-            <Icon name={sellingPoint.icon} classname="text-blue" />
-            <VStack>
-              <BodyText
-                text={sellingPoint.name}
-                className="text-blue"
-                // fontWeight="semibold"
-                // textColor="#111827"
-              />
-              {/* <BodyText texts={sellingPoint.description} /> */}
-            </VStack>
-          </HStack>
-        ))}
+        <div className="hidden sm:flex">
+          {sellingPoints.map((sellingPoint, i) => (
+            <HStack key={`sp-${i}`}>
+              <Icon name={sellingPoint.icon} classname="text-blue" />
+              <VStack>
+                <BodyText
+                  text={sellingPoint.name}
+                  className="text-blue"
+                  // fontWeight="semibold"
+                  // textColor="#111827"
+                />
+                {/* <BodyText texts={sellingPoint.description} /> */}
+              </VStack>
+            </HStack>
+          ))}
+        </div>
       </GridContainer>
     </VStack>
   );

@@ -8,6 +8,8 @@ import {
   FaLanguage,
   FaVenusMars,
   FaHashtag,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 import { TbFileCertificate } from "react-icons/tb";
 import { IconType } from "react-icons";
@@ -24,7 +26,9 @@ export type IconName =
   | "hospital"
   | "language"
   | "stethoscope"
-  | "venus-mars";
+  | "venus-mars"
+  | "chevron-left"
+  | "chevron-right";
 
 const icons: Record<IconName, IconType> = {
   "file-certificate": TbFileCertificate,
@@ -37,6 +41,8 @@ const icons: Record<IconName, IconType> = {
   "venus-mars": FaVenusMars,
   star: FaStar,
   hand: FaHandHoldingMedical,
+  "chevron-left": FaChevronLeft,
+  "chevron-right": FaChevronRight,
 };
 
 export interface IconProps {
