@@ -1,4 +1,3 @@
-import * as React from "react";
 import BodyText from "./atoms/BodyText";
 import Selector from "./atoms/Selector";
 

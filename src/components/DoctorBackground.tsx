@@ -9,13 +9,13 @@ export interface DoctorBackgroundProps {
   items?: {
     icon?: IconName;
     name: string;
-    details: string[];
+    details?: string[];
   }[];
 }
 
 export default function DoctorBackground({ items }: DoctorBackgroundProps) {
   return (
-    <GridContainer classname="pt-16 gap-y-10 sm:grid-cols-2" columnGap="10">
+    <GridContainer classname="gap-y-10 sm:grid-cols-2" columnGap="10">
       {items?.map((item, i) => (
         <HStack key={`item-${i}`}>
           {item.name && (
@@ -30,7 +30,7 @@ export default function DoctorBackground({ items }: DoctorBackgroundProps) {
           <VStack classname="pl-4">
             <HeadingText text={item.name} level="Heading 4" />
             <ul className="">
-              {item.details.map((detail, j) => (
+              {item.details?.map((detail, j) => (
                 <li key={`detail-${j}`} className="mt-3">
                   <BodyText text={detail} />
                 </li>

@@ -41,7 +41,9 @@ export const ScrollableSection = ({
       <CenteredContainer
         classname={twMerge(`max-w-5xl`, innerContainerClassname)}
       >
-        {title && <HeadingText text={title} level="Heading 2" />}
+        {title && (
+          <HeadingText text={title} level="Heading 2" classname="pb-16" />
+        )}
         {children}
       </CenteredContainer>
     </section>

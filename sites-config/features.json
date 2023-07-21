@@ -32,7 +32,9 @@
         "c_boardCertifications",
         "c_practiceNames",
         "c_languagesSpoken",
-        "c_gender"
+        "c_gender",
+        "c_faqs.question",
+        "c_faqs.answer"
       ],
       "filter": {
         "entityTypes": [

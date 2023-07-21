@@ -21,6 +21,8 @@ import Insurances from "../components/Insurances";
 import DoctorBackground from "../components/DoctorBackground";
 import { ScrollableContainer } from "../components/ScrollingContainer";
 import { ScrollableSection } from "../components/atoms/ScrollableSection";
+import Reviews from "../components/Reviews";
+import Faqs from "../components/Faqs";
 
 export const config: TemplateConfig = {
   stream: {
@@ -41,6 +43,8 @@ export const config: TemplateConfig = {
       "c_practiceNames",
       "c_languagesSpoken",
       "c_gender",
+      "c_faqs.question",
+      "c_faqs.answer",
     ],
     filter: { entityTypes: ["ce_doctor"] },
   },
@@ -77,6 +81,7 @@ const DoctorPage: Template<TemplateRenderProps> = ({
     c_gender,
     npi,
     c_locationsPracticingAt,
+    c_faqs,
   } = document as Doctor;
   const specialty = c_specialty[0].name;
 
@@ -103,10 +108,7 @@ const DoctorPage: Template<TemplateRenderProps> = ({
 
       <ScrollableContainer>
         <ScrollableSection title="About" outerContainerClassname="scroll-mt-24">
-          <BodyText
-            text={c_description}
-            className="whitespace-pre-line pt-16"
-          />
+          <BodyText text={c_description} className="whitespace-pre-line" />
         </ScrollableSection>
         <ScrollableSection
           title="Education & Background"
@@ -133,7 +135,7 @@ const DoctorPage: Template<TemplateRenderProps> = ({
               {
                 icon: "stethoscope",
                 name: "Specialties",
-                details: [c_specialty[0].name ?? ""],
+                details: [c_specialty?.[0].name ?? ""],
               },
               {
                 icon: "language",
@@ -157,7 +159,9 @@ const DoctorPage: Template<TemplateRenderProps> = ({
         <ScrollableSection
           title="Reviews"
           outerContainerClassname="scroll-mt-24"
-        ></ScrollableSection>
+        >
+          <Reviews />
+        </ScrollableSection>
         <ScrollableSection
           title="Insurances Accepted"
           outerContainerClassname="bg-light-green scroll-mt-24"
@@ -169,7 +173,9 @@ const DoctorPage: Template<TemplateRenderProps> = ({
           title="FAQs"
           innerContainerClassname="max-w-5xl"
           outerContainerClassname="scroll-mt-24"
-        ></ScrollableSection>
+        >
+          <Faqs faqs={c_faqs} />
+        </ScrollableSection>
       </ScrollableContainer>
     </PageLayout>
   );

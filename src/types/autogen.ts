@@ -50,6 +50,11 @@ export interface C_locationsPracticingAt {
 	geocodedCoordinate?: Coordinate,
 }
 
+export interface C_faqs {
+	question?: string,
+	answer?: string,
+}
+
 export default interface Doctors {
 	name: string,
 	slug: string,
@@ -64,4 +69,5 @@ export default interface Doctors {
 	c_gender: string,
 	c_specialty: C_specialty[],
 	c_locationsPracticingAt: C_locationsPracticingAt[],
+	c_faqs: C_faqs[],
 }
