@@ -14,7 +14,11 @@ import {
 import { TbFileCertificate } from "react-icons/tb";
 import { IconType } from "react-icons";
 import { twMerge } from "tailwind-merge";
-import { TailwindSize } from "../../types/tailwind";
+import {
+  TailwindSize,
+  tailwindHeight,
+  tailwindWidth,
+} from "../../types/tailwind";
 
 export type IconName =
   | "home"
@@ -48,29 +52,21 @@ const icons: Record<IconName, IconType> = {
 export interface IconProps {
   name?: IconName;
   color?:
-    | "light-green"
-    | "yellow"
-    | "dark-gray"
-    | "blue"
-    | "green"
-    | "dark-green";
+    | "text-light-green"
+    | "text-yellow"
+    | "text-dark-gray"
+    | "text-blue"
+    | "text-green"
+    | "text-dark-green"
+    | "text-disabled-gray";
   width?: TailwindSize;
   height?: TailwindSize;
   classname?: string;
 }
 
-const colors = {
-  "light-green": "#4F6A4E",
-  yellow: "#F2C94C",
-  "dark-gray": "#333333",
-  blue: "#2F80ED",
-  green: "#219653",
-  "dark-green": "#27AE60",
-};
-
 export const initialProps: IconProps = {
   name: "star",
-  color: "dark-gray",
+  color: "text-dark-gray",
   width: "20",
   height: "20",
   classname: "",
@@ -85,7 +81,7 @@ export default function Icon({
 }: IconProps) {
   const IconComponent = icons[name ?? "star"];
   const computedClassname = twMerge(
-    `h-${height} w-${width} text-${color}`,
+    `${tailwindHeight[height ?? "5"]} ${tailwindWidth[width ?? "5"]} ${color}`,
     classname ?? initialProps.classname
   );
   return (

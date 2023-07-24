@@ -7,7 +7,7 @@ import useWindowSize from "../hooks/useWindowSize";
 export interface InsurancesProps {
   insurances?: {
     label: string;
-    image?: ComplexImageType;
+    // image?: ComplexImageType;
   }[];
 }
 

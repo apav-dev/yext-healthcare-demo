@@ -13,9 +13,10 @@ export interface SelectorProps {
     label?: string;
   }[];
   onSelect?: (id: string) => void;
+  placeholder?: string;
 }
 
-const Selector = ({ items, onSelect }: SelectorProps) => {
+const Selector = ({ items, onSelect, placeholder }: SelectorProps) => {
   const handleSelect = (id: string) => {
     onSelect?.(id);
   };
@@ -26,7 +27,7 @@ const Selector = ({ items, onSelect }: SelectorProps) => {
         className="inline-flex items-center justify-center rounded px-[15px] text-lg font-serif-regular leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-green data-[placeholder]:text-violet9 outline-none"
         // aria-label="Food"
       >
-        <Select.Value placeholder="Scroll to a Section..." />
+        <Select.Value placeholder={placeholder} />
         <Select.Icon className="text-violet11">
           <ChevronDownIcon />
         </Select.Icon>

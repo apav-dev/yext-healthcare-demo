@@ -23,12 +23,14 @@ import { ScrollableContainer } from "../components/ScrollingContainer";
 import { ScrollableSection } from "../components/atoms/ScrollableSection";
 import Reviews from "../components/Reviews";
 import Faqs from "../components/Faqs";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const config: TemplateConfig = {
   stream: {
     $id: "doctors",
     localization: { locales: ["en"], primary: false },
     fields: [
+      "id",
       "name",
       "slug",
       "npi",
@@ -65,119 +67,113 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   };
 };
 
+const queryClient = new QueryClient();
+
 const DoctorPage: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
-  const {
-    name,
-    c_specialty,
-    headshot,
-    c_description,
-    c_insurances,
-    c_education,
-    c_boardCertifications,
-    c_practiceNames,
-    c_languagesSpoken,
-    c_gender,
-    npi,
-    c_locationsPracticingAt,
-    c_faqs,
-  } = document as Doctor;
-  const specialty = c_specialty[0].name;
-
   return (
-    <PageLayout>
-      <CenteredContainer classname="max-w-5xl">
-        <Section>
-          <ResponsiveStack className="gap-x-6">
-            <DoctorCard
-              headshot={headshot}
-              name={name}
-              specialty={specialty}
-              rating={4.5}
-              // containerClassname="pr-6"
+    <QueryClientProvider client={queryClient}>
+      <PageLayout>
+        <CenteredContainer classname="max-w-5xl">
+          <Section>
+            <ResponsiveStack className="gap-x-6">
+              <DoctorCard
+                headshot={document.headshot}
+                name={document.name}
+                specialty={document.c_specialty[0].name}
+                rating={4.5}
+                // containerClassname="pr-6"
+              />
+              <DoctorLocationsMap
+                locations={document.c_locationsPracticingAt}
+              />
+            </ResponsiveStack>
+          </Section>
+          <Section>
+            <AppointmentGrid />
+          </Section>
+        </CenteredContainer>
+
+        <ScrollableContainer>
+          <ScrollableSection
+            title="About"
+            outerContainerClassname="scroll-mt-24"
+          >
+            <BodyText
+              text={document.c_description}
+              className="whitespace-pre-line"
             />
-            <DoctorLocationsMap locations={c_locationsPracticingAt} />
-          </ResponsiveStack>
-        </Section>
-        <Section>
-          <AppointmentGrid />
-        </Section>
-      </CenteredContainer>
-      {/* <NavBar labels={["About", "Insurances", "Locations"]} /> */}
+          </ScrollableSection>
+          <ScrollableSection
+            title="Education & Background"
+            outerContainerClassname="bg-light-green scroll-mt-24"
+            innerContainerClassname="max-w-5xl"
+          >
+            <DoctorBackground
+              items={[
+                {
+                  icon: "school",
+                  name: "Education",
+                  details: document.c_education,
+                },
+                {
+                  icon: "file-certificate",
+                  name: "Board Certifications",
+                  details: document.c_boardCertifications,
+                },
+                {
+                  icon: "hospital",
+                  name: "Practice Names",
+                  details: document.c_practiceNames,
+                },
+                {
+                  icon: "stethoscope",
+                  name: "Specialties",
+                  details: [document.c_specialty?.[0].name],
+                },
+                {
+                  icon: "language",
+                  name: "Languages Spoken",
+                  details: document.c_languagesSpoken,
+                },
+                {
+                  icon: "venus-mars",
+                  name: "Gender",
+                  details: [document.c_gender],
+                },
+                {
+                  icon: "hashtag",
+                  name: "NPI Number",
+                  details: [document.npi],
+                },
+              ]}
+            />
+          </ScrollableSection>
 
-      <ScrollableContainer>
-        <ScrollableSection title="About" outerContainerClassname="scroll-mt-24">
-          <BodyText text={c_description} className="whitespace-pre-line" />
-        </ScrollableSection>
-        <ScrollableSection
-          title="Education & Background"
-          outerContainerClassname="bg-light-green scroll-mt-24"
-          innerContainerClassname="max-w-5xl"
-        >
-          <DoctorBackground
-            items={[
-              {
-                icon: "school",
-                name: "Education",
-                details: c_education,
-              },
-              {
-                icon: "file-certificate",
-                name: "Board Certifications",
-                details: c_boardCertifications,
-              },
-              {
-                icon: "hospital",
-                name: "Practice Names",
-                details: c_practiceNames,
-              },
-              {
-                icon: "stethoscope",
-                name: "Specialties",
-                details: [c_specialty?.[0].name ?? ""],
-              },
-              {
-                icon: "language",
-                name: "Languages Spoken",
-                details: c_languagesSpoken,
-              },
-              {
-                icon: "venus-mars",
-                name: "Gender",
-                details: [c_gender],
-              },
-              {
-                icon: "hashtag",
-                name: "NPI Number",
-                details: [npi],
-              },
-            ]}
-          />
-        </ScrollableSection>
-
-        <ScrollableSection
-          title="Reviews"
-          outerContainerClassname="scroll-mt-24"
-        >
-          <Reviews />
-        </ScrollableSection>
-        <ScrollableSection
-          title="Insurances Accepted"
-          outerContainerClassname="bg-light-green scroll-mt-24"
-          innerContainerClassname="max-w-5xl"
-        >
-          <Insurances insurances={c_insurances} />
-        </ScrollableSection>
-        <ScrollableSection
-          title="FAQs"
-          innerContainerClassname="max-w-5xl"
-          outerContainerClassname="scroll-mt-24"
-        >
-          <Faqs faqs={c_faqs} />
-        </ScrollableSection>
-      </ScrollableContainer>
-    </PageLayout>
+          <ScrollableSection
+            title="Reviews"
+            outerContainerClassname="scroll-mt-24"
+          >
+            <Reviews entityId={document.id} />
+          </ScrollableSection>
+          <ScrollableSection
+            title="Insurances Accepted"
+            outerContainerClassname="bg-light-green scroll-mt-24"
+            innerContainerClassname="max-w-5xl"
+          >
+            <Insurances insurances={document.c_insurances} />
+          </ScrollableSection>
+          <ScrollableSection
+            title="FAQs"
+            innerContainerClassname="max-w-5xl"
+            outerContainerClassname="scroll-mt-24"
+          >
+            <Faqs faqs={document.c_faqs} />
+          </ScrollableSection>
+        </ScrollableContainer>
+      </PageLayout>
+    </QueryClientProvider>
   );
 };
 

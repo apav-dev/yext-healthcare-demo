@@ -5,7 +5,6 @@ import HeadingText from "./atoms/HeadingText";
 import BodyText from "./atoms/BodyText";
 import Avatar from "./atoms/Avatar";
 import Icon, { IconName } from "./atoms/Icon";
-import GridContainer from "./atoms/GridContainer";
 import { twMerge } from "tailwind-merge";
 
 export interface DoctorCardProps {
@@ -45,7 +44,7 @@ export default function DoctorCard({
               <BodyText text={specialty} weight="Regular" color="text-green" />
             </VStack>
             <HStack classname="gap-x-1.5">
-              <Icon name="star" color="yellow" height={5} width={5} />
+              <Icon name="star" color="text-yellow" height={"5"} width={"5"} />
               <BodyText
                 text={rating.toString()}
                 weight="Bold"
@@ -55,30 +54,17 @@ export default function DoctorCard({
           </VStack>
         </HStack>
       </HStack>
-      <GridContainer
-        backgroundColor="#ffffff"
-        rowCount={2}
-        columnCount={2}
-        // columnGap="0"
-        // rowGap="6"
-      >
-        <div className="hidden sm:flex">
-          {sellingPoints.map((sellingPoint, i) => (
-            <HStack key={`sp-${i}`}>
-              <Icon name={sellingPoint.icon} classname="text-blue" />
-              <VStack>
-                <BodyText
-                  text={sellingPoint.name}
-                  className="text-blue"
-                  // fontWeight="semibold"
-                  // textColor="#111827"
-                />
-                {/* <BodyText texts={sellingPoint.description} /> */}
-              </VStack>
-            </HStack>
-          ))}
-        </div>
-      </GridContainer>
+
+      <div className="hidden px-2 sm:flex sm:justify-between">
+        {sellingPoints.map((sellingPoint, i) => (
+          <HStack key={`sp-${i}`}>
+            <Icon name={sellingPoint.icon} classname="text-blue mr-2" />
+            <VStack>
+              <BodyText text={sellingPoint.name} className="text-blue" />
+            </VStack>
+          </HStack>
+        ))}
+      </div>
     </VStack>
   );
 }

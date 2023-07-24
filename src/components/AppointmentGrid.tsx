@@ -1,3 +1,4 @@
+import useWindowSize from "../hooks/useWindowSize";
 import BodyText from "./atoms/BodyText";
 import VStack from "./atoms/VStack";
 
@@ -17,20 +18,31 @@ export function getDates() {
 }
 
 export default function AppointmentGrid() {
+  const { width } = useWindowSize();
+
   const dates = getDates();
+
+  // format 07/24/2023 as July 24
+  const formattedDates = dates.map((date) => {
+    const [month, day, year] = date.split("/");
+    const monthName = new Date(`${month}/01/${year}`).toLocaleString(
+      "default",
+      { month: "long" }
+    );
+    return `${monthName} ${day}`;
+  });
 
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
-      {dates.map((date) => (
+      {formattedDates.slice(0, width && width < 640 ? 2 : 5).map((date) => (
         <VStack classname="gap-2.5">
-          <BodyText className="text-center" text="Feb 3" />
+          <BodyText className="text-center" text={date} />
           {times.map((time) => (
             <button
               key={`${date}-${time}`}
               className="relative space-x-3 rounded-[3px] border border-gray-300  px-6 py-2.5 shadow-sm bg-green hover:bg-dark-green"
             >
               <div className="flex justify-center">
-                {/* <span className="absolute inset-0" aria-hidden="true" /> */}
                 <p className="text-sm font-medium font-sans-regular text-white ">
                   {time}
                 </p>
