@@ -1,4 +1,4 @@
-import { ComplexImageType, ImageType } from "@yext/pages/components";
+import { ComplexImageType } from "@yext/pages/components";
 import HStack from "./atoms/HStack";
 import VStack from "./atoms/VStack";
 import HeadingText from "./atoms/HeadingText";
@@ -10,7 +10,7 @@ import { twMerge } from "tailwind-merge";
 export interface DoctorCardProps {
   name: string;
   specialty: string;
-  headshot: ComplexImageType | ImageType;
+  headshot: ComplexImageType;
   rating: number;
   containerClassname?: string;
 }

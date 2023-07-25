@@ -98,7 +98,7 @@ const DoctorPage: Template<TemplateRenderProps> = ({
         <ScrollableContainer>
           <ScrollableSection
             title="About"
-            outerContainerClassname="scroll-mt-24"
+            outerContainerClassname="scroll-mt-[166px]"
           >
             <BodyText
               text={document.c_description}
@@ -153,13 +153,13 @@ const DoctorPage: Template<TemplateRenderProps> = ({
 
           <ScrollableSection
             title="Reviews"
-            outerContainerClassname="scroll-mt-24"
+            outerContainerClassname="scroll-mt-[166px]"
           >
             <Reviews entityId={document.id} />
           </ScrollableSection>
           <ScrollableSection
             title="Insurances Accepted"
-            outerContainerClassname="bg-light-green scroll-mt-24"
+            outerContainerClassname="bg-light-green scroll-mt-[166px]]"
             innerContainerClassname="max-w-5xl"
           >
             <Insurances insurances={document.c_insurances} />
@@ -167,7 +167,7 @@ const DoctorPage: Template<TemplateRenderProps> = ({
           <ScrollableSection
             title="FAQs"
             innerContainerClassname="max-w-5xl"
-            outerContainerClassname="scroll-mt-24"
+            outerContainerClassname="scroll-mt-[166px]"
           >
             <Faqs faqs={document.c_faqs} />
           </ScrollableSection>

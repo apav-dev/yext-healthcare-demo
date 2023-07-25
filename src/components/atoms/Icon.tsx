@@ -1,5 +1,3 @@
-import { FaStar } from "react-icons/fa";
-import { FaHandHoldingMedical } from "react-icons/fa";
 import { BiHomeHeart } from "react-icons/bi";
 import {
   FaSchool,
@@ -10,6 +8,9 @@ import {
   FaHashtag,
   FaChevronLeft,
   FaChevronRight,
+  FaStar,
+  FaHandHoldingMedical,
+  FaSearch,
 } from "react-icons/fa";
 import { TbFileCertificate } from "react-icons/tb";
 import { IconType } from "react-icons";
@@ -32,7 +33,8 @@ export type IconName =
   | "stethoscope"
   | "venus-mars"
   | "chevron-left"
-  | "chevron-right";
+  | "chevron-right"
+  | "search";
 
 const icons: Record<IconName, IconType> = {
   "file-certificate": TbFileCertificate,
@@ -47,6 +49,7 @@ const icons: Record<IconName, IconType> = {
   hand: FaHandHoldingMedical,
   "chevron-left": FaChevronLeft,
   "chevron-right": FaChevronRight,
+  search: FaSearch,
 };
 
 export interface IconProps {
@@ -58,7 +61,8 @@ export interface IconProps {
     | "text-blue"
     | "text-green"
     | "text-dark-green"
-    | "text-disabled-gray";
+    | "text-disabled-gray"
+    | "text-white";
   width?: TailwindSize;
   height?: TailwindSize;
   classname?: string;

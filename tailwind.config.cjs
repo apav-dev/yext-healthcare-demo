@@ -18,6 +18,7 @@ module.exports = {
         "sans-regular": ["PTSans-Regular"],
       },
       fontSize: {
+        sm: ["16px", "21.2px"],
         base: ["18px", "24px"],
         lg: ["20px", "30px"],
         xl: ["28px", "30px"],
