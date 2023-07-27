@@ -1,14 +1,14 @@
 import { HexColor } from "@yext/studio";
 import * as React from "react";
 import Header from "./Header";
-import {
-  SearchHeadlessProvider,
-  provideHeadless,
-} from "@yext/search-headless-react";
+import { provideHeadless } from "@yext/search-headless-react";
+import SearchHeadlessProvider from "./search/SearchHeadlessProvider";
+import { defaultRouter } from "../routing";
 
 export interface LayoutProps {
   children?: React.ReactNode;
   backgroundColor?: HexColor;
+  includeSearch?: boolean;
 }
 
 const searcher = provideHeadless({
@@ -18,11 +18,19 @@ const searcher = provideHeadless({
   verticalKey: "healthcare_professionals",
 });
 
-export default function Layout({ children, backgroundColor }: LayoutProps) {
+export default function Layout({
+  children,
+  backgroundColor,
+  includeSearch,
+}: LayoutProps) {
   return (
-    <SearchHeadlessProvider searcher={searcher}>
+    <SearchHeadlessProvider searcher={searcher} routing={defaultRouter}>
       <div className={`min-h-screen`} style={{ backgroundColor }}>
-        <Header backgroundColor="#EDF0EB" iconName="home" />
+        <Header
+          backgroundColor="#EDF0EB"
+          iconName="home"
+          includeSearch={includeSearch}
+        />
         <main className="pt-[166px]">{children}</main>
       </div>
     </SearchHeadlessProvider>

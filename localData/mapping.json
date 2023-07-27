@@ -10,5 +10,8 @@
 		"doctors__en__cbbaaf1d6067c516035ba03a1a78e216.json",
 		"doctors__en__6c25100b910d25273ceaa77fb9077280.json",
 		"doctors__en__e63dafdf2e52df69511cdc2cb601cc02.json"
+	],
+	"search": [
+		"cog-internal-feature-static-file-generation-search__en__cfcd208495d565ef66e7dff9f98764da.json"
 	]
 }

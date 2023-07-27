@@ -11,6 +11,7 @@ import {
   FaStar,
   FaHandHoldingMedical,
   FaSearch,
+  FaMap,
 } from "react-icons/fa";
 import { TbFileCertificate } from "react-icons/tb";
 import { IconType } from "react-icons";
@@ -34,7 +35,8 @@ export type IconName =
   | "venus-mars"
   | "chevron-left"
   | "chevron-right"
-  | "search";
+  | "search"
+  | "map";
 
 const icons: Record<IconName, IconType> = {
   "file-certificate": TbFileCertificate,
@@ -50,6 +52,7 @@ const icons: Record<IconName, IconType> = {
   "chevron-left": FaChevronLeft,
   "chevron-right": FaChevronRight,
   search: FaSearch,
+  map: FaMap,
 };
 
 export interface IconProps {

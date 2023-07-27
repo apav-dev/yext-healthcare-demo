@@ -54,7 +54,6 @@ export default function DoctorCard({
           </VStack>
         </HStack>
       </HStack>
-
       <div className="hidden px-2 sm:flex sm:justify-between">
         {sellingPoints.map((sellingPoint, i) => (
           <HStack key={`sp-${i}`}>

@@ -1,22 +1,22 @@
 import { HexColor } from "@yext/studio";
 import Icon, { IconName } from "./atoms/Icon";
-import { FilterSearch } from "@yext/search-ui-react";
 import BodyText from "./atoms/BodyText";
 import { useEffect, useState } from "react";
 import MobilePanel from "./MobilePanel";
 import useWindowSize from "../hooks/useWindowSize";
-import DoctorFilterSearch from "./DoctorFilterSearch";
+import DoctorFilterSearch from "./search/DoctorFilterSearch";
 
 export interface HeaderProps {
   backgroundColor?: HexColor;
   iconName?: IconName;
+  includeSearch?: boolean;
 }
 
 export const initialProps = {
   backgroundColor: "#EDF0EB",
 };
 
-const Header = ({ backgroundColor, iconName }: HeaderProps) => {
+const Header = ({ backgroundColor, iconName, includeSearch }: HeaderProps) => {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   const { width } = useWindowSize();
@@ -34,7 +34,6 @@ const Header = ({ backgroundColor, iconName }: HeaderProps) => {
     >
       <div className="flex justify-start pt-6">
         <Icon color="text-green" name={iconName} height={"9"} width={"9"} />
-        {/* TODO: Search */}
       </div>
       {/* fake searchbar for mobile  */}
       <div
@@ -56,9 +55,13 @@ const Header = ({ backgroundColor, iconName }: HeaderProps) => {
       </div>
 
       {/* Mobile Search */}
-      <MobilePanel open={mobileSearchOpen} toggleOpen={setMobileSearchOpen}>
-        <DoctorFilterSearch />
-      </MobilePanel>
+      {includeSearch && (
+        <MobilePanel open={mobileSearchOpen} toggleOpen={setMobileSearchOpen}>
+          <DoctorFilterSearch
+            onSearchClick={() => setMobileSearchOpen(false)}
+          />
+        </MobilePanel>
+      )}
     </header>
   );
 };

@@ -1,10 +1,39 @@
-import { FilterSearch } from "@yext/search-ui-react";
-import Icon from "./atoms/Icon";
+import { FilterSearch, OnSelectParams } from "@yext/search-ui-react";
+import Icon from "../atoms/Icon";
+import { useSearchActions, useSearchState } from "@yext/search-headless-react";
 
-interface SearchBarProps {}
+interface DoctorFilterSearchProps {
+  // for closing the mobile search panel
+  onSearchClick?: () => void;
+}
 
 // TODO: Add Icons next search queries
-const DoctorFilterSearch: React.FC<SearchBarProps> = () => {
+const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
+  const staticFilters = useSearchState((state) => state.filters.static);
+
+  const searchActions = useSearchActions();
+
+  const handleSelect = (params: OnSelectParams) => {
+    const filteredFilters =
+      staticFilters?.filter(
+        // TODO: Typescript cleanup
+        (sf) => sf.filter.fieldId !== params.newFilter.fieldId
+      ) ?? [];
+    searchActions.setStaticFilters([
+      ...filteredFilters,
+      {
+        filter: params.newFilter,
+        selected: true,
+        displayName: params.newDisplayName,
+      },
+    ]);
+  };
+
+  const handleSearchClick = () => {
+    onSearchClick && onSearchClick();
+    searchActions.executeVerticalQuery();
+  };
+
   return (
     <div className="px-4">
       <div className="px-4 bg-white flex flex-col">
@@ -21,6 +50,7 @@ const DoctorFilterSearch: React.FC<SearchBarProps> = () => {
             nonHighlighted: "font-sans-regular text-sm",
             sectionLabel: "font-sans-bold text-lg",
           }}
+          onSelect={handleSelect}
           searchFields={[
             {
               fieldApiName: "taxonomy_relatedSpecialties.name",
@@ -43,6 +73,7 @@ const DoctorFilterSearch: React.FC<SearchBarProps> = () => {
             nonHighlighted: "font-sans-regular text-sm",
             sectionLabel: "font-sans-bold text-lg",
           }}
+          onSelect={handleSelect}
           searchFields={[
             {
               fieldApiName: "builtin.location",
@@ -61,6 +92,7 @@ const DoctorFilterSearch: React.FC<SearchBarProps> = () => {
             nonHighlighted: "font-sans-regular text-sm",
             sectionLabel: "font-sans-bold text-lg",
           }}
+          onSelect={handleSelect}
           searchFields={[
             {
               fieldApiName: "insuranceAccepted",
@@ -68,7 +100,10 @@ const DoctorFilterSearch: React.FC<SearchBarProps> = () => {
             },
           ]}
         />
-        <button className="bg-green flex justify-center rounded-sm items-center py-2.5 mt-6 mb-4 ">
+        <button
+          className="bg-green flex justify-center rounded-sm items-center py-2.5 mt-6 mb-4 "
+          onClick={handleSearchClick}
+        >
           <Icon name="search" color="text-white" />
           <p className="text-white font-serif-regular text-sm ml-2">Search</p>
         </button>
