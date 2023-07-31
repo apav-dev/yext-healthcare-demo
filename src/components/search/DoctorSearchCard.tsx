@@ -21,12 +21,17 @@ const sellingPoints: { icon: IconName; name: string }[] = [
 
 // TODO: replace with generated type
 export interface HealthPro {
+  id: string;
   name: string;
   address?: Address;
   taxonomy_relatedSpecialties: {
     name: string;
   }[];
   headshot?: ComplexImageType;
+  geocodedCoordinate?: {
+    latitude: number;
+    longitude: number;
+  };
 }
 
 export default function DoctorCard({ result }: CardProps<HealthPro>) {
@@ -36,7 +41,7 @@ export default function DoctorCard({ result }: CardProps<HealthPro>) {
   const city = address?.city;
 
   return (
-    <VStack classname="border rounded shadow">
+    <VStack classname="border rounded shadow bg-white">
       <HStack classname="p-6">
         <HStack classname="gap-6">
           <VStack>

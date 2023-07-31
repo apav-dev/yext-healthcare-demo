@@ -14,7 +14,7 @@ import CenteredContainer from "../components/atoms/CenteredContainer";
 import ResponsiveStack from "../components/atoms/ResponsiveStack";
 import DoctorCard from "../components/DoctorCard";
 import Section from "../components/atoms/Section";
-import DoctorLocationsMap from "../components/DoctorLocationsMap";
+import DoctorMiniMap from "../components/DoctorMiniMap";
 import AppointmentGrid from "../components/AppointmentGrid";
 import BodyText from "../components/atoms/BodyText";
 import Insurances from "../components/Insurances";
@@ -85,9 +85,7 @@ const DoctorPage: Template<TemplateRenderProps> = ({
                 rating={4.5}
                 // containerClassname="pr-6"
               />
-              <DoctorLocationsMap
-                locations={document.c_locationsPracticingAt}
-              />
+              <DoctorMiniMap locations={document.c_locationsPracticingAt} />
             </ResponsiveStack>
           </Section>
           <Section>

@@ -12,6 +12,7 @@ import {
   FaHandHoldingMedical,
   FaSearch,
   FaMap,
+  FaList,
 } from "react-icons/fa";
 import { TbFileCertificate } from "react-icons/tb";
 import { IconType } from "react-icons";
@@ -36,7 +37,8 @@ export type IconName =
   | "chevron-left"
   | "chevron-right"
   | "search"
-  | "map";
+  | "map"
+  | "list";
 
 const icons: Record<IconName, IconType> = {
   "file-certificate": TbFileCertificate,
@@ -53,6 +55,7 @@ const icons: Record<IconName, IconType> = {
   "chevron-right": FaChevronRight,
   search: FaSearch,
   map: FaMap,
+  list: FaList,
 };
 
 export interface IconProps {

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import MobilePanel from "./MobilePanel";
 import useWindowSize from "../hooks/useWindowSize";
 import DoctorFilterSearch from "./search/DoctorFilterSearch";
+import { useSearchState } from "@yext/search-headless-react";
 
 export interface HeaderProps {
   backgroundColor?: HexColor;
@@ -18,8 +19,11 @@ export const initialProps = {
 
 const Header = ({ backgroundColor, iconName, includeSearch }: HeaderProps) => {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const { width } = useWindowSize();
+
+  const staticFilters = useSearchState((state) => state.filters.static);
 
   useEffect(() => {
     if (width && width > 640) {
@@ -27,9 +31,20 @@ const Header = ({ backgroundColor, iconName, includeSearch }: HeaderProps) => {
     }
   }, [width]);
 
+  useEffect(() => {
+    if (staticFilters) {
+      const specialityFilter = staticFilters.find(
+        (sf) => sf.filter.fieldId === "taxonomy_relatedSpecialties.name"
+      );
+      if (specialityFilter) {
+        setSearchText(specialityFilter.filter.value);
+      }
+    }
+  }, [staticFilters]);
+
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-[8] flex flex-col px-4 sm:px-7 `}
+      className={`fixed top-0 left-0 w-full z-[9] flex flex-col px-4 sm:px-7 `}
       style={{ backgroundColor }}
     >
       <div className="flex justify-start pt-6">
@@ -49,8 +64,8 @@ const Header = ({ backgroundColor, iconName, includeSearch }: HeaderProps) => {
         />
         <BodyText
           className="ml-3"
-          text="Condition, procedure, doctor..."
-          color="text-disabled-gray"
+          text={searchText ?? "Condition, procedure, doctor..."}
+          color={searchText ? "text-dark-gray" : "text-disabled-gray"}
         />
       </div>
 

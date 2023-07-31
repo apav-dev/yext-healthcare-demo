@@ -25,7 +25,7 @@ export default function Layout({
 }: LayoutProps) {
   return (
     <SearchHeadlessProvider searcher={searcher} routing={defaultRouter}>
-      <div className={`min-h-screen`} style={{ backgroundColor }}>
+      <div className={`min-h-screen relative`} style={{ backgroundColor }}>
         <Header
           backgroundColor="#EDF0EB"
           iconName="home"
