@@ -8,7 +8,8 @@ export interface BodyTextProps {
     | "text-yellow"
     | "text-blue"
     | "text-disabled-gray"
-    | "text-light-gray";
+    | "text-light-gray"
+    | "text-white";
   className?: string;
   size?: "sm" | "base";
 }

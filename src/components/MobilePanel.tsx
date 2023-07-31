@@ -1,14 +1,24 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { twMerge } from "tailwind-merge";
+import HeadingText from "./atoms/HeadingText";
 
 export interface MobilePanelProps {
   open: boolean;
   toggleOpen: (open: boolean) => void;
   children?: React.ReactNode;
+  panelClassName?: string;
+  title?: string;
 }
 
-const MobilePanel = ({ open, toggleOpen, children }: MobilePanelProps) => {
+const MobilePanel = ({
+  open,
+  toggleOpen,
+  children,
+  panelClassName,
+  title,
+}: MobilePanelProps) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10 lg:hidden" onClose={toggleOpen}>
@@ -34,16 +44,28 @@ const MobilePanel = ({ open, toggleOpen, children }: MobilePanelProps) => {
             leaveFrom="translate-y-0"
             leaveTo="translate-y-full"
           >
-            <Dialog.Panel className="relative flex w-full flex-col overflow-y-auto bg-light-green pb-12 shadow-xl">
-              <div className="flex px-4 pt-5 pb-2">
+            <Dialog.Panel
+              className={twMerge(
+                "relative flex w-full flex-col overflow-y-auto bg-light-green pb-12 shadow-xl",
+                panelClassName
+              )}
+            >
+              <div className="relative px-4 py-5 min-h-[80px]">
                 <button
                   type="button"
-                  className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-500"
+                  className="absolute left-2 inline-flex items-center justify-center rounded-md p-2 text-gray-500"
                   onClick={() => toggleOpen(false)}
                 >
                   <span className="sr-only">Close menu</span>
                   <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
+                {title && (
+                  <HeadingText
+                    classname="text-center px-6 border-b border-dark-green pb-4"
+                    level="Heading 2"
+                    text={title}
+                  />
+                )}
               </div>
               {children}
             </Dialog.Panel>

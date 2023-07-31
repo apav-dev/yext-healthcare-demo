@@ -31,7 +31,7 @@ export default function Layout({
           iconName="home"
           includeSearch={includeSearch}
         />
-        <main className="pt-[166px]">{children}</main>
+        <main className="pt-[200px] lg:pt-[100px]">{children}</main>
       </div>
     </SearchHeadlessProvider>
   );
