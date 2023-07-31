@@ -6,7 +6,8 @@ import HeadingText from "../atoms/HeadingText";
 import BodyText from "../atoms/BodyText";
 import Icon, { IconName } from "../atoms/Icon";
 import { CardProps } from "@yext/search-ui-react";
-import { Address } from "../../types/autogen";
+import { Address as AddressType } from "../../types/autogen";
+import Address from "../Address";
 
 const sellingPoints: { icon: IconName; name: string }[] = [
   {
@@ -23,7 +24,7 @@ const sellingPoints: { icon: IconName; name: string }[] = [
 export interface HealthPro {
   id: string;
   name: string;
-  address?: Address;
+  address?: AddressType;
   taxonomy_relatedSpecialties: {
     name: string;
   }[];
@@ -47,48 +48,45 @@ export default function DoctorCard({ result }: CardProps<HealthPro>) {
           <VStack>
             {/* <Avatar image={headshot} /> */}
             {headshot && (
-              <div className="bg-black inline-flex h-[70px] w-[70px] select-none items-center justify-center overflow-hidden rounded-full align-middle">
+              <div className="bg-black inline-flex h-[70px] w-[70px] select-none items-center justify-center overflow-hidden rounded-full align-middle lg:h-[139px] lg:w-[139px]">
                 <Image
                   className="h-full w-full rounded-[inherit] object-cover"
                   image={headshot}
                 />
               </div>
             )}
-            <HStack classname="gap-x-1.5 flex justify-center">
+            <HStack classname="gap-x-1.5 flex justify-center pt-4">
               <Icon name="star" color="text-yellow" height={"5"} width={"5"} />
               <BodyText
                 // TODO: replace with actual rating
                 text={"4.5"}
                 weight="Bold"
-                color="text-yellow"
+                color="yellow"
               />
             </HStack>
           </VStack>
           <VStack classname="gap-y-3">
             <VStack classname="gap-y-1">
               <HeadingText text={name} level="Heading 4" />
-              <BodyText text={specialty} weight="Regular" color="text-green" />
-              <BodyText
-                text={city ?? ""}
-                weight="Regular"
-                color="text-light-gray"
-              />
+              <BodyText text={specialty} weight="Regular" color="green" />
+              <Address textColor="light-gray" address={address} />
+              {/* <div className="hidden pb-8 px-2 lg:flex lg:justify-between">
+                {sellingPoints.map((sellingPoint, i) => (
+                  <HStack key={`sp-${i}`}>
+                    <Icon name={sellingPoint.icon} classname="text-blue mr-2" />
+                    <VStack>
+                      <BodyText text={sellingPoint.name} color="blue" />
+                    </VStack>
+                  </HStack>
+                ))}
+              </div> */}
             </VStack>
           </VStack>
         </HStack>
       </HStack>
-      <div className="hidden px-2 sm:flex sm:justify-between">
-        {sellingPoints.map((sellingPoint, i) => (
-          <HStack key={`sp-${i}`}>
-            <Icon name={sellingPoint.icon} classname="text-blue mr-2" />
-            <VStack>
-              <BodyText text={sellingPoint.name} className="text-blue" />
-            </VStack>
-          </HStack>
-        ))}
-      </div>
-      <div className="flex justify-between bg-light-green px-6 py-[21px]">
-        <BodyText text={"See Availability"} color="text-green" />
+
+      <div className="flex justify-between bg-light-green px-6 py-[21px] lg:hidden">
+        <BodyText text={"See Availability"} color="green" />
         <Icon name="chevron-right" color="text-green" />
       </div>
     </VStack>

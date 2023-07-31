@@ -1,6 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { Coordinate } from "../types/autogen";
 import BodyText from "./atoms/BodyText";
+import { Color } from "../types/tailwind";
 // import { Coordinate } from "../../types/kg";
 // import TextField from "../atoms/TextField";
 // import { HexColor } from "@yext/studio";
@@ -17,6 +18,7 @@ export interface AddressProps {
   geocodedCoordinates?: Coordinate;
   showDirectionsLink?: boolean;
   containerClassname?: string;
+  textColor?: Color;
 }
 
 export const initialProps = {
@@ -40,14 +42,16 @@ export default function Address({
   geocodedCoordinates,
   showDirectionsLink,
   containerClassname,
+  textColor,
 }: AddressProps) {
   return (
     <div className={twMerge("text-sm", containerClassname)}>
-      {address.line1 && <BodyText text={address.line1} />}
-      {address.line2 && <BodyText text={address.line2} />}
+      {address.line1 && <BodyText text={address.line1} color={textColor} />}
+      {address.line2 && <BodyText text={address.line2} color={textColor} />}
       {address.city && address.region && (
         <BodyText
           text={`${address.city}, ${address.region} ${address.postalCode}`}
+          color={textColor}
         />
       )}
 

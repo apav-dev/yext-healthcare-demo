@@ -14,12 +14,17 @@ export default function FacetPopover({
 }: FacetPopoverProps) {
   const facets = useSearchState((state) => state.filters.facets);
 
-  if (!facets || !facets?.find((facet) => facet.fieldId === facetFieldId)) {
+  if (
+    !facets ||
+    !facets?.find((facet) => facet.fieldId === facetFieldId) ||
+    facets?.find((facet) => facet.fieldId === facetFieldId)?.options.length ===
+      0
+  ) {
     return null;
   }
 
   return (
-    <Popover className="relative z-50">
+    <Popover className="relative z-[9]">
       {({ open }) => (
         <>
           <Popover.Button
@@ -45,11 +50,12 @@ export default function FacetPopover({
                 onlyRenderChildren
                 customCssClasses={{
                   facetsContainer:
-                    "px-6 py-4 max-h-[800px] overflow-y-auto border border-light-gray",
+                    "px-6 py-4 max-h-[800px] overflow-y-auto border border-light-gray font-serif-regular",
                   titleLabel: "font-sans-bold text-lg text-green hidden",
                   option: "py-2",
                   optionInput: "accent-green",
                   optionLabel: "font-sans-regular text-base",
+                  divider: "hidden",
                 }}
               >
                 <StandardFacet fieldId={facetFieldId} collapsible={false} />

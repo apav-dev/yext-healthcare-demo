@@ -1,15 +1,9 @@
 import { twMerge } from "tailwind-merge";
+import { Color, textColorMap } from "../../types/tailwind";
 export interface BodyTextProps {
   text: string;
   weight?: "Regular" | "Bold";
-  color?:
-    | "text-dark-gray"
-    | "text-green"
-    | "text-yellow"
-    | "text-blue"
-    | "text-disabled-gray"
-    | "text-light-gray"
-    | "text-white";
+  color?: Color;
   className?: string;
   size?: "sm" | "base";
 }
@@ -17,7 +11,7 @@ export interface BodyTextProps {
 export const initialProps: BodyTextProps = {
   text: "Header",
   weight: "Regular",
-  color: "text-dark-gray",
+  color: "dark-gray",
   size: "base",
 };
 
@@ -28,10 +22,12 @@ export default function BodyText({
   className,
   size,
 }: BodyTextProps) {
+  const textColor = textColorMap[color ?? "dark-gray"];
+
   return (
     <p
       className={twMerge(
-        `text-base ${color} ${
+        `text-base ${textColor} ${
           weight === "Bold" ? "font-sans-bold" : "font-sans-regular"
         } ${size ? "text-sm" : "text-base"}`,
         className

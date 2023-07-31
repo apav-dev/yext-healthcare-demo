@@ -41,7 +41,7 @@ export default function DoctorCard({
           <VStack classname="py-2.5 gap-y-3">
             <VStack classname="gap-y-1">
               <HeadingText text={name} level="Heading 3" />
-              <BodyText text={specialty} weight="Regular" color="text-green" />
+              <BodyText text={specialty} weight="Regular" color="green" />
             </VStack>
             <HStack classname="gap-x-1.5">
               <Icon name="star" color="text-yellow" height={"5"} width={"5"} />
@@ -59,7 +59,7 @@ export default function DoctorCard({
           <HStack key={`sp-${i}`}>
             <Icon name={sellingPoint.icon} classname="text-blue mr-2" />
             <VStack>
-              <BodyText text={sellingPoint.name} className="text-blue" />
+              <BodyText text={sellingPoint.name} color="blue" />
             </VStack>
           </HStack>
         ))}

@@ -1,16 +1,15 @@
 import { Result, useSearchState } from "@yext/search-headless-react";
-import AppleMap, { MapLocation } from "./AppleMap";
+import AppleMap from "./AppleMap";
 import BodyText from "./atoms/BodyText";
 import Icon from "./atoms/Icon";
 import DoctorSearchCard, { HealthPro } from "./search/DoctorSearchCard";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { createCtx } from "../createCtx";
 import CenteredContainer from "./atoms/CenteredContainer";
 import {
   Facets,
   Pagination,
   ResultsCount,
-  StandardFacet,
   VerticalResults,
 } from "@yext/search-ui-react";
 import { twMerge } from "tailwind-merge";
@@ -62,7 +61,7 @@ const DoctorLocator = () => {
       }}
     >
       <div className="hidden lg:block">
-        <div className="flex items-center px-6 py-4 border-b border-gray-200 h-[80px]">
+        <div className="flex items-center px-6 py-4 border-b border-gray-200 h-[80px] shadow">
           <ResultsCount
             customCssClasses={{
               resultsCountContainer: "font-sans-bold text-2xl mb-0 p-0",
@@ -87,11 +86,11 @@ const DoctorLocator = () => {
       </div>
       <div
         className={twMerge(
-          "absolute inset-0 top-[200px] z-[8] pb-24 bg-white overflow-y-auto lg:top-[180px] lg:right-2/3",
+          "absolute inset-0 top-[200px] z-[8] pb-24 bg-white overflow-y-auto lg:pb-0 lg:top-[180px] lg:right-2/3",
           !showList && "hidden"
         )}
       >
-        <CenteredContainer classname="flex flex-col">
+        <CenteredContainer classname="flex flex-col lg:px-0">
           <div className="flex justify-between items-center pt-6 pb-4 lg:hidden">
             <ResultsCount
               customCssClasses={{
@@ -103,12 +102,12 @@ const DoctorLocator = () => {
               onClick={() => setShowList(false)}
             >
               <Icon name="map" color="text-green" />
-              <BodyText color="text-green" text="SHOW MAP" />
+              <BodyText color="green" text="SHOW MAP" />
             </button>
           </div>
           <VerticalResults
             customCssClasses={{
-              verticalResultsContainer: "flex flex-col gap-y-6 ",
+              verticalResultsContainer: "flex flex-col gap-y-6 lg:gap-y-0",
             }}
             CardComponent={DoctorSearchCard}
           />
@@ -129,7 +128,7 @@ const DoctorLocator = () => {
           onClick={() => setShowList(true)}
         >
           <Icon name="list" color="text-green" />
-          <BodyText className="pl-3" color="text-green" text="SHOW LIST" />
+          <BodyText className="pl-3" color="green" text="SHOW LIST" />
         </button>
         <AppleMap locations={locations} />
         {/* {selectedDoctor && (
@@ -153,11 +152,7 @@ const DoctorLocator = () => {
               height={"4"}
               width={"4"}
             />
-            <BodyText
-              className="ml-3"
-              color="text-white"
-              text="Sort / Filter"
-            />
+            <BodyText className="ml-3" color="white" text="Sort / Filter" />
           </button>
         </div>
       )}

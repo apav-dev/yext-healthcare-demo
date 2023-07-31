@@ -1,6 +1,7 @@
 import { FilterSearch, OnSelectParams } from "@yext/search-ui-react";
 import Icon from "../atoms/Icon";
 import { useSearchActions, useSearchState } from "@yext/search-headless-react";
+import useWindowSize from "../../hooks/useWindowSize";
 
 interface DoctorFilterSearchProps {
   // for closing the mobile search panel
@@ -12,6 +13,8 @@ const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
   const staticFilters = useSearchState((state) => state.filters.static);
 
   const searchActions = useSearchActions();
+
+  const { width } = useWindowSize();
 
   const handleSelect = (params: OnSelectParams) => {
     const filteredFilters =
@@ -27,6 +30,9 @@ const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
         displayName: params.newDisplayName,
       },
     ]);
+    if (width && width > 1024) {
+      searchActions.executeVerticalQuery();
+    }
   };
 
   const handleSearchClick = () => {
@@ -35,15 +41,15 @@ const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
   };
 
   return (
-    <div className="px-4">
-      <div className="px-4 bg-white flex flex-col">
+    <div className="px-4 lg:flex lg:items-center">
+      <div className="px-4 bg-white flex flex-col lg:flex-row lg:ml-7 lg:bg-transparent">
         <FilterSearch
           placeholder="Condition, procedure, doctor"
           sectioned
           customCssClasses={{
-            filterSearchContainer: "mb-0",
+            filterSearchContainer: "mb-0 lg:flex lg:items-center",
             inputElement:
-              "rounded-none border-0 border-b py-6 font-serif-regular placeholder:text-disabled-gray",
+              "rounded-none border-0 border-b py-6 font-serif-regular placeholder:text-disabled-gray lg:w-[350px]",
             optionsContainer: "z-50",
             option: "py-2 px-4",
             highlighted: "font-sans-bold text-blue text-sm",
@@ -65,9 +71,9 @@ const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
         <FilterSearch
           placeholder="City, state, or zip code"
           customCssClasses={{
-            filterSearchContainer: "mb-0",
+            filterSearchContainer: "mb-0 lg:flex lg:items-center",
             inputElement:
-              "rounded-none border-0 border-b font-serif-regular py-6 placeholder:text-disabled-gray",
+              "rounded-none border-0 border-b font-serif-regular py-6 placeholder:text-disabled-gray lg:w-[250px]",
             option: "py-2 px-4",
             highlighted: "font-sans-bold text-blue text-sm",
             nonHighlighted: "font-sans-regular text-sm",
@@ -84,9 +90,9 @@ const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
         <FilterSearch
           placeholder="Insurance"
           customCssClasses={{
-            filterSearchContainer: "mb-0",
+            filterSearchContainer: "mb-0 lg:flex lg:items-center",
             inputElement:
-              "rounded-none border-0 border-b font-serif-regular py-6 placeholder:text-disabled-gray",
+              "rounded-none border-0 border-b font-serif-regular py-6 placeholder:text-disabled-gray lg:w-[250px]",
             option: "py-2 px-4",
             highlighted: "font-sans-bold text-blue text-sm",
             nonHighlighted: "font-sans-regular text-sm",
@@ -101,11 +107,13 @@ const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
           ]}
         />
         <button
-          className="bg-green flex justify-center rounded-sm items-center py-2.5 mt-6 mb-4 "
+          className="bg-green flex justify-center rounded-sm items-center py-2.5 mt-6 mb-4 lg:w-16 lg:h-[49px] lg:my-auto lg:rounded-r "
           onClick={handleSearchClick}
         >
           <Icon name="search" color="text-white" />
-          <p className="text-white font-serif-regular text-sm ml-2">Search</p>
+          <p className="text-white font-serif-regular text-sm ml-2 lg:hidden">
+            Search
+          </p>
         </button>
       </div>
     </div>

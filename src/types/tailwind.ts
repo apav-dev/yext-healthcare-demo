@@ -35,6 +35,31 @@ export type TailwindSize =
   | "80"
   | "96";
 
+export type Color =
+  | "light-green"
+  | "green"
+  | "dark-green"
+  | "yellow"
+  | "blue"
+  | "dark-gray"
+  | "light-gray"
+  | "disabled-gray"
+  | "white"
+  | "black";
+
+export const textColorMap: Record<Color, string> = {
+  "light-green": "text-light-green",
+  green: "text-green",
+  "dark-green": "text-dark-green",
+  yellow: "text-yellow",
+  blue: "text-blue",
+  "dark-gray": "text-dark-gray",
+  "light-gray": "text-light-gray",
+  "disabled-gray": "text-disabled-gray",
+  white: "text-white",
+  black: "text-black",
+};
+
 export const tailwindHeight: Record<TailwindSize, string> = {
   "0": "h-0",
   px: "h-px",
