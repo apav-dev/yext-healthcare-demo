@@ -1,9 +1,9 @@
 import { Result, useSearchState } from "@yext/search-headless-react";
-import AppleMap from "./AppleMap";
+import AppleMap, { MapLocation } from "./AppleMap";
 import BodyText from "./atoms/BodyText";
 import Icon from "./atoms/Icon";
 import DoctorSearchCard, { HealthPro } from "./search/DoctorSearchCard";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createCtx } from "../createCtx";
 import CenteredContainer from "./atoms/CenteredContainer";
 import {
@@ -15,6 +15,7 @@ import {
 import { twMerge } from "tailwind-merge";
 import MobilePanel from "./MobilePanel";
 import FacetPopover from "./search/FacetPopover";
+import useWindowSize from "../hooks/useWindowSize";
 
 export type LocatorContextType = {
   selectedId: string;
@@ -35,13 +36,22 @@ const DoctorLocator = () => {
     (state) => state.vertical.results
   ) as unknown as Result<HealthPro>[] | undefined;
 
-  // useEffect(() => {
-  //   if (selectedDoctorId) {
-  //     setSelectedDoctor(
-  //       doctors?.find((doctor) => doctor.rawData.id === selectedDoctorId)
-  //     );
-  //   }
-  // }, [selectedDoctorId, doctors]);
+  const { width } = useWindowSize();
+
+  useEffect(() => {
+    console.log("selectedDoctorId", selectedDoctorId);
+    if (selectedDoctorId) {
+      setSelectedDoctor(
+        doctors?.find((doctor) => doctor.rawData.id === selectedDoctorId)
+      );
+    }
+  }, [selectedDoctorId, doctors]);
+
+  useEffect(() => {
+    if (width && width > 1024) {
+      setShowList(true);
+    }
+  }, [width]);
 
   const locations = useMemo(() => {
     return (
@@ -52,6 +62,11 @@ const DoctorLocator = () => {
       })) ?? []
     );
   }, [doctors]);
+
+  // const handleLocationSelect = (location: MapLocation) => {
+  //   console.log("handleLocationSelect", location);
+  //   setSelectedDoctorId(location.id);
+  // };
 
   return (
     <LocatorProvider
@@ -86,7 +101,7 @@ const DoctorLocator = () => {
       </div>
       <div
         className={twMerge(
-          "absolute inset-0 top-[200px] z-[8] pb-24 bg-white overflow-y-auto lg:pb-0 lg:top-[180px] lg:right-2/3",
+          "absolute inset-0 top-[200px] z-[8] pb-12 bg-white overflow-y-auto lg:pb-0 lg:top-[180px] lg:right-2/3",
           !showList && "hidden"
         )}
       >
@@ -116,8 +131,8 @@ const DoctorLocator = () => {
               paginationContainer: "py-8 shadow-none",
               label: "font-pt-sans-regular border-0",
               selectedLabel: "font-pt-sans-bold border-0 bg-green text-white",
-              leftIconContainer: "border-0 px-4 transform",
-              rightIconContainer: "border-0 px-4 transform",
+              leftIconContainer: "border-0 px-4",
+              rightIconContainer: "border-0 px-4",
             }}
           />
         </CenteredContainer>
@@ -130,7 +145,10 @@ const DoctorLocator = () => {
           <Icon name="list" color="text-green" />
           <BodyText className="pl-3" color="green" text="SHOW LIST" />
         </button>
-        <AppleMap locations={locations} />
+        <AppleMap
+          locations={locations}
+          // onLocationSelect={handleLocationSelect}
+        />
         {/* {selectedDoctor && (
           <div className="absolute bottom-0 left-0 w-full z-[1]">
             <div className="p-4">

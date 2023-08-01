@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Address, Coordinate } from "../types/autogen";
 import { useLocatorContext } from "./DoctorLocator";
+import useWindowSize from "../hooks/useWindowSize";
 
 export interface MapLocation {
   id: string;
@@ -28,7 +29,10 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
 
   const { selectedId, setSelectedId } = useLocatorContext();
 
+  const { width } = useWindowSize();
+
   useEffect(() => {
+    console.log("loading mapkit");
     const script = document.createElement("script");
 
     script.src = "https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js";
@@ -70,21 +74,30 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
   }, []);
 
   useEffect(() => {
-    renderMarkers();
-  }),
-    [locations];
-
-  useEffect(() => {
-    if (center && map) {
-      map.setCenterAnimated(
-        new window.mapkit.Coordinate(center.latitude, center.longitude)
-      );
-    }
-  }, [center]);
-
-  const renderMarkers = () => {
+    console.log("locations", locations);
     if (mapContainerRef.current && window.mapkit) {
       if (map && locations && locations.length > 0) {
+        const landmarkAnnotationCallout = {
+          calloutElementForAnnotation: (annotation) => {
+            // const landmark = annotationsToLandmark.get(annotation);
+
+            const div = document.createElement("div");
+            div.className = "landmark";
+
+            const title = div.appendChild(document.createElement("h1"));
+            title.textContent = "Hello World";
+
+            const section = div.appendChild(document.createElement("section"));
+
+            return div;
+          },
+
+          // calloutAnchorOffsetForAnnotation: (annotation, element) => offset,
+
+          // calloutAppearanceAnimationForAnnotation: (annotation) =>
+          //   ".4s cubic-bezier(0.4, 0, 0, 1.5) " +
+          //   "0s 1 normal scale-and-fadein",
+        };
         const markers = locations?.map((location, idx) => {
           const marker = new window.mapkit.MarkerAnnotation(
             new window.mapkit.Coordinate(
@@ -95,15 +108,28 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
               glyphText: "●",
               glyphColor: "#ffffff",
               color: "#4F6A4E",
+              callout: landmarkAnnotationCallout,
             }
+            // {
+            //   title: "test",
+            // }
           );
 
-          if (idx === 0) {
+          if (idx === 0 && width && width < 1024) {
             marker.selected = true;
           }
 
+          // marker.addEventListener(
+          //   "click",
+          //   (event: any) => {
+          //     handleLocationSelect(event.target);
+          //   },
+          //   location
+          // );
+
           return marker;
         });
+
         map.showItems(markers);
         map.setCenterAnimated(
           new window.mapkit.Coordinate(
@@ -113,6 +139,23 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
           false
         );
       }
+    }
+  }),
+    [locations];
+
+  // useEffect(() => {
+  //   if (center && map) {
+  //     map.setCenterAnimated(
+  //       new window.mapkit.Coordinate(center.latitude, center.longitude)
+  //     );
+  //   }
+  // }, [center]);
+
+  const handleLocationSelect = (target: any) => {
+    const location = target._listeners.select?.[0].thisObject;
+    console.log("handleLocationSelect", location);
+    if (location) {
+      setSelectedId(location.id);
     }
   };
 

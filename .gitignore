@@ -5,7 +5,9 @@ dist/
 .yext
 .artifact-output
 *.local
+sites-config/features.json
 
 .DS_Store
 
 .env
+

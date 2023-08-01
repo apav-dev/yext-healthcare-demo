@@ -25,32 +25,36 @@ import Reviews from "../components/Reviews";
 import Faqs from "../components/Faqs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-// export const config: TemplateConfig = {
-//   stream: {
-//     $id: "doctors",
-//     localization: { locales: ["en"], primary: false },
-//     fields: [
-//       "id",
-//       "name",
-//       "slug",
-//       "npi",
-//       "c_description",
-//       "headshot",
-//       "c_specialty.name",
-//       "c_locationsPracticingAt.address",
-//       "c_locationsPracticingAt.geocodedCoordinate",
-//       "c_insurances",
-//       "c_education",
-//       "c_boardCertifications",
-//       "c_practiceNames",
-//       "c_languagesSpoken",
-//       "c_gender",
-//       "c_faqs.question",
-//       "c_faqs.answer",
-//     ],
-//     filter: { entityTypes: ["ce_doctor"] },
-//   },
-// };
+export const config: TemplateConfig = {
+  stream: {
+    $id: "doctors",
+    localization: { locales: ["en"], primary: false },
+    fields: [
+      "id",
+      "name",
+      "slug",
+      "npi",
+      "c_providerBio",
+      "headshot",
+      "taxonomy_relatedSpecialties.name",
+      "address",
+      "c_alsoLocatedAt.address",
+      "c_alsoLocatedAt.gecodedCoordinate",
+      // "c_locationsPracticingAt.address",
+      // "c_locationsPracticingAt.geocodedCoordinate",
+      "insuranceAccepted",
+      "educationList",
+      // "c_boardCertifications",
+      // "c_practiceNames",
+      "languages",
+      "gender",
+      // "c_faqs.question",
+      // "c_faqs.answer",
+    ],
+    filter: { entityTypes: ["healthcareProfessional"] },
+  },
+};
+
 export const getPath: GetPath<TemplateProps> = () =>
   // { document }
   {
@@ -72,7 +76,7 @@ export const getPath: GetPath<TemplateProps> = () =>
 
 // const queryClient = new QueryClient();
 
-const DoctorPage: Template<TemplateRenderProps> = ({
+const HealthPro: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
   return (
@@ -179,4 +183,4 @@ const DoctorPage: Template<TemplateRenderProps> = ({
   );
 };
 
-export default DoctorPage;
+export default HealthPro;
