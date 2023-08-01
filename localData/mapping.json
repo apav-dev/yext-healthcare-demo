@@ -1,6 +1,15 @@
 {
-	"doctor": [
-		"cog-internal-feature-static-file-generation-doctor__en__cfcd208495d565ef66e7dff9f98764da.json"
+	"health-pro": [
+		"doctors__en__fe12733b91848e6f96026e144842bba5.json",
+		"doctors__en__18634cc4aaa3161edb70f315e2855310.json",
+		"doctors__en__d9ff56bd9f9e71afdbababe92a56f036.json",
+		"doctors__en__ca2401c67341e3b5eb5f2c6f7b8e338b.json",
+		"doctors__en__64ace95c30537c00de69b44c90896507.json",
+		"doctors__en__64677d658ed94e7f5f3630c1872b0868.json",
+		"doctors__en__ef77d1873bbcccab0f6042a2166d2c12.json",
+		"doctors__en__5f1bd2846524dbf2f8d0f118e914542b.json",
+		"doctors__en__f40ede88d367c2cbcd2bc8ab54a6a4dd.json",
+		"doctors__en__7b1a02e600cc625b81bf9a1c593d0964.json"
 	],
 	"search": [
 		"cog-internal-feature-static-file-generation-search__en__cfcd208495d565ef66e7dff9f98764da.json"

@@ -27,7 +27,7 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
   const [map, setMap] = useState<any>();
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const { selectedId, setSelectedId } = useLocatorContext();
+  // const { selectedId, setSelectedId } = useLocatorContext();
 
   const { width } = useWindowSize();
 
@@ -154,9 +154,9 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
   const handleLocationSelect = (target: any) => {
     const location = target._listeners.select?.[0].thisObject;
     console.log("handleLocationSelect", location);
-    if (location) {
-      setSelectedId(location.id);
-    }
+    // if (location) {
+    //   setSelectedId(location.id);
+    // }
   };
 
   return <div ref={mapContainerRef} className={"w-full h-full"} />;

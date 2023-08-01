@@ -39,7 +39,6 @@ export const ScrollableContainer = ({ children }: ScrollableContainerProps) => {
     title: string,
     element: HTMLDivElement | null
   ) => {
-    console.log("registering section", sectionId, title, element);
     sectionRefs.current[sectionId] = element;
     setSectionTitles((prevTitles) => ({ ...prevTitles, [sectionId]: title }));
   };

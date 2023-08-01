@@ -38,148 +38,163 @@ export const config: TemplateConfig = {
       "headshot",
       "taxonomy_relatedSpecialties.name",
       "address",
+      "yextDisplayCoordinate",
       "c_alsoLocatedAt.address",
-      "c_alsoLocatedAt.gecodedCoordinate",
+      "c_alsoLocatedAt.yextDisplayCoordinate",
+
       // "c_locationsPracticingAt.address",
       // "c_locationsPracticingAt.geocodedCoordinate",
       "insuranceAccepted",
       "educationList",
-      // "c_boardCertifications",
+      "certifications",
       // "c_practiceNames",
       "languages",
       "gender",
-      // "c_faqs.question",
-      // "c_faqs.answer",
+      "c_faqs.question",
+      "c_faqs.answer",
+      "c_relatedHealthcareFacilities.name",
     ],
     filter: { entityTypes: ["healthcareProfessional"] },
   },
 };
 
-export const getPath: GetPath<TemplateProps> = () =>
-  // { document }
-  {
-    // const doctor = document as Doctor;
-    // return `${doctor.slug}`;
-    return "temp";
+export const getPath: GetPath<TemplateProps> = ({ document }) => {
+  return `${document.slug}`;
+};
+
+export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
+  document,
+}): HeadConfig => {
+  const doctor = document as Doctor;
+  return {
+    title: doctor.name,
+    charset: "UTF-8",
+    viewport: "width=device-width, initial-scale=1",
   };
+};
 
-// export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
-//   document,
-// }): HeadConfig => {
-//   const doctor = document as Doctor;
-//   return {
-//     title: doctor.name,
-//     charset: "UTF-8",
-//     viewport: "width=device-width, initial-scale=1",
-//   };
-// };
-
-// const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
 const HealthPro: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
+  console.log("document", document);
   return (
-    <></>
-    // <QueryClientProvider client={queryClient}>
-    //   <PageLayout>
-    //     <CenteredContainer classname="max-w-5xl">
-    //       <Section>
-    //         <ResponsiveStack className="gap-x-6">
-    //           <DoctorCard
-    //             headshot={document.headshot}
-    //             name={document.name}
-    //             specialty={document.c_specialty[0].name}
-    //             rating={4.5}
-    //             // containerClassname="pr-6"
-    //           />
-    //           <DoctorMiniMap locations={document.c_locationsPracticingAt} />
-    //         </ResponsiveStack>
-    //       </Section>
-    //       <Section>
-    //         <AppointmentGrid />
-    //       </Section>
-    //     </CenteredContainer>
+    <QueryClientProvider client={queryClient}>
+      <PageLayout>
+        <CenteredContainer classname="max-w-5xl">
+          <Section>
+            <ResponsiveStack className="gap-x-6">
+              <DoctorCard
+                headshot={document.headshot}
+                name={document.name}
+                specialty={document.taxonomy_relatedSpecialties[0].name}
+                rating={4.5}
+                // containerClassname="pr-6"
+              />
+              <DoctorMiniMap
+                locations={[
+                  {
+                    address: document.address,
+                    geocodedCoordinate: document.yextDisplayCoordinate,
+                  },
+                  ...(document.c_alsoLocatedAt ?? []),
+                ]}
+              />
+            </ResponsiveStack>
+          </Section>
+          <Section>
+            <AppointmentGrid />
+          </Section>
+        </CenteredContainer>
 
-    //     <ScrollableContainer>
-    //       <ScrollableSection
-    //         title="About"
-    //         outerContainerClassname="scroll-mt-[166px]"
-    //       >
-    //         <BodyText
-    //           text={document.c_description}
-    //           className="whitespace-pre-line"
-    //         />
-    //       </ScrollableSection>
-    //       <ScrollableSection
-    //         title="Education & Background"
-    //         outerContainerClassname="bg-light-green scroll-mt-24"
-    //         innerContainerClassname="max-w-5xl"
-    //       >
-    //         <DoctorBackground
-    //           items={[
-    //             {
-    //               icon: "school",
-    //               name: "Education",
-    //               details: document.c_education,
-    //             },
-    //             {
-    //               icon: "file-certificate",
-    //               name: "Board Certifications",
-    //               details: document.c_boardCertifications,
-    //             },
-    //             {
-    //               icon: "hospital",
-    //               name: "Practice Names",
-    //               details: document.c_practiceNames,
-    //             },
-    //             {
-    //               icon: "stethoscope",
-    //               name: "Specialties",
-    //               details: [document.c_specialty?.[0].name],
-    //             },
-    //             {
-    //               icon: "language",
-    //               name: "Languages Spoken",
-    //               details: document.c_languagesSpoken,
-    //             },
-    //             {
-    //               icon: "venus-mars",
-    //               name: "Gender",
-    //               details: [document.c_gender],
-    //             },
-    //             {
-    //               icon: "hashtag",
-    //               name: "NPI Number",
-    //               details: [document.npi],
-    //             },
-    //           ]}
-    //         />
-    //       </ScrollableSection>
+        <ScrollableContainer>
+          <ScrollableSection
+            title="About"
+            outerContainerClassname="scroll-mt-[166px]"
+          >
+            <BodyText
+              text={document.c_providerBio}
+              className="whitespace-pre-line"
+            />
+          </ScrollableSection>
+          <ScrollableSection
+            title="Education & Background"
+            outerContainerClassname="bg-light-green scroll-mt-24"
+            innerContainerClassname="max-w-5xl"
+          >
+            <DoctorBackground
+              items={[
+                {
+                  icon: "school",
+                  name: "Education",
+                  details: document.educationList.map(
+                    (education) => education.institutionName
+                  ),
+                },
+                {
+                  icon: "file-certificate",
+                  name: "Board Certifications",
+                  details: document.certifications,
+                },
+                {
+                  icon: "hospital",
+                  name: "Practice Names",
+                  details: document.c_relatedHealthcareFacilities?.map(
+                    (facility) => facility.name
+                  ),
+                },
+                {
+                  icon: "stethoscope",
+                  name: "Specialties",
+                  details: [document.taxonomy_relatedSpecialties[0].name],
+                },
+                {
+                  icon: "language",
+                  name: "Languages Spoken",
+                  details: document.languages,
+                },
+                {
+                  icon: "venus-mars",
+                  name: "Gender",
+                  details: [document.gender],
+                },
+                {
+                  icon: "hashtag",
+                  name: "NPI Number",
+                  details: [document.npi],
+                },
+              ]}
+            />
+          </ScrollableSection>
 
-    //       <ScrollableSection
-    //         title="Reviews"
-    //         outerContainerClassname="scroll-mt-[166px]"
-    //       >
-    //         <Reviews entityId={document.id} />
-    //       </ScrollableSection>
-    //       <ScrollableSection
-    //         title="Insurances Accepted"
-    //         outerContainerClassname="bg-light-green scroll-mt-[166px]]"
-    //         innerContainerClassname="max-w-5xl"
-    //       >
-    //         <Insurances insurances={document.c_insurances} />
-    //       </ScrollableSection>
-    //       <ScrollableSection
-    //         title="FAQs"
-    //         innerContainerClassname="max-w-5xl"
-    //         outerContainerClassname="scroll-mt-[166px]"
-    //       >
-    //         <Faqs faqs={document.c_faqs} />
-    //       </ScrollableSection>
-    //     </ScrollableContainer>
-    //   </PageLayout>
-    // </QueryClientProvider>
+          <ScrollableSection
+            title="Reviews"
+            outerContainerClassname="scroll-mt-[166px]"
+          >
+            <Reviews entityId={document.id} />
+          </ScrollableSection>
+          <ScrollableSection
+            title="Insurances Accepted"
+            outerContainerClassname="bg-light-green scroll-mt-[166px]]"
+            innerContainerClassname="max-w-5xl"
+          >
+            <Insurances
+              insurances={document.insuranceAccepted.map((insurance) => ({
+                label: insurance,
+              }))}
+            />
+          </ScrollableSection>
+          <ScrollableSection
+            title="FAQs"
+            innerContainerClassname="max-w-5xl"
+            outerContainerClassname="scroll-mt-[166px]"
+          >
+            <Faqs faqs={document.c_faqs} />
+          </ScrollableSection>
+        </ScrollableContainer>
+      </PageLayout>
+    </QueryClientProvider>
   );
 };
 
