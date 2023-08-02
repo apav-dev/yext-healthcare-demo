@@ -48,7 +48,7 @@ const Header = ({ backgroundColor, iconName, includeSearch }: HeaderProps) => {
       style={{ backgroundColor }}
     >
       <div className="flex justify-start py-8">
-        <Icon color="text-green" name={iconName} height={"9"} width={"9"} />
+        <Icon color="green" name={iconName} height={"9"} width={"9"} />
       </div>
       {/* fake searchbar for mobile  */}
       <div
@@ -56,7 +56,7 @@ const Header = ({ backgroundColor, iconName, includeSearch }: HeaderProps) => {
         onClick={() => setMobileSearchOpen(true)}
       >
         <Icon
-          color="text-green"
+          color="green"
           classname="text-sm"
           name="search"
           height={"4"}

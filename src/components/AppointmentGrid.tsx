@@ -40,10 +40,11 @@ export default function AppointmentGrid() {
           {times.map((time) => (
             <button
               key={`${date}-${time}`}
-              className="relative space-x-3 rounded-[3px] border border-gray-300  px-6 py-2.5 shadow-sm bg-green hover:bg-dark-green"
+              className="relative space-x-3 rounded-[3px] border border-gray-300 px-6 py-2.5 shadow-sm bg-green hover:bg-dark-green"
+              style={{ backgroundColor: "#4F6A4E" }}
             >
               <div className="flex justify-center">
-                <p className="text-sm font-medium font-sans-regular text-white ">
+                <p className="text-sm font-medium font-sans-regular text-white">
                   {time}
                 </p>
               </div>

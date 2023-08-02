@@ -1,19 +1,21 @@
-import { ComplexImageType, Image } from "@yext/pages/components";
+import { Image } from "@yext/pages/components";
 import GridContainer from "./atoms/GridContainer";
 import BodyText from "./atoms/BodyText";
 import HStack from "./atoms/HStack";
 import useWindowSize from "../hooks/useWindowSize";
+import { ImageType } from "../types/autogen";
 
 export interface InsurancesProps {
   insurances?: {
     label: string;
-    // image?: ComplexImageType;
+    image?: ImageType;
   }[];
 }
 
 export default function Insurances({ insurances }: InsurancesProps) {
   const { width } = useWindowSize();
 
+  console.log("insurances", insurances);
   return (
     <GridContainer
       columnCount={width && width < 640 ? 1 : 2}

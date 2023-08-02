@@ -25,6 +25,7 @@ export default function DoctorBackground({ items }: DoctorBackgroundProps) {
               name={item.icon}
               classname="pt-3 w-10 h-10"
               color="text-green"
+              hexColor={"#4F6A4E"}
             />
           )}
           <VStack classname="pl-4">
