@@ -7,26 +7,24 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import "../index.css";
-import Doctor from "../types/autogen";
 import PageLayout from "../components/PageLayout";
 import DoctorLocator from "../components/DoctorLocator";
 
 export const getPath: GetPath<TemplateProps> = () => {
-  return `search`;
+  return `doctor-finder`;
 };
 
-export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
-  document,
-}): HeadConfig => {
-  const doctor = document as Doctor;
+export const getHeadConfig: GetHeadConfig<
+  TemplateRenderProps
+> = (): HeadConfig => {
   return {
-    title: doctor.name,
+    title: "Doctor Finder",
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
   };
 };
 
-const Search: Template<TemplateRenderProps> = () => {
+const Search: Template<TemplateRenderProps> = ({ document }) => {
   return (
     <PageLayout includeSearch={true}>
       {/* <Transition

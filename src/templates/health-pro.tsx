@@ -56,7 +56,7 @@ export const config: TemplateConfig = {
 };
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return `${document.slug}`;
+  return document.slug ? document.slug : `health-pro/${document.id}`;
 };
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
@@ -87,7 +87,7 @@ const HealthPro: Template<TemplateRenderProps> = ({
               <DoctorCard
                 headshot={document.headshot}
                 name={document.name}
-                specialty={document.taxonomy_relatedSpecialties[0].name}
+                specialty={document.taxonomy_relatedSpecialties?.[0].name}
                 rating={4.5}
                 // containerClassname="pr-6"
               />
@@ -127,7 +127,7 @@ const HealthPro: Template<TemplateRenderProps> = ({
                 {
                   icon: "school",
                   name: "Education",
-                  details: document.educationList.map(
+                  details: document.educationList?.map(
                     (education) => education.institutionName
                   ),
                 },
@@ -146,7 +146,7 @@ const HealthPro: Template<TemplateRenderProps> = ({
                 {
                   icon: "stethoscope",
                   name: "Specialties",
-                  details: [document.taxonomy_relatedSpecialties[0].name],
+                  details: [document.taxonomy_relatedSpecialties?.[0].name],
                 },
                 {
                   icon: "language",

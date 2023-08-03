@@ -74,13 +74,13 @@ const renderPopover = ({
                     {featuredSection && (
                       <div className="group relative text-base sm:text-sm">
                         <div className="h-72 aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                          <img
-                            src={
-                              "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80"
-                            }
-                            // alt={item.imageAlt}
-                            className="object-cover object-center"
-                          />
+                          {featuredSection.image?.image?.url && (
+                            <img
+                              src={featuredSection.image?.image?.url}
+                              // alt={item.imageAlt}
+                              className="object-cover object-center"
+                            />
+                          )}
                         </div>
                         <div className="mt-6 block font-medium text-gray-900">
                           <span
@@ -143,7 +143,9 @@ export default function Header({ locations, specialties }: HeaderProps) {
         aria-label="Global"
       >
         <div className="flex pr-8">
-          <Icon color="text-green" name={"home"} height={"9"} width={"9"} />
+          <a href="/">
+            <Icon color="text-green" name={"home"} height={"9"} width={"9"} />
+          </a>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -194,7 +196,7 @@ export default function Header({ locations, specialties }: HeaderProps) {
                 featuredSection: {
                   image: {
                     image: {
-                      url: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80",
+                      url: "https://images.unsplash.com/photo-1626315869436-d6781ba69d6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
                       alternateText: "Waiting room",
                       width: 2532,
                       height: 2532,
@@ -211,11 +213,17 @@ export default function Header({ locations, specialties }: HeaderProps) {
             </div>
           </Popover.Group>
           <div className="flex space-x-6 font-serif-regular text-green">
-            <a className="flex items-center space-x-2 hover:underline">
+            <a
+              href="/search"
+              className="flex items-center space-x-2 hover:underline"
+            >
               <span>Search</span>
               <Icon name="search" height="4" width="4" />
             </a>
-            <a className="flex items-center space-x-2 rounded-md border-2 px-4 py-2 border-green hover:text-white hover:bg-green">
+            <a
+              href="/doctor-finder"
+              className="flex items-center space-x-2 rounded-md border-2 px-4 py-2 border-green hover:text-white hover:bg-green"
+            >
               <span>Find a Doctor</span>
             </a>
           </div>
@@ -230,7 +238,9 @@ export default function Header({ locations, specialties }: HeaderProps) {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-light-green px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-dark-green">
           <div className="flex items-center justify-between">
-            <Icon color="text-green" name={"home"} height={"9"} width={"9"} />
+            <a href="/">
+              <Icon color="text-green" name={"home"} height={"9"} width={"9"} />
+            </a>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"

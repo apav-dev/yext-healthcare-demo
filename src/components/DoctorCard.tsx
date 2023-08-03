@@ -8,10 +8,10 @@ import Icon, { IconName } from "./atoms/Icon";
 import { twMerge } from "tailwind-merge";
 
 export interface DoctorCardProps {
-  name: string;
-  specialty: string;
-  headshot: ComplexImageType;
-  rating: number;
+  name?: string;
+  specialty?: string;
+  headshot?: ComplexImageType;
+  rating?: number;
   containerClassname?: string;
 }
 
@@ -40,16 +40,18 @@ export default function DoctorCard({
           <Avatar image={headshot} />
           <VStack classname="py-2.5 gap-y-3">
             <VStack classname="gap-y-1">
-              <HeadingText text={name} level="Heading 3" />
-              <BodyText text={specialty} weight="Regular" color="green" />
+              <HeadingText text={name ?? ""} level="Heading 3" />
+              <BodyText text={specialty ?? ""} weight="Regular" color="green" />
             </VStack>
             <HStack classname="gap-x-1.5">
               <Icon name="star" color="text-yellow" height={"5"} width={"5"} />
-              <BodyText
-                text={rating.toString()}
-                weight="Bold"
-                color="text-yellow"
-              />
+              {rating && (
+                <BodyText
+                  text={rating.toString()}
+                  weight="Bold"
+                  color="yellow"
+                />
+              )}
             </HStack>
           </VStack>
         </HStack>
