@@ -3,6 +3,7 @@ import Address from "./Address";
 import { C_locationsPracticingAt } from "../types/autogen";
 import Icon from "./atoms/Icon";
 import AppleMap from "./AppleMap";
+import { twMerge } from "tailwind-merge";
 export interface AppleMapProps {
   locations?: C_locationsPracticingAt[];
 }
@@ -38,7 +39,12 @@ const DoctorMiniMap = ({ locations }: AppleMapProps) => {
         />
       </div>
       {locations?.[locationIdx]?.address && (
-        <div className="flex justify-between">
+        <div
+          className={twMerge(
+            "flex justify-between",
+            locations.length < 2 && "justify-center"
+          )}
+        >
           {locations && locations.length > 1 && (
             <button onClick={() => toggleLocation(-1)}>
               <Icon name="chevron-left" classname={"h-7 w-7"} />

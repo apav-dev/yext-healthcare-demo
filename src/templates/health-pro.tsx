@@ -41,13 +41,10 @@ export const config: TemplateConfig = {
       "yextDisplayCoordinate",
       "c_alsoLocatedAt.address",
       "c_alsoLocatedAt.yextDisplayCoordinate",
-
-      // "c_locationsPracticingAt.address",
-      // "c_locationsPracticingAt.geocodedCoordinate",
+      "c_insurances",
       "insuranceAccepted",
       "educationList",
       "certifications",
-      // "c_practiceNames",
       "languages",
       "gender",
       "c_faqs.question",
@@ -78,10 +75,12 @@ const queryClient = new QueryClient();
 const HealthPro: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
-  console.log("document", document);
   return (
     <QueryClientProvider client={queryClient}>
-      <PageLayout>
+      <PageLayout
+        featuredLocations={document._site.c_featuredLocations}
+        featuredSpecialties={document._site.c_featuredSpecialties}
+      >
         <CenteredContainer classname="max-w-5xl">
           <Section>
             <ResponsiveStack className="gap-x-6">
@@ -179,11 +178,7 @@ const HealthPro: Template<TemplateRenderProps> = ({
             outerContainerClassname="bg-light-green scroll-mt-[166px]]"
             innerContainerClassname="max-w-5xl"
           >
-            <Insurances
-              insurances={document.insuranceAccepted.map((insurance) => ({
-                label: insurance,
-              }))}
-            />
+            <Insurances insurances={document.c_insurances} />
           </ScrollableSection>
           <ScrollableSection
             title="FAQs"
