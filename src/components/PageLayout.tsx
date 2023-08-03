@@ -47,7 +47,7 @@ export default function Layout({
             specialties={featuredSpecialties}
           />
         )}
-        <main className="pt-[200px] lg:pt-[100px]">{children}</main>
+        <main>{children}</main>
       </div>
     </SearchHeadlessProvider>
   );
