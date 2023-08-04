@@ -10,22 +10,9 @@ import {
 import "../index.css";
 // import Facility from "../types/autogen";
 import PageLayout from "../components/PageLayout";
-import CenteredContainer from "../components/atoms/CenteredContainer";
-import ResponsiveStack from "../components/atoms/ResponsiveStack";
-import DoctorCard from "../components/DoctorCard";
-import Section from "../components/atoms/Section";
-import DoctorMiniMap from "../components/DoctorMiniMap";
-import AppointmentGrid from "../components/AppointmentGrid";
-import BodyText from "../components/atoms/BodyText";
-import Insurances from "../components/Insurances";
-import DoctorBackground from "../components/DoctorBackground";
-import { ScrollableContainer } from "../components/ScrollingContainer";
-import { ScrollableSection } from "../components/atoms/ScrollableSection";
-import Reviews from "../components/Reviews";
-import Faqs from "../components/Faqs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Hero from "../components/facility/Hero";
-import { CoreFacilityInfo } from "../components/facility/CoreFacilityInfo";
+import FacilityContent from "../components/facility/FacilityContent";
 
 export const config: TemplateConfig = {
   stream: {
@@ -39,6 +26,7 @@ export const config: TemplateConfig = {
       "hours",
       "mainPhone",
       "yextDisplayCoordinate",
+      "c_facilityDescription",
     ],
     filter: { entityTypes: ["healthcareFacility"] },
   },
@@ -65,6 +53,7 @@ const Facility: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
   console.log("document", document);
+
   return (
     <QueryClientProvider client={queryClient}>
       <PageLayout
@@ -77,6 +66,7 @@ const Facility: Template<TemplateRenderProps> = ({
           address={document.address}
           phone={document.mainPhone}
         />
+        <FacilityContent description={document.c_facilityDescription} />
       </PageLayout>
     </QueryClientProvider>
   );
