@@ -3,8 +3,8 @@ import AppleMap from "../AppleMap";
 
 const FacilityMiniMap = ({ locations }) => {
   return (
-    <div className="w-full sm:w-[400px]">
-      <div className="w-full h-80">
+    <div className="w-full sm:w-96">
+      <div className="w-full h-64">
         <AppleMap locations={locations} />
       </div>
     </div>

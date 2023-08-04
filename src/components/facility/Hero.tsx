@@ -27,14 +27,14 @@ export default function Hero({ name, coordinates, address, phone }) {
         className="absolute inset-0 -z-10 h-full w-full object-cover brightness-[.6]"
       />
       <div className="px-10 lg:px-20 h-full py-10 sm:py-12 flex justify-between">
-        <div className="flex flex-col gap-8 justify-center">
-          <div className="h-4 w-24 bg-[#3B8257]"></div>
-          <h2 className="text-4xl font-sans-regular tracking-tight text-white sm:text-6xl">
+        <div className="flex flex-col gap-6 justify-center">
+          <div className="w-[88px] h-3 bg-green-700" />
+          <h2 className="text-text-500 tracking-tight text-white sm:text-6xl">
             {name}
           </h2>
           <div className="flex flex-row gap-4">
             <Button color="primary">
-              <CalendarIcon />
+              <CalendarIcon color="white" />
               <span>Schedule Appointment</span>
             </Button>
             <Button color="secondary">
@@ -43,34 +43,30 @@ export default function Hero({ name, coordinates, address, phone }) {
             </Button>
           </div>
         </div>
-        <div className="rounded-xl overflow-hidden max-w-[400px]">
+        <div className="rounded-xl overflow-hidden w-96">
           <FacilityMiniMap
             locations={[{ address, geocodedCoordinate: coordinates }]}
           />
-          <div className="flex flex-col gap-4 bg-white p-6 pb-12 text-base">
+          <div className="flex flex-col gap-4 bg-white p-6 pb-12 text-xl text-zinc-900 font-light">
             <div className="flex items-center gap-2">
               <div className="w-5 flex justify-center">
                 <PhoneIcon />
               </div>
-              <span className="font-sans-regular text-dark-gray">
-                {addDashes(phone)}
-              </span>
+              <span className="text-zinc-900">{addDashes(phone)}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-5 flex justify-center">
                 <MapPinIcon />
               </div>
-              <Address
-                address={address}
-                geocodedCoordinates={coordinates}
-                showDirectionsLink={false}
-              />
+              <span className="text-zinc-900">
+                20 Shattuck Street, Boston, MA, 02115
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-5 flex justify-center">
                 <ClockIcon />
               </div>
-              <span className="font-sans-regular text-dark-gray">
+              <span className="text-zinc-900">
                 Open 24 Hours / 7 Days a week
               </span>
             </div>

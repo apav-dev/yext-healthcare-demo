@@ -27,6 +27,8 @@ export const config: TemplateConfig = {
       "mainPhone",
       "yextDisplayCoordinate",
       "c_facilityDescription",
+      "taxonomy_relatedSpecialties.id",
+      "taxonomy_relatedSpecialties.name",
     ],
     filter: { entityTypes: ["healthcareFacility"] },
   },
@@ -66,7 +68,10 @@ const Facility: Template<TemplateRenderProps> = ({
           address={document.address}
           phone={document.mainPhone}
         />
-        <FacilityContent description={document.c_facilityDescription} />
+        <FacilityContent
+          description={document.c_facilityDescription}
+          specialties={document.taxonomy_relatedSpecialties}
+        />
       </PageLayout>
     </QueryClientProvider>
   );

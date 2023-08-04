@@ -5,13 +5,18 @@ interface ButtonProps {
 
 export default function Button({ children, color }: ButtonProps) {
   const colorVariants = {
-    primary: "bg-[#3B8257]",
-    secondary: "bg-[#1A1A1A]",
+    primary: "bg-green-700",
+    secondary: "bg-zinc-900",
+  };
+
+  const hoverColorVariants = {
+    primary: "hover:bg-green-900",
+    secondary: "hover:bg-neutral-500",
   };
 
   return (
     <button
-      className={`flex max-sm:w-fit items-center gap-2 rounded-full py-4 px-12 ${colorVariants[color]} hover:cursor-pointer text-white font-sans-bold`}
+      className={`flex max-sm:w-fit items-center gap-2 rounded-full py-4 px-12 ${colorVariants[color]} ${hoverColorVariants[color]} hover:cursor-pointer text-white text-base font-bold`}
     >
       {children}
     </button>
