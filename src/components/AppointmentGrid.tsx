@@ -36,16 +36,16 @@ export default function AppointmentGrid() {
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
       {formattedDates.slice(0, width && width < 640 ? 2 : 5).map((date) => (
         <VStack classname="gap-2.5">
-          <BodyText className="text-center" text={date} />
+          <p className="text-center text-neutral-500 text-base font-bold leading-normal">
+            {date}
+          </p>
           {times.map((time) => (
             <button
               key={`${date}-${time}`}
-              className="relative space-x-3 rounded-[3px] border border-gray-300  px-6 py-2.5 shadow-sm bg-green hover:bg-dark-green"
+              className="h-10 px-4 py-2 bg-green-700 rounded justify-center items-center gap-2 inline-flex"
             >
-              <div className="flex justify-center">
-                <p className="text-sm font-medium font-sans-regular text-white ">
-                  {time}
-                </p>
+              <div className="text-center text-white text-base font-bold leading-normal">
+                {time}
               </div>
             </button>
           ))}

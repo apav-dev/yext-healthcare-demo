@@ -24,6 +24,7 @@ import { ScrollableSection } from "../components/atoms/ScrollableSection";
 import Reviews from "../components/Reviews";
 import Faqs from "../components/Faqs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 export const config: TemplateConfig = {
   stream: {
@@ -72,6 +73,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
 
 const queryClient = new QueryClient();
 
+// 1. Reviews
+// 2. Static Map
+// 3. Header
+// 4. Footer
 const HealthPro: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
@@ -81,20 +86,28 @@ const HealthPro: Template<TemplateRenderProps> = ({
         featuredLocations={document._site.c_featuredLocations}
         featuredSpecialties={document._site.c_featuredSpecialties}
       >
-        <CenteredContainer classname="max-w-5xl">
-          <Section>
+        <div className="pt-32">
+          <Breadcrumbs
+            breadcrumbs={[
+              { label: "Home", link: "/" },
+              { label: "Healthcare Providers", link: "#" },
+              { label: document.name },
+            ]}
+          />
+          <Section backgroundColor="bg-stone-50">
             <ResponsiveStack className="gap-x-6">
               <DoctorCard
                 headshot={document.headshot}
                 name={document.name}
                 specialty={document.taxonomy_relatedSpecialties?.[0].name}
                 rating={4.5}
+                address={document.address}
                 // containerClassname="pr-6"
               />
               <DoctorMiniMap
                 locations={[
                   {
-                    address: document.address,
+                    // address: document.address,
                     geocodedCoordinate: document.yextDisplayCoordinate,
                   },
                   ...(document.c_alsoLocatedAt ?? []),
@@ -102,92 +115,87 @@ const HealthPro: Template<TemplateRenderProps> = ({
               />
             </ResponsiveStack>
           </Section>
-          <Section>
+          <Section title="Availability">
             <AppointmentGrid />
           </Section>
-        </CenteredContainer>
 
-        <ScrollableContainer>
-          <ScrollableSection
-            title="About"
-            outerContainerClassname="scroll-mt-[166px]"
-          >
-            <BodyText
-              text={document.c_providerBio}
-              className="whitespace-pre-line"
-            />
-          </ScrollableSection>
-          <ScrollableSection
-            title="Education & Background"
-            outerContainerClassname="bg-light-green scroll-mt-24"
-            innerContainerClassname="max-w-5xl"
-          >
-            <DoctorBackground
-              items={[
-                {
-                  icon: "school",
-                  name: "Education",
-                  details: document.educationList?.map(
-                    (education) => education.institutionName
-                  ),
-                },
-                {
-                  icon: "file-certificate",
-                  name: "Board Certifications",
-                  details: document.certifications,
-                },
-                {
-                  icon: "hospital",
-                  name: "Practice Names",
-                  details: document.c_relatedHealthcareFacilities?.map(
-                    (facility) => facility.name
-                  ),
-                },
-                {
-                  icon: "stethoscope",
-                  name: "Specialties",
-                  details: [document.taxonomy_relatedSpecialties?.[0].name],
-                },
-                {
-                  icon: "language",
-                  name: "Languages Spoken",
-                  details: document.languages,
-                },
-                {
-                  icon: "venus-mars",
-                  name: "Gender",
-                  details: [document.gender],
-                },
-                {
-                  icon: "hashtag",
-                  name: "NPI Number",
-                  details: [document.npi],
-                },
-              ]}
-            />
-          </ScrollableSection>
+          <ScrollableContainer>
+            <ScrollableSection
+              title="About"
+              backgroundColor="scroll-mt-[166px]"
+              // outerContainerClassname="scroll-mt-[166px]"
+            >
+              <BodyText
+                text={document.c_providerBio}
+                className="whitespace-pre-line"
+              />
+            </ScrollableSection>
+            <ScrollableSection
+              title="Education & Background"
+              backgroundColor="scroll-mt-[166px] bg-stone-50"
+            >
+              <DoctorBackground
+                items={[
+                  {
+                    icon: "school",
+                    name: "Education",
+                    details: document.educationList?.map(
+                      (education) => education.institutionName
+                    ),
+                  },
+                  {
+                    icon: "file-certificate",
+                    name: "Board Certifications",
+                    details: document.certifications,
+                  },
+                  {
+                    icon: "hospital",
+                    name: "Practice Names",
+                    details: document.c_relatedHealthcareFacilities?.map(
+                      (facility) => facility.name
+                    ),
+                  },
+                  {
+                    icon: "stethoscope",
+                    name: "Specialties",
+                    details: [document.taxonomy_relatedSpecialties?.[0].name],
+                  },
+                  {
+                    icon: "language",
+                    name: "Languages Spoken",
+                    details: document.languages,
+                  },
+                  {
+                    icon: "venus-mars",
+                    name: "Gender",
+                    details: [document.gender],
+                  },
+                  {
+                    icon: "hashtag",
+                    name: "NPI Number",
+                    details: [document.npi],
+                  },
+                ]}
+              />
+            </ScrollableSection>
 
-          <ScrollableSection
-            title="Reviews"
-            outerContainerClassname="scroll-mt-[166px]"
-          >
-            <Reviews entityId={document.id} />
-          </ScrollableSection>
-          <ScrollableSection
-            title="Insurances Accepted"
-            outerContainerClassname="bg-light-green scroll-mt-[166px]]"
-            innerContainerClassname="max-w-5xl"
-          >
-            <Insurances insurances={document.c_insurances} />
-          </ScrollableSection>
-          <ScrollableSection
-            title="FAQs"
-            innerContainerClassname="max-w-5xl"
-            outerContainerClassname="scroll-mt-[166px]"
-          >
-            <Faqs faqs={document.c_faqs} />
-          </ScrollableSection>
-        </ScrollableContainer>
+            <ScrollableSection
+              title="Reviews"
+              backgroundColor="scroll-mt-[166px]"
+            >
+              <Reviews entityId={document.id} />
+            </ScrollableSection>
+            <ScrollableSection
+              title="Insurances Accepted"
+              backgroundColor="scroll-mt-[166px] bg-stone-50"
+            >
+              <Insurances insurances={document.c_insurances} />
+            </ScrollableSection>
+            <ScrollableSection title="FAQs" backgroundColor="scroll-mt-[166px]">
+              <Faqs faqs={document.c_faqs} />
+            </ScrollableSection>
+          </ScrollableContainer>
+        </div>
       </PageLayout>
     </QueryClientProvider>
   );

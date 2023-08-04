@@ -24,7 +24,7 @@ export const getHeadConfig: GetHeadConfig<
   };
 };
 
-const Search: Template<TemplateRenderProps> = ({ document }) => {
+const DoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
   return (
     <PageLayout includeSearch={true}>
       {/* <Transition
@@ -43,4 +43,4 @@ const Search: Template<TemplateRenderProps> = ({ document }) => {
   );
 };
 
-export default Search;
+export default DoctorFinder;

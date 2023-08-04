@@ -1,11 +1,9 @@
 import { twMerge } from "tailwind-merge";
 import HeadingText from "./HeadingText";
-import CenteredContainer from "./CenteredContainer";
 
 export interface SectionProps {
   children?: React.ReactNode;
-  outerContainerClassname?: string;
-  innerContainerClassname?: string;
+  backgroundColor?: string;
   title?: string;
 }
 
@@ -15,18 +13,15 @@ export const initialProps: SectionProps = {
 
 export default function Section({
   children,
-  outerContainerClassname,
-  innerContainerClassname,
+  backgroundColor,
   title,
 }: SectionProps) {
   return (
-    <section className={twMerge(`py-14`, outerContainerClassname)}>
-      <CenteredContainer
-        classname={twMerge(`max-w-5xl`, innerContainerClassname)}
-      >
-        {title && <HeadingText text={title} level="Heading 2" />}
+    <section className={backgroundColor}>
+      <div className="py-12 px-20 max-w-[1440px] mx-auto flex flex-col gap-12">
+        {title && <p className="text-zinc-900 text-2xl font-bold">{title}</p>}
         {children}
-      </CenteredContainer>
+      </div>
     </section>
   );
 }

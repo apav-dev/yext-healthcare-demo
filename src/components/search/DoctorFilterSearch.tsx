@@ -42,15 +42,14 @@ const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
 
   return (
     <div className="px-4 lg:flex lg:items-center">
-      <div className="px-4 bg-white flex flex-col lg:flex-row lg:ml-7 lg:bg-transparent">
+      <div className="px-4 bg-white flex flex-col lg:flex-row lg:bg-transparent lg:px-0">
         <FilterSearch
           placeholder="Condition, procedure, doctor"
           sectioned
           customCssClasses={{
-            filterSearchContainer: "mb-0 lg:flex lg:items-center",
+            filterSearchContainer: "relative mb-0 lg:flex lg:items-center",
             inputElement:
               "rounded-none border-0 border-b py-6 font-serif-regular placeholder:text-disabled-gray lg:w-[350px]",
-            optionsContainer: "z-50",
             option: "py-2 px-4",
             highlighted: "font-sans-bold text-blue text-sm",
             nonHighlighted: "font-sans-regular text-sm",
@@ -71,7 +70,7 @@ const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
         <FilterSearch
           placeholder="City, state, or zip code"
           customCssClasses={{
-            filterSearchContainer: "mb-0 lg:flex lg:items-center",
+            filterSearchContainer: "mb-0 block lg:flex lg:items-center",
             inputElement:
               "rounded-none border-0 border-b font-serif-regular py-6 placeholder:text-disabled-gray lg:w-[250px]",
             option: "py-2 px-4",

@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import Selector from "./atoms/Selector";
 import { formatDate } from "../utils";
+import StarIcon from "./Icons/StarIcon";
 
 type ReviewsResponse = {
   count: number;
@@ -30,6 +31,30 @@ type ReviewsResponse = {
     name: string;
   }[];
 };
+
+const tempReviews = [
+  {
+    rating: 5,
+    reviewDate: "June 8, 2023",
+    content:
+      "Dr. Johnson is an amazing doctor! She's so friendly and knowledgeable, and she really takes the time to listen to my concerns. She's also great at explaining things in a way that's easy to understand. Highly recommend!",
+    authorName: "John Doe",
+  },
+  {
+    rating: 5,
+    reviewDate: "June 8, 2023",
+    content:
+      "Dr. Johnson is an amazing doctor! She's so friendly and knowledgeable, and she really takes the time to listen to my concerns. She's also great at explaining things in a way that's easy to understand. Highly recommend!",
+    authorName: "John Doe",
+  },
+  {
+    rating: 5,
+    reviewDate: "June 8, 2023",
+    content:
+      "Dr. Johnson is an amazing doctor! She's so friendly and knowledgeable, and she really takes the time to listen to my concerns. She's also great at explaining things in a way that's easy to understand. Highly recommend!",
+    authorName: "John Doe",
+  },
+];
 
 export type ReviewSort =
   | "reviewDateDesc"
@@ -125,75 +150,51 @@ export default function Reviews({ entityId }: ReviewsProps) {
   };
 
   return !isLoading ? (
-    <div className="-my-10">
-      <Selector
-        placeholder="Sort by..."
-        onSelect={handleSortSelect}
-        items={[
-          {
-            label: "Most Recent",
-            id: "reviewDateDesc",
-          },
-          {
-            label: "Oldest",
-            id: "reviewDateAsc",
-          },
-          {
-            label: "Highest Rated",
-            id: "ratingDesc",
-          },
-          {
-            label: "Lowest Rated",
-            id: "ratingAsc",
-          },
-        ]}
-      />
-      {data?.docs?.map((review, reviewIdx) => (
-        <div
-          key={review.$key.primaryKey}
-          className="flex space-x-4 text-sm text-gray-500"
-        >
-          <div
-            className={twMerge(
-              reviewIdx === 0 ? "" : "border-t border-gray-200",
-              "flex-1 py-10"
-            )}
-          >
-            <HeadingText text={review.authorName} level="Heading 4" />
-            <BodyText text={formatDate(review.reviewDate)} />
-            <div className="my-4 flex items-center">
+    <div className="flex flex-col gap-4 relative">
+      <div className="absolute -top-16 right-0">
+        <Selector
+          placeholder="Sort by..."
+          onSelect={handleSortSelect}
+          items={[
+            {
+              label: "Most Recent",
+              id: "reviewDateDesc",
+            },
+            {
+              label: "Oldest",
+              id: "reviewDateAsc",
+            },
+            {
+              label: "Highest Rated",
+              id: "ratingDesc",
+            },
+            {
+              label: "Lowest Rated",
+              id: "ratingAsc",
+            },
+          ]}
+        />
+      </div>
+      {tempReviews.map((review) => (
+        <div className="p-8 bg-white rounded-2xl border border-stone-300 justify-start items-start gap-8 inline-flex">
+          <div className="grow shrink basis-0 flex-col justify-start items-start gap-4 inline-flex">
+            <div className="justify-start items-start inline-flex">
               {[0, 1, 2, 3, 4].map((rating) => (
-                <Icon
-                  key={rating}
-                  color={
-                    review.rating > rating
-                      ? "text-yellow"
-                      : "text-disabled-gray"
-                  }
-                  classname="h-5 w-5"
-                />
+                <StarIcon key={rating} />
               ))}
             </div>
-            <BodyText text={review.content} />
+            <div className="text-black text-2xl font-bold leading-[33.99px]">
+              {review.authorName}
+            </div>
+            <div className="self-stretch text-neutral-500 text-base font-medium leading-normal">
+              {review.content}
+            </div>
+            <div className="self-stretch text-neutral-500 text-base font-medium leading-normal">
+              {review.reviewDate}
+            </div>
           </div>
         </div>
       ))}
-      <div className="flex justify-center gap-x-6">
-        <button disabled={!prevPageToken} onClick={handlePrevPageClick}>
-          <Icon
-            name="chevron-left"
-            color={prevPageToken ? "text-green" : "text-disabled-gray"}
-            classname={"h-7 w-7"}
-          />
-        </button>
-        <button disabled={!nextPageToken} onClick={handleNextPageClick}>
-          <Icon
-            name="chevron-right"
-            color={nextPageToken ? "text-green" : "text-disabled-gray"}
-            classname="h-7 w-7"
-          />
-        </button>
-      </div>
     </div>
   ) : (
     <div className="-my-10">
