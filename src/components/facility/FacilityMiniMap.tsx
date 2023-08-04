@@ -1,4 +1,3 @@
-import { useState } from "react";
 import AppleMap from "../AppleMap";
 
 const FacilityMiniMap = ({ locations }) => {
