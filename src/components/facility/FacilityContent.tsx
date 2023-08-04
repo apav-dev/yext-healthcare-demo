@@ -1,102 +1,79 @@
 import { useRef, useState } from "react";
 import BodyText from "../atoms/BodyText";
+import ScrollspyNav from "react-scrollspy-nav";
+import "./FacilityContent.css";
 
 export default function FacilityContent({ description }) {
-  const refOverview = useRef(null);
-  const refProviders = useRef(null);
-  const refServices = useRef(null);
-  const refInsurance = useRef(null);
-
-  const [sectionList, setSectionList] = useState([
-    {
-      sectionId: "overview",
-      sectionTitle: "Overview",
-      isActive: true,
-      ref: refOverview,
-    },
-    {
-      sectionId: "providers",
-      sectionTitle: "Healthcare Providers",
-      isActive: false,
-      ref: refProviders,
-    },
-    {
-      sectionId: "services",
-      sectionTitle: "Services & Specialties",
-      isActive: false,
-      ref: refServices,
-    },
-    {
-      sectionId: "insurance",
-      sectionTitle: "Insurance Accepted",
-      isActive: false,
-      ref: refInsurance,
-    },
-  ]);
-
   return (
-    <div className="mt-8">
-      <div className="flex w-[.8] px-20 gap-20">
-        <ul className="flex flex-col min-w-fit font-sans-bold gap-4 text-base sticky top-8 h-fit">
-          {sectionList.map((section) => {
-            return (
-              <li
-                key={section.sectionId}
-                className="cursor-pointer"
-                onClick={() => {
-                  section.ref.current?.scrollIntoView({ behavior: "smooth" });
-                  setSectionList(
-                    sectionList.map((s) => {
-                      if (s.sectionId === section.sectionId) {
-                        return { ...s, isActive: true };
-                      } else {
-                        return { ...s, isActive: false };
-                      }
-                    })
-                  );
-                }}
-              >
-                <span>{section.sectionTitle}</span>
-                {section.isActive && (
-                  <div className="mt-1 h-1 w-full bg-[#3B8257]"></div>
-                )}
-              </li>
-            );
-          })}
+    <div className="flex w-[85%] px-20 gap-8 mt-8">
+      <ScrollspyNav
+        scrollTargetIds={["overview", "providers", "services", "insurance"]}
+        offset={-200}
+        activeNavClass="is-active"
+        scrollDuration="500"
+      >
+        <ul className="flex flex-col w-fit font-sans-bold text-base sticky top-8 h-fit">
+          <li className="whitespace-nowrap flex">
+            <a
+              className="w-full py-2 border-stone-300 pr-8 border-r hover:text-green"
+              href="#overview"
+            >
+              <span>Overview</span>
+            </a>
+          </li>
+          <li className="whitespace-nowrap flex">
+            <a
+              className="w-full py-2 border-stone-300 pr-8 border-r hover:text-green"
+              href="#providers"
+            >
+              <span>Healthcare Providers</span>
+            </a>
+          </li>
+          <li className="whitespace-nowrap flex">
+            <a
+              className="w-full py-2 border-stone-300 pr-8 border-r hover:text-green"
+              href="#services"
+            >
+              <span>Services & Specialties</span>
+            </a>
+          </li>
+          <li className="whitespace-nowrap flex">
+            <a
+              className="w-full py-2 border-stone-300 pr-8 border-r hover:text-green"
+              href="#insurance"
+            >
+              <span>Insurance Accepted</span>
+            </a>
+          </li>
         </ul>
-        <div className="flex flex-col gap-8">
+      </ScrollspyNav>
+
+      <div className="flex flex-col gap-8 mb-20">
+        <div className="flex flex-col gap-8" id="overview">
           <div className="h-4 w-24 bg-[#3B8257]"></div>
-          <h3 className="text-4xl font-sans-regular" ref={refOverview}>
-            Overview
-          </h3>
+          <h3 className="text-4xl font-sans-regular">Overview</h3>
           <BodyText text={description} />
           <BodyText text={description} />
+        </div>
+        <div className="flex flex-col gap-8" id="providers">
           <div className="h-4 w-24 bg-[#3B8257]"></div>
-          <h3 className="text-4xl font-sans-regular" ref={refProviders}>
-            Healthcare Providers
-          </h3>
+          <h3 className="text-4xl font-sans-regular">Providers</h3>
           <BodyText text={description} />
           <BodyText text={description} />
+        </div>
+        <div className="flex flex-col gap-8" id="services">
           <div className="h-4 w-24 bg-[#3B8257]"></div>
-          <h3 className="text-4xl font-sans-regular" ref={refServices}>
-            Services & Specialties
-          </h3>
+          <h3 className="text-4xl font-sans-regular">Services</h3>
           <BodyText text={description} />
           <BodyText text={description} />
+        </div>
+        <div className="flex flex-col gap-8" id="insurance">
           <div className="h-4 w-24 bg-[#3B8257]"></div>
-          <h3 className="text-4xl font-sans-regular" ref={refInsurance}>
-            Insurance Accepted
-          </h3>
+          <h3 className="text-4xl font-sans-regular">Insurance</h3>
           <BodyText text={description} />
           <BodyText text={description} />
         </div>
       </div>
     </div>
-    /* <div onClick={handleClick}>Click me</div>
-        <div style={{ height: "150rem", backgroundColor: "black" }} />
-        <div ref={ref} style={{ backgroundColor: "lightblue" }}>
-          Coding Beauty
-        </div>
-        <div className="h-10" style={{ backgroundColor: "red" }} /> */
   );
 }
