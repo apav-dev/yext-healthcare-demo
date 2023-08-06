@@ -5,7 +5,6 @@ import FacilityMiniMap from "./FacilityMiniMap";
 import PhoneIcon from "./PhoneIcon";
 import MapPinIcon from "./MapPinIcon";
 import ClockIcon from "./ClockIcon";
-import Address from "../Address";
 
 export default function Hero({ name, coordinates, address, phone }) {
   function addDashes(f: string) {
@@ -20,7 +19,7 @@ export default function Hero({ name, coordinates, address, phone }) {
   }
 
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900">
+    <div className="relative isolate overflow-hidden bg-gray-900 mt-32">
       <img
         src="https://s3-alpha-sig.figma.com/img/71b1/9a4c/034c67fd1437dbebf64d34725fa9a7cf?Expires=1691971200&Signature=MMSu-xuZuSVHzvLrPoP8m8dNBisClPdxQIi7OxN1Rsw1ehKND4HroeMiJVZ-Fa33EY~8LbCJ4S-tjriGWfhYukbybEwsapI1YGLQGKrj-vNK2Bvze8UqX3L3AERBPCUQMIRyXY68zTgOhpB5s6EZonfAe1O0BLuMX9PjXdTXT9i65SszdIUtVcp85tveSl4TR1NwpsDlUxtMMp7ew3NZNn8L0G-9mj4yvSyYckZwexIyonkjVcE7Y68rQKMLsmCUaTTZR~8bWA7him9TEnx5jtE5mCy7nMpK-H7KX0W3LoeNpOW09OurFJ0e4PX7I2WrbqgZRz4G3ZmruZkHPBJYrg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
         alt=""

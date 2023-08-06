@@ -14,7 +14,7 @@ export default function FacilityContent({ description, specialties }) {
         activeNavClass="is-active"
         scrollDuration="500"
       >
-        <ul className="flex flex-col gap-2.5 w-fit text-base sticky top-8 h-fit">
+        <ul className="flex flex-col gap-2.5 w-fit text-base sticky top-40 h-fit">
           <li className="whitespace-nowrap flex">
             <a
               className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
