@@ -19,27 +19,19 @@ export default function HeadingText({
   switch (level) {
     case "Heading 1":
       return (
-        <h1 className={twMerge("text-3xl font-serif-bold", classname)}>
-          {text}
-        </h1>
+        <h1 className={twMerge("text-3xl font-bold", classname)}>{text}</h1>
       );
     case "Heading 2":
       return (
-        <h2 className={twMerge("text-2xl font-serif-bold", classname)}>
-          {text}
-        </h2>
+        <h2 className={twMerge("text-2xl font-bold", classname)}>{text}</h2>
       );
     case "Heading 3":
       return (
-        <h3 className={twMerge("text-xl font-serif-bold", classname)}>
-          {text}
-        </h3>
+        <h3 className={twMerge("text-xl font-bold", classname)}>{text}</h3>
       );
     case "Heading 4":
       return (
-        <h4 className={twMerge("text-lg font-serif-bold", classname)}>
-          {text}
-        </h4>
+        <h4 className={twMerge("text-lg font-bold", classname)}>{text}</h4>
       );
   }
 }

@@ -6,6 +6,7 @@ import SearchHeadlessProvider from "./search/SearchHeadlessProvider";
 import { defaultRouter } from "../routing";
 import Header from "./Header";
 import { Address } from "../types/autogen";
+import Footer from "./Footer";
 
 export interface LayoutProps {
   children?: React.ReactNode;
@@ -39,15 +40,13 @@ export default function Layout({
   return (
     <SearchHeadlessProvider searcher={searcher} routing={defaultRouter}>
       <div className={`min-h-screen relative`} style={{ backgroundColor }}>
-        {includeSearch ? (
-          <SearchHeader backgroundColor="#EDF0EB" iconName="home" />
-        ) : (
-          <Header
-            locations={featuredLocations}
-            specialties={featuredSpecialties}
-          />
-        )}
+        <Header
+          locations={featuredLocations}
+          specialties={featuredSpecialties}
+          includeSearch={includeSearch}
+        />
         <main>{children}</main>
+        <Footer />
       </div>
     </SearchHeadlessProvider>
   );

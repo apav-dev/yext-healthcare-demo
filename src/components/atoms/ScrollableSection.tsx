@@ -1,15 +1,11 @@
 import { ReactNode, useContext, useEffect, useRef } from "react";
 import { ScrollableContext } from "../ScrollingContainer";
-import { twMerge } from "tailwind-merge";
-import CenteredContainer from "./CenteredContainer";
-import HeadingText from "./HeadingText";
 import { v4 as uuid } from "uuid";
 
 export interface ScrollableSectionProps {
   title: string;
   children?: ReactNode;
-  outerContainerClassname?: string;
-  innerContainerClassname?: string;
+  backgroundColor?: string;
 }
 
 export const initialProps = {
@@ -20,8 +16,7 @@ export const initialProps = {
 export const ScrollableSection = ({
   title,
   children,
-  outerContainerClassname,
-  innerContainerClassname,
+  backgroundColor,
 }: ScrollableSectionProps) => {
   const { registerSection } = useContext(ScrollableContext)!;
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -34,18 +29,11 @@ export const ScrollableSection = ({
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className={twMerge(`py-14`, outerContainerClassname)}
-    >
-      <CenteredContainer
-        classname={twMerge(`max-w-5xl`, innerContainerClassname)}
-      >
-        {title && (
-          <HeadingText text={title} level="Heading 2" classname="pb-16" />
-        )}
+    <section ref={sectionRef} className={backgroundColor}>
+      <div className="py-12 px-20 max-w-[1440px] mx-auto flex flex-col gap-12">
+        {title && <p className="text-zinc-900 text-2xl font-bold">{title}</p>}
         {children}
-      </CenteredContainer>
+      </div>
     </section>
   );
 };

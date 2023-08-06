@@ -77,27 +77,27 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
     console.log("locations", locations);
     if (mapContainerRef.current && window.mapkit) {
       if (map && locations && locations.length > 0) {
-        const landmarkAnnotationCallout = {
-          calloutElementForAnnotation: (annotation) => {
-            // const landmark = annotationsToLandmark.get(annotation);
+        // const landmarkAnnotationCallout = {
+        //   calloutElementForAnnotation: (annotation) => {
+        //     // const landmark = annotationsToLandmark.get(annotation);
 
-            const div = document.createElement("div");
-            div.className = "landmark";
+        //     const div = document.createElement("div");
+        //     div.className = "landmark";
 
-            const title = div.appendChild(document.createElement("h1"));
-            title.textContent = "Hello World";
+        //     const title = div.appendChild(document.createElement("h1"));
+        //     title.textContent = "Hello World";
 
-            const section = div.appendChild(document.createElement("section"));
+        //     const section = div.appendChild(document.createElement("section"));
 
-            return div;
-          },
+        //     return div;
+        //   },
 
-          // calloutAnchorOffsetForAnnotation: (annotation, element) => offset,
+        //   // calloutAnchorOffsetForAnnotation: (annotation, element) => offset,
 
-          // calloutAppearanceAnimationForAnnotation: (annotation) =>
-          //   ".4s cubic-bezier(0.4, 0, 0, 1.5) " +
-          //   "0s 1 normal scale-and-fadein",
-        };
+        //   // calloutAppearanceAnimationForAnnotation: (annotation) =>
+        //   //   ".4s cubic-bezier(0.4, 0, 0, 1.5) " +
+        //   //   "0s 1 normal scale-and-fadein",
+        // };
         const markers = locations?.map((location, idx) => {
           const marker = new window.mapkit.MarkerAnnotation(
             new window.mapkit.Coordinate(
@@ -108,7 +108,7 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
               glyphText: "●",
               glyphColor: "#ffffff",
               color: "#4F6A4E",
-              callout: landmarkAnnotationCallout,
+              // callout: landmarkAnnotationCallout,
             }
             // {
             //   title: "test",
