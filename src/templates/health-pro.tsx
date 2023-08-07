@@ -86,116 +86,114 @@ const HealthPro: Template<TemplateRenderProps> = ({
         featuredLocations={document._site.c_featuredLocations}
         featuredSpecialties={document._site.c_featuredSpecialties}
       >
-        <div className="pt-32">
-          <Breadcrumbs
-            breadcrumbs={[
-              { label: "Home", link: "/" },
-              { label: "Healthcare Providers", link: "#" },
-              { label: document.name },
-            ]}
-          />
-          <Section backgroundColor="bg-stone-50">
-            <ResponsiveStack className="gap-x-6">
-              <DoctorCard
-                headshot={document.headshot}
-                name={document.name}
-                specialty={document.taxonomy_relatedSpecialties?.[0].name}
-                rating={4.5}
-                address={document.address}
-                // containerClassname="pr-6"
-              />
-              <DoctorMiniMap
-                locations={[
-                  {
-                    // address: document.address,
-                    geocodedCoordinate: document.yextDisplayCoordinate,
-                  },
-                  ...(document.c_alsoLocatedAt ?? []),
-                ]}
-              />
-            </ResponsiveStack>
-          </Section>
-          <Section title="Availability">
-            <AppointmentGrid />
-          </Section>
+        <Breadcrumbs
+          breadcrumbs={[
+            { label: "Home", link: "/" },
+            { label: "Healthcare Providers", link: "#" },
+            { label: document.name },
+          ]}
+        />
+        <Section backgroundColor="bg-stone-50">
+          <ResponsiveStack className="gap-x-6">
+            <DoctorCard
+              headshot={document.headshot}
+              name={document.name}
+              specialty={document.taxonomy_relatedSpecialties?.[0].name}
+              rating={4.5}
+              address={document.address}
+              // containerClassname="pr-6"
+            />
+            <DoctorMiniMap
+              locations={[
+                {
+                  // address: document.address,
+                  geocodedCoordinate: document.yextDisplayCoordinate,
+                },
+                ...(document.c_alsoLocatedAt ?? []),
+              ]}
+            />
+          </ResponsiveStack>
+        </Section>
+        <Section title="Availability">
+          <AppointmentGrid />
+        </Section>
 
-          <ScrollableContainer>
-            <ScrollableSection
-              title="About"
-              backgroundColor="scroll-mt-[166px]"
-              // outerContainerClassname="scroll-mt-[166px]"
-            >
-              <BodyText
-                text={document.c_providerBio}
-                className="whitespace-pre-line"
-              />
-            </ScrollableSection>
-            <ScrollableSection
-              title="Education & Background"
-              backgroundColor="scroll-mt-[166px] bg-stone-50"
-            >
-              <DoctorBackground
-                items={[
-                  {
-                    icon: "school",
-                    name: "Education",
-                    details: document.educationList?.map(
-                      (education) => education.institutionName
-                    ),
-                  },
-                  {
-                    icon: "file-certificate",
-                    name: "Board Certifications",
-                    details: document.certifications,
-                  },
-                  {
-                    icon: "hospital",
-                    name: "Practice Names",
-                    details: document.c_relatedHealthcareFacilities?.map(
-                      (facility) => facility.name
-                    ),
-                  },
-                  {
-                    icon: "stethoscope",
-                    name: "Specialties",
-                    details: [document.taxonomy_relatedSpecialties?.[0].name],
-                  },
-                  {
-                    icon: "language",
-                    name: "Languages Spoken",
-                    details: document.languages,
-                  },
-                  {
-                    icon: "venus-mars",
-                    name: "Gender",
-                    details: [document.gender],
-                  },
-                  {
-                    icon: "hashtag",
-                    name: "NPI Number",
-                    details: [document.npi],
-                  },
-                ]}
-              />
-            </ScrollableSection>
+        <ScrollableContainer>
+          <ScrollableSection
+            title="About"
+            backgroundColor="scroll-mt-[166px]"
+            // outerContainerClassname="scroll-mt-[166px]"
+          >
+            <BodyText
+              text={document.c_providerBio}
+              className="whitespace-pre-line"
+            />
+          </ScrollableSection>
+          <ScrollableSection
+            title="Education & Background"
+            backgroundColor="scroll-mt-[166px] bg-stone-50"
+          >
+            <DoctorBackground
+              items={[
+                {
+                  icon: "school",
+                  name: "Education",
+                  details: document.educationList?.map(
+                    (education) => education.institutionName
+                  ),
+                },
+                {
+                  icon: "file-certificate",
+                  name: "Board Certifications",
+                  details: document.certifications,
+                },
+                {
+                  icon: "hospital",
+                  name: "Practice Names",
+                  details: document.c_relatedHealthcareFacilities?.map(
+                    (facility) => facility.name
+                  ),
+                },
+                {
+                  icon: "stethoscope",
+                  name: "Specialties",
+                  details: [document.taxonomy_relatedSpecialties?.[0].name],
+                },
+                {
+                  icon: "language",
+                  name: "Languages Spoken",
+                  details: document.languages,
+                },
+                {
+                  icon: "venus-mars",
+                  name: "Gender",
+                  details: [document.gender],
+                },
+                {
+                  icon: "hashtag",
+                  name: "NPI Number",
+                  details: [document.npi],
+                },
+              ]}
+            />
+          </ScrollableSection>
 
-            <ScrollableSection
-              title="Reviews"
-              backgroundColor="scroll-mt-[166px]"
-            >
-              <Reviews entityId={document.id} />
-            </ScrollableSection>
-            <ScrollableSection
-              title="Insurances Accepted"
-              backgroundColor="scroll-mt-[166px] bg-stone-50"
-            >
-              <Insurances insurances={document.c_insurances} />
-            </ScrollableSection>
-            <ScrollableSection title="FAQs" backgroundColor="scroll-mt-[166px]">
-              <Faqs faqs={document.c_faqs} />
-            </ScrollableSection>
-          </ScrollableContainer>
-        </div>
+          <ScrollableSection
+            title="Reviews"
+            backgroundColor="scroll-mt-[166px]"
+          >
+            <Reviews entityId={document.id} />
+          </ScrollableSection>
+          <ScrollableSection
+            title="Insurances Accepted"
+            backgroundColor="scroll-mt-[166px] bg-stone-50"
+          >
+            <Insurances insurances={document.c_insurances} />
+          </ScrollableSection>
+          <ScrollableSection title="FAQs" backgroundColor="scroll-mt-[166px]">
+            <Faqs faqs={document.c_faqs} />
+          </ScrollableSection>
+        </ScrollableContainer>
       </PageLayout>
     </QueryClientProvider>
   );

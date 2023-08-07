@@ -19,7 +19,6 @@ export interface HeaderProps {
     name: string;
     slug: string;
   }[];
-  includeSearch?: boolean;
 }
 
 const renderPopover = ({
@@ -127,11 +126,7 @@ const renderPopover = ({
   );
 };
 
-export default function Header({
-  locations,
-  specialties,
-  includeSearch,
-}: HeaderProps) {
+export default function Header({ locations, specialties }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -327,7 +322,7 @@ export default function Header({
         </Dialog>
       </div>
       {/* fake searchbar for mobile  */}
-      {includeSearch && (
+      {/* {includeSearch && (
         <div className="px-4 py-6 bg-light-green lg:pt-0">
           <div
             className="bg-white border border-green flex items-center px-6 py-4 lg:hidden "
@@ -350,11 +345,11 @@ export default function Header({
             <DoctorFilterSearch />
           </div>
         </div>
-      )}
+      )} */}
       {/* Mobile Search */}
-      <MobilePanel open={mobileSearchOpen} toggleOpen={setMobileSearchOpen}>
+      {/* <MobilePanel open={mobileSearchOpen} toggleOpen={setMobileSearchOpen}>
         <DoctorFilterSearch onSearchClick={() => setMobileSearchOpen(false)} />
-      </MobilePanel>
+      </MobilePanel> */}
     </header>
   );
 }

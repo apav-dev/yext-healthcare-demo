@@ -45,7 +45,7 @@ export default function Layout({
           specialties={featuredSpecialties}
           includeSearch={includeSearch}
         />
-        <main>{children}</main>
+        <main className="pt-32">{children}</main>
         <Footer />
       </div>
     </SearchHeadlessProvider>
