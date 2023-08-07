@@ -15,7 +15,9 @@ import HeroHalfImage from "../components/specialty/HeroHalfImage";
 import SpecialtyContent from "../components/specialty/SpecialtyContent";
 import Testimonial from "../components/specialty/Testimonial";
 import SpecialistBanner from "../components/condition/SpecialistBanner";
-import ServicesBanner from "../components/condition/ServicesBanner";
+import InfoGridBanner from "../components/condition/InfoGridBanner";
+import ArticlesSecetion from "../components/specialty/ArticlesSection";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 export const config: TemplateConfig = {
   stream: {
@@ -43,7 +45,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
 
 // const queryClient = new QueryClient();
 
-const Facility: Template<TemplateRenderProps> = ({
+const Specialty: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
   // console.log("document", document);
@@ -54,17 +56,36 @@ const Facility: Template<TemplateRenderProps> = ({
       featuredLocations={document._site.c_featuredLocations}
       featuredSpecialties={document._site.c_featuredSpecialties}
     >
+      <div className="mt-32">
+        <Breadcrumbs
+          breadcrumbs={[
+            { label: "Home", link: "/" },
+            { label: "Specialties" },
+            { label: document.name },
+          ]}
+        />
+      </div>
       <HeroHalfImage name={document.name} />
       <SpecialtyContent
         name={document.name}
         description={document.c_specialtyOverviewDescription}
+        locations={document._site.c_featuredLocations}
+        articles={document._site.c_featuredArticles}
       />
       <Testimonial />
       <SpecialistBanner name={document.name} />
-      <ServicesBanner specialties={document._site.c_featuredSpecialties} />
+      <div className="px-20 py-8">
+        <InfoGridBanner
+          title="Our Services"
+          content={document._site.c_featuredSpecialties}
+          btnText="Explore Services"
+          contentMax={12}
+          btnLink="#"
+        />
+      </div>
     </PageLayout>
     // </QueryClientProvider>
   );
 };
 
-export default Facility;
+export default Specialty;

@@ -13,6 +13,7 @@ import PageLayout from "../components/PageLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Hero from "../components/facility/Hero";
 import FacilityContent from "../components/facility/FacilityContent";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 export const config: TemplateConfig = {
   stream: {
@@ -29,6 +30,11 @@ export const config: TemplateConfig = {
       "c_facilityDescription",
       "taxonomy_relatedSpecialties.id",
       "taxonomy_relatedSpecialties.name",
+      "c_relatedHealthcareProfessionals.id",
+      "c_relatedHealthcareProfessionals.name",
+      "c_relatedHealthcareProfessionals.headshot",
+      "c_relatedHealthcareProfessionals.taxonomy_relatedSpecialties.name",
+      "c_relatedHealthcareProfessionals.slug",
     ],
     filter: { entityTypes: ["healthcareFacility"] },
   },
@@ -62,6 +68,15 @@ const Facility: Template<TemplateRenderProps> = ({
       featuredLocations={document._site.c_featuredLocations}
       featuredSpecialties={document._site.c_featuredSpecialties}
     >
+      <div className="mt-32">
+        <Breadcrumbs
+          breadcrumbs={[
+            { label: "Home", link: "/" },
+            { label: "Facilities" },
+            { label: document.name },
+          ]}
+        />
+      </div>
       <Hero
         name={document.name}
         coordinates={document.yextDisplayCoordinate}
@@ -71,6 +86,7 @@ const Facility: Template<TemplateRenderProps> = ({
       <FacilityContent
         description={document.c_facilityDescription}
         specialties={document.taxonomy_relatedSpecialties}
+        providers={document.c_relatedHealthcareProfessionals}
       />
     </PageLayout>
     // </QueryClientProvider>

@@ -13,7 +13,9 @@ import PageLayout from "../components/PageLayout";
 import HeroNoImage from "../components/condition/HeroNoImage";
 import ConditionContent from "../components/condition/ConditionContent";
 import SpecialistBanner from "../components/condition/SpecialistBanner";
-import ServicesBanner from "../components/condition/ServicesBanner";
+import ServicesBanner from "../components/condition/InfoGridBanner";
+import InfoGridBanner from "../components/condition/InfoGridBanner";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 export const config: TemplateConfig = {
   stream: {
@@ -29,7 +31,10 @@ export const config: TemplateConfig = {
       "c_treatments.name",
       "c_treatments.id",
     ],
-    filter: { entityTypes: ["taxonomy_conditionTreated"] },
+    filter: {
+      entityTypes: ["taxonomy_conditionTreated"],
+      savedFilterIds: ["1337143335"],
+    },
   },
 };
 
@@ -50,7 +55,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
 
 // const queryClient = new QueryClient();
 
-const Facility: Template<TemplateRenderProps> = ({
+const Condition: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
   // console.log("document", document);
@@ -61,6 +66,15 @@ const Facility: Template<TemplateRenderProps> = ({
       featuredLocations={document._site.c_featuredLocations}
       featuredSpecialties={document._site.c_featuredSpecialties}
     >
+      <div className="mt-32">
+        <Breadcrumbs
+          breadcrumbs={[
+            { label: "Home", link: "/" },
+            { label: "Conditions" },
+            { label: document.name },
+          ]}
+        />
+      </div>
       <HeroNoImage name={document.name} />
       <ConditionContent
         description={document.description}
@@ -69,10 +83,18 @@ const Facility: Template<TemplateRenderProps> = ({
         treatments={document.c_treatments}
       />
       <SpecialistBanner name={document.name} />
-      <ServicesBanner specialties={document._site.c_featuredSpecialties} />
+      <div className="px-20 py-8">
+        <InfoGridBanner
+          title="Our Services"
+          content={document._site.c_featuredSpecialties}
+          btnText="Explore Services"
+          contentMax={12}
+          btnLink="#"
+        />
+      </div>
     </PageLayout>
     // </QueryClientProvider>
   );
 };
 
-export default Facility;
+export default Condition;
