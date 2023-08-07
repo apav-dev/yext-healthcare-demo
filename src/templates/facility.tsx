@@ -30,6 +30,7 @@ export const config: TemplateConfig = {
       "c_facilityDescription",
       "taxonomy_relatedSpecialties.id",
       "taxonomy_relatedSpecialties.name",
+      "taxonomy_relatedSpecialties.slug",
       "c_relatedHealthcareProfessionals.id",
       "c_relatedHealthcareProfessionals.name",
       "c_relatedHealthcareProfessionals.headshot",

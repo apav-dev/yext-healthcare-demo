@@ -12,11 +12,16 @@ export default function SpecialtyContent({
   description,
   locations,
   articles,
+  conditions,
 }) {
   return (
     <div className="flex w-[95%] px-20 gap-8 mt-8">
       <ScrollspyNav
-        scrollTargetIds={["overview", "providers", "locations", "articles"]}
+        scrollTargetIds={
+          conditions
+            ? ["overview", "providers", "conditions", "locations", "articles"]
+            : ["overview", "providers", "locations", "articles"]
+        }
         offset={-300}
         activeNavClass="is-active"
         scrollDuration="500"
@@ -38,6 +43,16 @@ export default function SpecialtyContent({
               <span>Specialists</span>
             </a>
           </li>
+          {conditions && (
+            <li className="whitespace-nowrap flex">
+              <a
+                className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
+                href="#conditions"
+              >
+                <span>Related Conditions</span>
+              </a>
+            </li>
+          )}
           <li className="whitespace-nowrap flex">
             <a
               className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
@@ -118,6 +133,31 @@ export default function SpecialtyContent({
             </Button>
           </div>
         </div>
+        {conditions && (
+          <div className="flex flex-col gap-12" id="conditions">
+            <div className="flex flex-col gap-6">
+              <div className="w-[88px] h-3 bg-green-700" />
+              <h3 className="text-text-500 text-zinc-900">
+                Related Conditions
+              </h3>
+            </div>
+            <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
+              <span>{`Our ${name} specialists can help provide treatment for conditions including:`}</span>
+              <ul className="list-disc flex flex-col gap-4 list-inside">
+                {conditions?.map((condition) => (
+                  <li key={condition.id}>
+                    <a
+                      className="hover:cursor-pointer hover:text-zinc-900 underline"
+                      href={`/${condition.slug}`}
+                    >
+                      {condition.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </p>
+          </div>
+        )}
         <div id="locations">
           <InfoGridBanner
             title="Locations"

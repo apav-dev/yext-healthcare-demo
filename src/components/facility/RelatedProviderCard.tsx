@@ -4,7 +4,6 @@ import CalendarIcon from "./CalendarIcon";
 import ClockIcon from "./ClockIcon";
 
 export default function RelatedProviderCard({ provider }) {
-  console.log(provider);
   return (
     <div className="p-8 bg-white rounded-2xl border border-stone-300 justify-start items-start gap-8 inline-flex">
       <div className="self-stretch flex-col justify-start items-center gap-4 inline-flex">
