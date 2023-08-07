@@ -41,7 +41,8 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
     script.dataset.callback = "initMapKit";
     script.dataset.libraries = "map,annotations,services";
     // NOTE: This token will expire in one year and need to be replaced
-    script.dataset.initialToken = YEXT_PUBLIC_APPLE_MAPS_TOKEN;
+    script.dataset.initialToken =
+      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllXUjc1RjM5NjkifQ.eyJpc3MiOiI2UlUzQVhINDhDIiwiaWF0IjoxNjg5Nzc1MTUzLCJleHAiOjE3MjEzNDcyMDB9.-tfe4hii9B2Go_lmDa2xnAevCpRwLKkKE6Su3s8aqRTbAMAJ6dlaxlVIwM00J7Vydv5nAKCP-ZeyS4C3yt0Ghg";
 
     document.body.appendChild(script);
 

@@ -16,7 +16,7 @@ export default function Button({ children, color }: ButtonProps) {
 
   return (
     <button
-      className={`flex max-sm:w-fit items-center gap-2 rounded-full py-4 px-12 ${colorVariants[color]} ${hoverColorVariants[color]} hover:cursor-pointer text-white text-base font-bold`}
+      className={`flex w-fit items-center gap-2 rounded-full py-4 px-8 ${colorVariants[color]} ${hoverColorVariants[color]} hover:cursor-pointer text-white text-base font-bold`}
     >
       {children}
     </button>

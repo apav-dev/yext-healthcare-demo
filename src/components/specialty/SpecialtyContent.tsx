@@ -1,15 +1,15 @@
 import { useRef, useState } from "react";
 import BodyText from "../atoms/BodyText";
 import ScrollspyNav from "react-scrollspy-nav";
-import "./FacilityContent.css";
-import RelatedProviderCard from "./RelatedProviderCard";
-import FacilitySpecialtyCard from "./FacilitySpecialtyCard";
+import "../facility/FacilityContent.css";
+import RelatedProviderCard from "../facility/RelatedProviderCard";
+import Button from "../facility/Button";
 
-export default function FacilityContent({ description, specialties }) {
+export default function SpecialtyContent({ name, description }) {
   return (
     <div className="flex w-[85%] px-20 gap-8 mt-8">
       <ScrollspyNav
-        scrollTargetIds={["overview", "providers", "services"]}
+        scrollTargetIds={["overview", "providers"]}
         offset={-300}
         activeNavClass="is-active"
         scrollDuration="500"
@@ -28,17 +28,17 @@ export default function FacilityContent({ description, specialties }) {
               className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
               href="#providers"
             >
-              <span>Healthcare Providers</span>
+              <span>Specialists</span>
             </a>
           </li>
-          <li className="whitespace-nowrap flex">
+          {/* <li className="whitespace-nowrap flex">
             <a
               className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
               href="#services"
             >
               <span>Services & Specialties</span>
             </a>
-          </li>
+          </li> */}
           {/* <li className="whitespace-nowrap flex">
             <a
               className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
@@ -59,38 +59,34 @@ export default function FacilityContent({ description, specialties }) {
           <div className="text-neutral-500 text-base font-medium">
             {description}
           </div>
-          <div className="text-neutral-500 text-base font-medium">
-            {description}
-          </div>
         </div>
         <div className="flex flex-col gap-12" id="providers">
           <div className="flex flex-col gap-6">
             <div className="w-[88px] h-3 bg-green-700" />
             <h3 className="text-text-500 text-zinc-900">
-              Healthcare Providers
+              {`${name} Specialists`}
             </h3>
           </div>
-          <div className="grid gap-4 grid-cols-2 grid-row-2">
-            <RelatedProviderCard />
-            <RelatedProviderCard />
-            <RelatedProviderCard />
-            <RelatedProviderCard />
+          <div className="flex flex-col gap-12">
+            <div className="grid gap-4 grid-cols-2 grid-row-2">
+              <RelatedProviderCard />
+              <RelatedProviderCard />
+              <RelatedProviderCard />
+              <RelatedProviderCard />
+            </div>
+            <Button color="primary">
+              <span>See More</span>
+            </Button>
           </div>
         </div>
-        <div className="flex flex-col gap-12" id="services">
+        {/* <div className="flex flex-col gap-12" id="services">
           <div className="flex flex-col gap-6">
             <div className="w-[88px] h-3 bg-green-700" />
             <h3 className="text-text-500 text-zinc-900">
               Services & Specialties
             </h3>
           </div>
-          <div className="grid grid-cols-3 gap-y-8 gap-x-24">
-            {specialties &&
-              specialties
-                .slice(0, 12)
-                .map((spec) => <FacilitySpecialtyCard specialty={spec} />)}
-          </div>
-        </div>
+        </div> */}
         {/* <div className="flex flex-col gap-12" id="insurance">
           <div className="flex flex-col gap-6">
             <div className="w-[88px] h-3 bg-green-700" />

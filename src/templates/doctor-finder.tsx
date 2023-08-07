@@ -38,7 +38,7 @@ const DoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
       > */}
 
       {/* </Transition> */}
-      <DoctorLocator />
+      {/* <DoctorLocator /> */}
     </PageLayout>
   );
 };
