@@ -19,7 +19,7 @@ export default function Hero({ name, coordinates, address, phone }) {
   }
 
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900 mt-32">
+    <div className="relative isolate overflow-hidden bg-gray-900">
       <img
         src="https://s3-alpha-sig.figma.com/img/71b1/9a4c/034c67fd1437dbebf64d34725fa9a7cf?Expires=1691971200&Signature=MMSu-xuZuSVHzvLrPoP8m8dNBisClPdxQIi7OxN1Rsw1ehKND4HroeMiJVZ-Fa33EY~8LbCJ4S-tjriGWfhYukbybEwsapI1YGLQGKrj-vNK2Bvze8UqX3L3AERBPCUQMIRyXY68zTgOhpB5s6EZonfAe1O0BLuMX9PjXdTXT9i65SszdIUtVcp85tveSl4TR1NwpsDlUxtMMp7ew3NZNn8L0G-9mj4yvSyYckZwexIyonkjVcE7Y68rQKMLsmCUaTTZR~8bWA7him9TEnx5jtE5mCy7nMpK-H7KX0W3LoeNpOW09OurFJ0e4PX7I2WrbqgZRz4G3ZmruZkHPBJYrg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
         alt=""
@@ -32,11 +32,11 @@ export default function Hero({ name, coordinates, address, phone }) {
             {name}
           </h2>
           <div className="flex flex-row gap-4">
-            <Button color="primary">
+            <Button color="primary" href="#">
               <CalendarIcon color="white" />
               <span>Schedule Appointment</span>
             </Button>
-            <Button color="secondary">
+            <Button color="secondary" href="/doctor-finder">
               <UserIcon />
               <span>Find a Specialist</span>
             </Button>
@@ -57,9 +57,11 @@ export default function Hero({ name, coordinates, address, phone }) {
               <div className="w-5 flex justify-center">
                 <MapPinIcon />
               </div>
-              <span className="text-zinc-900">
-                20 Shattuck Street, Boston, MA, 02115
-              </span>
+              <div className="text-zinc-900">
+                <span>{`${address.line1},`}</span>
+                {address?.line2 && <span>{` ${address.line2},`}</span>}
+                <span>{` ${address.city}, ${address.region}, ${address.postalCode}`}</span>
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-5 flex justify-center">
