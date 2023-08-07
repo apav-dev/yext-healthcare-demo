@@ -347,13 +347,13 @@ export default function Header({
             />
           </div>
           <div className="hidden z-0 lg:flex">
-            <DoctorFilterSearch />
+            {/* <DoctorFilterSearch /> */}
           </div>
         </div>
       )}
       {/* Mobile Search */}
       <MobilePanel open={mobileSearchOpen} toggleOpen={setMobileSearchOpen}>
-        <DoctorFilterSearch onSearchClick={() => setMobileSearchOpen(false)} />
+        {/* <DoctorFilterSearch onSearchClick={() => setMobileSearchOpen(false)} /> */}
       </MobilePanel>
     </header>
   );
