@@ -1,4 +1,4 @@
-import { ComplexImageType, Image } from "@yext/pages/components";
+import { ComplexImageType, Image } from "@yext/sites-components";
 
 export interface PhotoHeroProps {
   image?: ComplexImageType;

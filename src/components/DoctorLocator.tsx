@@ -14,7 +14,7 @@ import {
 } from "@yext/search-ui-react";
 import { twMerge } from "tailwind-merge";
 import MobilePanel from "./MobilePanel";
-import FacetPopover from "./search/FacetPopover";
+// import FacetPopover from "./search/FacetPopover";
 import useWindowSize from "../hooks/useWindowSize";
 
 export type LocatorContextType = {
@@ -63,10 +63,10 @@ const DoctorLocator = () => {
     );
   }, [doctors]);
 
-  // const handleLocationSelect = (location: MapLocation) => {
-  //   console.log("handleLocationSelect", location);
-  //   setSelectedDoctorId(location.id);
-  // };
+  const handleLocationSelect = (location: MapLocation) => {
+    console.log("handleLocationSelect", location);
+    setSelectedDoctorId(location.id);
+  };
 
   return (
     <LocatorProvider
@@ -102,7 +102,7 @@ const DoctorLocator = () => {
             }}
             CardComponent={DoctorSearchCard}
           />
-          {/* <Pagination
+          <Pagination
             customCssClasses={{
               paginationContainer: "py-8 shadow-none",
               label: "font-pt-sans-regular border-0",
@@ -110,7 +110,7 @@ const DoctorLocator = () => {
               leftIconContainer: "border-0 px-4",
               rightIconContainer: "border-0 px-4",
             }}
-          /> */}
+          />
         </CenteredContainer>
       </div>
       <div className="w-full h-[calc(100vh-356px)] z-0 relative">
@@ -123,15 +123,15 @@ const DoctorLocator = () => {
         </button>
         <AppleMap
           locations={locations}
-          // onLocationSelect={handleLocationSelect}
+          onLocationSelect={handleLocationSelect}
         />
-        {/* {selectedDoctor && (
+        {selectedDoctor && (
           <div className="absolute bottom-0 left-0 w-full z-[1]">
             <div className="p-4">
               <DoctorSearchCard result={selectedDoctor} />
             </div>
           </div>
-        )} */}
+        )}
       </div>
       {showList && (
         <div className="absolute bottom-6 left-0 w-full z-[9] lg:hidden">

@@ -93,7 +93,7 @@ const renderPopover = ({
                         <div className="flex justify-center ">
                           <a
                             className="px-4 py-2 text-white bg-green rounded-lg  text-sm"
-                            href={featuredSection.cta?.link}
+                            href={`/${featuredSection.cta?.link}`}
                           >
                             {featuredSection.cta?.text}
                           </a>
@@ -106,7 +106,7 @@ const renderPopover = ({
                         {links.map((link) => (
                           <div key={link.name} className="flex">
                             <a
-                              href={link.slug}
+                              href={`/${link.slug}`}
                               className="text-dark-gray hover:text-gray-800 hover:underline"
                             >
                               {link.name}
@@ -267,7 +267,7 @@ export default function Header({ locations, specialties }: HeaderProps) {
                             <Disclosure.Button
                               key={specialty.name}
                               as="a"
-                              href={specialty.slug}
+                              href={`/${specialty.slug}`}
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-green "
                             >
                               {specialty.name}
@@ -296,7 +296,7 @@ export default function Header({ locations, specialties }: HeaderProps) {
                               <Disclosure.Button
                                 key={location.name}
                                 as="a"
-                                href={location.slug}
+                                href={`/${location.slug}`}
                                 className="block rounded-lg py-2 pl-6 pr-3 text-sm leading-7 text-green"
                               >
                                 {`${location.address.city} - ${location.address.line1}`}
@@ -342,11 +342,11 @@ export default function Header({ locations, specialties }: HeaderProps) {
             />
           </div>
           <div className="hidden z-0 lg:flex">
-            {/* <DoctorFilterSearch /> */}
+            <DoctorFilterSearch />
           </div>
         </div>
-      )} */}
-      {/* Mobile Search */}
+      )}  */}
+      {/* Mobile Search
       {/* <MobilePanel open={mobileSearchOpen} toggleOpen={setMobileSearchOpen}>
         <DoctorFilterSearch onSearchClick={() => setMobileSearchOpen(false)} />
       </MobilePanel> */}

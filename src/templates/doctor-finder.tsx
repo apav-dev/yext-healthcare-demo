@@ -70,7 +70,7 @@ const DoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
       > */}
 
         {/* </Transition> */}
-        {/* <DoctorLocator /> */}
+        <DoctorLocator />
       </div>
       {/* <div className="flex items-center justify-center py-4">
         <Pagination

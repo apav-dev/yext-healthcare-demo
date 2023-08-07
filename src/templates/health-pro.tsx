@@ -8,7 +8,6 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import "../index.css";
-import Doctor from "../types/autogen";
 import PageLayout from "../components/PageLayout";
 import CenteredContainer from "../components/atoms/CenteredContainer";
 import ResponsiveStack from "../components/atoms/ResponsiveStack";
@@ -25,6 +24,7 @@ import Reviews from "../components/Reviews";
 import Faqs from "../components/Faqs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { HealthPro as HealthProType } from "../components/search/DoctorSearchCard";
 
 export const config: TemplateConfig = {
   stream: {
@@ -63,7 +63,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   document,
 }): HeadConfig => {
-  const doctor = document as Doctor;
+  const doctor = document as HealthProType;
   return {
     title: doctor.name,
     charset: "UTF-8",
@@ -73,10 +73,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
 
 const queryClient = new QueryClient();
 
-// 1. Reviews
-// 2. Static Map
-// 3. Header
-// 4. Footer
 const HealthPro: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
@@ -85,6 +81,7 @@ const HealthPro: Template<TemplateRenderProps> = ({
       <PageLayout
         featuredLocations={document._site.c_featuredLocations}
         featuredSpecialties={document._site.c_featuredSpecialties}
+        containerClassName="pt-32"
       >
         <Breadcrumbs
           breadcrumbs={[
