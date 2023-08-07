@@ -24,7 +24,7 @@ export interface LayoutProps {
 }
 
 // const searcher = provideHeadless({
-//   apiKey: "cecfca4dac59395a87f9f57766abd38e",
+//   apiKey: YEXT_PUBLIC_SEARCH_API_KEY,
 //   experienceKey: "find-a-doc-specialties",
 //   locale: "en",
 //   verticalKey: "healthcare_professionals",

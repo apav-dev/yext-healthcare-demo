@@ -11,7 +11,9 @@ export default function ServicesBanner({ specialties }) {
         {specialties &&
           specialties
             .slice(0, 12)
-            .map((spec) => <FacilitySpecialtyCard specialty={spec} />)}
+            .map((spec) => (
+              <FacilitySpecialtyCard key={spec.id} specialty={spec} />
+            ))}
       </div>
     </div>
   );
