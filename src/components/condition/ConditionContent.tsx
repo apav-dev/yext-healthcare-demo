@@ -75,7 +75,7 @@ export default function ConditionContent({
           <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
             <span>{`Our specialists provide the following diagnostic procedures for ${name}:`}</span>
             <ul className="list-disc flex flex-col gap-4 list-inside">
-              {diagnostics.map((diag) => (
+              {diagnostics?.map((diag) => (
                 <li key={diag.id}>{diag.name}</li>
               ))}
             </ul>
@@ -89,7 +89,7 @@ export default function ConditionContent({
           <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
             <span>{`Treatment for ${name} may include the following:`}</span>
             <ul className="list-disc flex flex-col gap-4 list-inside">
-              {treatments.map((treat) => (
+              {treatments?.map((treat) => (
                 <li key={treat.id}>{treat.name}</li>
               ))}
             </ul>
