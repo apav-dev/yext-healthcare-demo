@@ -342,7 +342,7 @@ export default function Header({ locations, specialties }: HeaderProps) {
             />
           </div>
           <div className="hidden z-0 lg:flex">
-            <DoctorFilterSearch />
+            {/* <DoctorFilterSearch /> */}
           </div>
         </div>
       )} */}

@@ -70,9 +70,9 @@ const DoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
       > */}
 
         {/* </Transition> */}
-        <DoctorLocator />
+        {/* <DoctorLocator /> */}
       </div>
-      <div className="flex items-center justify-center py-4">
+      {/* <div className="flex items-center justify-center py-4">
         <Pagination
           customCssClasses={{
             paginationContainer: "shadow-none mb-0",
@@ -82,7 +82,9 @@ const DoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
             rightIconContainer: "border-0 px-4",
           }}
         />
-      </div>
+      </div> */}
+      {/* </Transition> */}
+      {/* <DoctorLocator /> */}
     </PageLayout>
   );
 };
