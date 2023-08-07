@@ -19,7 +19,6 @@ export interface HeaderProps {
     name: string;
     slug: string;
   }[];
-  includeSearch?: boolean;
 }
 
 const renderPopover = ({
@@ -94,7 +93,7 @@ const renderPopover = ({
                         <div className="flex justify-center ">
                           <a
                             className="px-4 py-2 text-white bg-green rounded-lg  text-sm"
-                            href={featuredSection.cta?.link}
+                            href={`/${featuredSection.cta?.link}`}
                           >
                             {featuredSection.cta?.text}
                           </a>
@@ -107,7 +106,7 @@ const renderPopover = ({
                         {links.map((link) => (
                           <div key={link.name} className="flex">
                             <a
-                              href={link.slug}
+                              href={`/${link.slug}`}
                               className="text-dark-gray hover:text-gray-800 hover:underline"
                             >
                               {link.name}
@@ -127,11 +126,7 @@ const renderPopover = ({
   );
 };
 
-export default function Header({
-  locations,
-  specialties,
-  includeSearch,
-}: HeaderProps) {
+export default function Header({ locations, specialties }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -272,7 +267,7 @@ export default function Header({
                             <Disclosure.Button
                               key={specialty.name}
                               as="a"
-                              href={specialty.slug}
+                              href={`/${specialty.slug}`}
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-green "
                             >
                               {specialty.name}
@@ -301,7 +296,7 @@ export default function Header({
                               <Disclosure.Button
                                 key={location.name}
                                 as="a"
-                                href={location.slug}
+                                href={`/${location.slug}`}
                                 className="block rounded-lg py-2 pl-6 pr-3 text-sm leading-7 text-green"
                               >
                                 {`${location.address.city} - ${location.address.line1}`}
@@ -327,7 +322,7 @@ export default function Header({
         </Dialog>
       </div>
       {/* fake searchbar for mobile  */}
-      {includeSearch && (
+      {/* {includeSearch && (
         <div className="px-4 py-6 bg-light-green lg:pt-0">
           <div
             className="bg-white border border-green flex items-center px-6 py-4 lg:hidden "
@@ -347,14 +342,14 @@ export default function Header({
             />
           </div>
           <div className="hidden z-0 lg:flex">
-            {/* <DoctorFilterSearch /> */}
+            <DoctorFilterSearch />
           </div>
         </div>
-      )}
-      {/* Mobile Search */}
-      <MobilePanel open={mobileSearchOpen} toggleOpen={setMobileSearchOpen}>
-        {/* <DoctorFilterSearch onSearchClick={() => setMobileSearchOpen(false)} /> */}
-      </MobilePanel>
+      )}  */}
+      {/* Mobile Search
+      {/* <MobilePanel open={mobileSearchOpen} toggleOpen={setMobileSearchOpen}>
+        <DoctorFilterSearch onSearchClick={() => setMobileSearchOpen(false)} />
+      </MobilePanel> */}
     </header>
   );
 }

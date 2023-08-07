@@ -2,7 +2,7 @@ import Icon from "./atoms/Icon";
 
 export default function Footer() {
   return (
-    <div className="justify-between items-center inline-flex w-full mt-12">
+    <div className="justify-between items-center inline-flex w-full ">
       <div className="self-stretch justify-start items-center gap-6 flex">
         <div className="w-32 h-32 p-2.5 bg-green-700 justify-center items-center gap-2.5 inline-flex">
           <Icon name="home" height="12" width="12" color="text-white" />

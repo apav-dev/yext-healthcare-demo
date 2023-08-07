@@ -14,7 +14,7 @@ import {
 } from "@yext/search-ui-react";
 import { twMerge } from "tailwind-merge";
 import MobilePanel from "./MobilePanel";
-import FacetPopover from "./search/FacetPopover";
+// import FacetPopover from "./search/FacetPopover";
 import useWindowSize from "../hooks/useWindowSize";
 
 export type LocatorContextType = {
@@ -63,10 +63,10 @@ const DoctorLocator = () => {
     );
   }, [doctors]);
 
-  // const handleLocationSelect = (location: MapLocation) => {
-  //   console.log("handleLocationSelect", location);
-  //   setSelectedDoctorId(location.id);
-  // };
+  const handleLocationSelect = (location: MapLocation) => {
+    console.log("handleLocationSelect", location);
+    setSelectedDoctorId(location.id);
+  };
 
   return (
     <LocatorProvider
@@ -75,33 +75,9 @@ const DoctorLocator = () => {
         setSelectedId: setSelectedDoctorId,
       }}
     >
-      <div className="hidden lg:block">
-        <div className="flex items-center px-6 py-4 border-b border-gray-200 h-[80px] shadow">
-          <ResultsCount
-            customCssClasses={{
-              resultsCountContainer: "font-sans-bold text-2xl mb-0 p-0",
-            }}
-          />
-          <div className="flex ml-8 space-x-3.5">
-            <FacetPopover
-              facetFieldId="taxonomy_relatedSpecialties.name"
-              label="Specialty"
-            />
-            <FacetPopover
-              facetFieldId="taxonomy_relatedSpecialties.taxonomy_relatedConditions.name"
-              label="Conditions"
-            />
-            <FacetPopover
-              facetFieldId="insuranceAccepted"
-              label="Insurance Accepted"
-            />
-            <FacetPopover facetFieldId="gender" label="Gender" />
-          </div>
-        </div>
-      </div>
       <div
         className={twMerge(
-          "absolute inset-0 top-[200px] z-[8] pb-12 bg-white overflow-y-auto lg:pb-0 lg:top-[180px] lg:right-2/3",
+          "absolute left-0 top-[356px] h-[calc(100vh-356px)] z-[8] bg-white overflow-y-auto",
           !showList && "hidden"
         )}
       >
@@ -137,7 +113,7 @@ const DoctorLocator = () => {
           />
         </CenteredContainer>
       </div>
-      <div className="w-full h-[calc(100vh-200px)] z-0 relative lg:h-[calc(100vh-180px)]">
+      <div className="w-full h-[calc(100vh-356px)] z-0 relative">
         <button
           className="absolute top-4 right-2 bg-white z-[1] rounded-sm flex px-4 py-3 shadow items-center lg:hidden"
           onClick={() => setShowList(true)}
@@ -147,15 +123,15 @@ const DoctorLocator = () => {
         </button>
         <AppleMap
           locations={locations}
-          // onLocationSelect={handleLocationSelect}
+          onLocationSelect={handleLocationSelect}
         />
-        {/* {selectedDoctor && (
+        {selectedDoctor && (
           <div className="absolute bottom-0 left-0 w-full z-[1]">
             <div className="p-4">
               <DoctorSearchCard result={selectedDoctor} />
             </div>
           </div>
-        )} */}
+        )}
       </div>
       {showList && (
         <div className="absolute bottom-6 left-0 w-full z-[9] lg:hidden">

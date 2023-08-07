@@ -8,7 +8,6 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import "../index.css";
-import Doctor from "../types/autogen";
 import PageLayout from "../components/PageLayout";
 import CenteredContainer from "../components/atoms/CenteredContainer";
 import ResponsiveStack from "../components/atoms/ResponsiveStack";
@@ -25,6 +24,7 @@ import Reviews from "../components/Reviews";
 import Faqs from "../components/Faqs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { HealthPro as HealthProType } from "../components/search/DoctorSearchCard";
 
 export const config: TemplateConfig = {
   stream: {
@@ -63,7 +63,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   document,
 }): HeadConfig => {
-  const doctor = document as Doctor;
+  const doctor = document as HealthProType;
   return {
     title: doctor.name,
     charset: "UTF-8",
@@ -73,10 +73,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
 
 const queryClient = new QueryClient();
 
-// 1. Reviews
-// 2. Static Map
-// 3. Header
-// 4. Footer
 const HealthPro: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
@@ -85,117 +81,116 @@ const HealthPro: Template<TemplateRenderProps> = ({
       <PageLayout
         featuredLocations={document._site.c_featuredLocations}
         featuredSpecialties={document._site.c_featuredSpecialties}
+        containerClassName="pt-32"
       >
-        <div className="pt-32">
-          <Breadcrumbs
-            breadcrumbs={[
-              { label: "Home", link: "/" },
-              { label: "Healthcare Providers", link: "#" },
-              { label: document.name },
-            ]}
-          />
-          <Section backgroundColor="bg-stone-50">
-            <ResponsiveStack className="gap-x-6">
-              <DoctorCard
-                headshot={document.headshot}
-                name={document.name}
-                specialty={document.taxonomy_relatedSpecialties?.[0].name}
-                rating={4.5}
-                address={document.address}
-                // containerClassname="pr-6"
-              />
-              <DoctorMiniMap
-                locations={[
-                  {
-                    // address: document.address,
-                    geocodedCoordinate: document.yextDisplayCoordinate,
-                  },
-                  ...(document.c_alsoLocatedAt ?? []),
-                ]}
-              />
-            </ResponsiveStack>
-          </Section>
-          <Section title="Availability">
-            <AppointmentGrid />
-          </Section>
+        <Breadcrumbs
+          breadcrumbs={[
+            { label: "Home", link: "/" },
+            { label: "Healthcare Providers", link: "#" },
+            { label: document.name },
+          ]}
+        />
+        <Section backgroundColor="bg-stone-50">
+          <ResponsiveStack className="gap-x-6">
+            <DoctorCard
+              headshot={document.headshot}
+              name={document.name}
+              specialty={document.taxonomy_relatedSpecialties?.[0].name}
+              rating={4.5}
+              address={document.address}
+              // containerClassname="pr-6"
+            />
+            <DoctorMiniMap
+              locations={[
+                {
+                  // address: document.address,
+                  geocodedCoordinate: document.yextDisplayCoordinate,
+                },
+                ...(document.c_alsoLocatedAt ?? []),
+              ]}
+            />
+          </ResponsiveStack>
+        </Section>
+        <Section title="Availability">
+          <AppointmentGrid />
+        </Section>
 
-          <ScrollableContainer>
-            <ScrollableSection
-              title="About"
-              backgroundColor="scroll-mt-[166px]"
-              // outerContainerClassname="scroll-mt-[166px]"
-            >
-              <BodyText
-                text={document.c_providerBio}
-                className="whitespace-pre-line"
-              />
-            </ScrollableSection>
-            <ScrollableSection
-              title="Education & Background"
-              backgroundColor="scroll-mt-[166px] bg-stone-50"
-            >
-              <DoctorBackground
-                items={[
-                  {
-                    icon: "school",
-                    name: "Education",
-                    details: document.educationList?.map(
-                      (education) => education.institutionName
-                    ),
-                  },
-                  {
-                    icon: "file-certificate",
-                    name: "Board Certifications",
-                    details: document.certifications,
-                  },
-                  {
-                    icon: "hospital",
-                    name: "Practice Names",
-                    details: document.c_relatedHealthcareFacilities?.map(
-                      (facility) => facility.name
-                    ),
-                  },
-                  {
-                    icon: "stethoscope",
-                    name: "Specialties",
-                    details: [document.taxonomy_relatedSpecialties?.[0].name],
-                  },
-                  {
-                    icon: "language",
-                    name: "Languages Spoken",
-                    details: document.languages,
-                  },
-                  {
-                    icon: "venus-mars",
-                    name: "Gender",
-                    details: [document.gender],
-                  },
-                  {
-                    icon: "hashtag",
-                    name: "NPI Number",
-                    details: [document.npi],
-                  },
-                ]}
-              />
-            </ScrollableSection>
+        <ScrollableContainer>
+          <ScrollableSection
+            title="About"
+            backgroundColor="scroll-mt-[166px]"
+            // outerContainerClassname="scroll-mt-[166px]"
+          >
+            <BodyText
+              text={document.c_providerBio}
+              className="whitespace-pre-line"
+            />
+          </ScrollableSection>
+          <ScrollableSection
+            title="Education & Background"
+            backgroundColor="scroll-mt-[166px] bg-stone-50"
+          >
+            <DoctorBackground
+              items={[
+                {
+                  icon: "school",
+                  name: "Education",
+                  details: document.educationList?.map(
+                    (education) => education.institutionName
+                  ),
+                },
+                {
+                  icon: "file-certificate",
+                  name: "Board Certifications",
+                  details: document.certifications,
+                },
+                {
+                  icon: "hospital",
+                  name: "Practice Names",
+                  details: document.c_relatedHealthcareFacilities?.map(
+                    (facility) => facility.name
+                  ),
+                },
+                {
+                  icon: "stethoscope",
+                  name: "Specialties",
+                  details: [document.taxonomy_relatedSpecialties?.[0].name],
+                },
+                {
+                  icon: "language",
+                  name: "Languages Spoken",
+                  details: document.languages,
+                },
+                {
+                  icon: "venus-mars",
+                  name: "Gender",
+                  details: [document.gender],
+                },
+                {
+                  icon: "hashtag",
+                  name: "NPI Number",
+                  details: [document.npi],
+                },
+              ]}
+            />
+          </ScrollableSection>
 
-            <ScrollableSection
-              title="Reviews"
-              backgroundColor="scroll-mt-[166px]"
-            >
-              <Reviews entityId={document.id} />
-            </ScrollableSection>
-            <ScrollableSection
-              title="Insurances Accepted"
-              backgroundColor="scroll-mt-[166px] bg-stone-50"
-            >
-              <Insurances insurances={document.c_insurances} />
-            </ScrollableSection>
-            <ScrollableSection title="FAQs" backgroundColor="scroll-mt-[166px]">
-              <Faqs faqs={document.c_faqs} />
-            </ScrollableSection>
-          </ScrollableContainer>
-        </div>
+          <ScrollableSection
+            title="Reviews"
+            backgroundColor="scroll-mt-[166px]"
+          >
+            <Reviews entityId={document.id} />
+          </ScrollableSection>
+          <ScrollableSection
+            title="Insurances Accepted"
+            backgroundColor="scroll-mt-[166px] bg-stone-50"
+          >
+            <Insurances insurances={document.c_insurances} />
+          </ScrollableSection>
+          <ScrollableSection title="FAQs" backgroundColor="scroll-mt-[166px]">
+            <Faqs faqs={document.c_faqs} />
+          </ScrollableSection>
+        </ScrollableContainer>
       </PageLayout>
     </QueryClientProvider>
   );

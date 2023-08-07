@@ -8,6 +8,11 @@ import Icon, { IconName } from "../atoms/Icon";
 import { CardProps } from "@yext/search-ui-react";
 import { Address as AddressType } from "../../types/autogen";
 import Address from "../Address";
+import HorizontalDivider from "../HoriztontalDivider";
+import SpecialtyIcon from "../Icons/SpecialtyIcon";
+import PhoneIcon from "../Icons/PhoneIcon";
+import LocationPinIcon from "../Icons/LocationPinIcon";
+import StarIcon from "../Icons/StarIcon";
 
 const sellingPoints: { icon: IconName; name: string }[] = [
   {
@@ -36,7 +41,7 @@ export interface HealthPro {
 }
 
 export default function DoctorCard({ result }: CardProps<HealthPro>) {
-  const { name, address, taxonomy_relatedSpecialties, headshot } =
+  const { name, address, taxonomy_relatedSpecialties, headshot, slug } =
     result.rawData;
   const specialty = taxonomy_relatedSpecialties[0].name;
   const city = address?.city;
@@ -56,7 +61,7 @@ export default function DoctorCard({ result }: CardProps<HealthPro>) {
               </div>
             )}
             <HStack classname="gap-x-1.5 flex justify-center pt-4">
-              <Icon name="star" color="text-yellow" height={"5"} width={"5"} />
+              <StarIcon />
               <BodyText
                 // TODO: replace with actual rating
                 text={"4.5"}
@@ -65,26 +70,57 @@ export default function DoctorCard({ result }: CardProps<HealthPro>) {
               />
             </HStack>
           </VStack>
-          <VStack classname="gap-y-3">
-            <VStack classname="gap-y-1">
-              <HeadingText text={name} level="Heading 4" />
-              <BodyText text={specialty} weight="Regular" color="green" />
-              <Address textColor="light-gray" address={address} />
-              {/* <div className="hidden pb-8 px-2 lg:flex lg:justify-between">
-                {sellingPoints.map((sellingPoint, i) => (
-                  <HStack key={`sp-${i}`}>
-                    <Icon name={sellingPoint.icon} classname="text-blue mr-2" />
-                    <VStack>
-                      <BodyText text={sellingPoint.name} color="blue" />
-                    </VStack>
-                  </HStack>
-                ))}
-              </div> */}
-            </VStack>
-          </VStack>
+          <div className="self-stretch justify-start items-start gap-4 inline-flex">
+            <div className="grow shrink basis-0 flex-col justify-start items-start gap-1 inline-flex">
+              <div className="self-stretch flex-col justify-start items-start gap-4 flex">
+                {/* <div className="w-[88px] h-3 bg-green-700"></div>
+                 */}
+                <HorizontalDivider />
+                <a
+                  className="text-zinc-900 text-2xl font-bold leading-[33.99px] hover:underline"
+                  href={slug}
+                >
+                  {name}
+                </a>
+              </div>
+              <div className="self-stretch h-[104px] flex-col justify-start items-start gap-1 flex">
+                <div className="self-stretch rounded-[999px] justify-start items-start gap-2 inline-flex">
+                  <div className="w-6 h-6 p-1 justify-center items-center flex">
+                    <div className="text-center text-neutral-500 text-base font-light">
+                      <SpecialtyIcon />
+                    </div>
+                  </div>
+                  <div className="text-zinc-900 text-xl font-normal">
+                    {specialty}
+                  </div>
+                </div>
+                <div className="self-stretch rounded-[999px] justify-start items-start gap-2 inline-flex">
+                  <div className="w-6 h-6 p-1 justify-center items-center flex">
+                    <div className="text-center text-neutral-500 text-base font-light">
+                      <PhoneIcon />
+                    </div>
+                  </div>
+                  <div className="text-zinc-900 text-xl font-normal">
+                    212 - 212 - 3000
+                  </div>
+                </div>
+                <div className="self-stretch rounded-[999px] justify-start items-start gap-2 inline-flex">
+                  <div className="w-6 h-6 px-1.5 py-1 justify-center items-center flex">
+                    <div className="text-center text-neutral-500 text-base font-light">
+                      <LocationPinIcon />
+                    </div>
+                  </div>
+                  {address && (
+                    <div className="grow shrink basis-0 text-zinc-900 text-xl font-normal">
+                      {`${address.line1}, ${address.city}, ${address.region}, ${address.postalCode}`}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </HStack>
       </HStack>
-
       <div className="flex justify-between bg-light-green px-6 py-[21px] lg:hidden">
         <BodyText text={"See Availability"} color="green" />
         <Icon name="chevron-right" color="text-green" />
