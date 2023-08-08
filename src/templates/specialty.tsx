@@ -23,7 +23,24 @@ export const config: TemplateConfig = {
   stream: {
     $id: "specialties",
     localization: { locales: ["en"], primary: false },
-    fields: ["id", "name", "slug", "c_specialtyOverviewDescription"],
+    fields: [
+      "id",
+      "name",
+      "slug",
+      "c_specialtyOverviewDescription",
+      "taxonomy_relatedConditions.id",
+      "taxonomy_relatedConditions.name",
+      "taxonomy_relatedConditions.slug",
+      "taxonomy_relatedProcedures.id",
+      "taxonomy_relatedProcedures.name",
+      "taxonomy_relatedProcedures.slug",
+      "taxonomy_relatedReasonsForVisit.id",
+      "taxonomy_relatedReasonsForVisit.name",
+      "taxonomy_relatedReasonsForVisit.slug",
+      "taxonomy_subspecialties.id",
+      "taxonomy_subspecialties.name",
+      "taxonomy_subspecialties.slug",
+    ],
     filter: { entityTypes: ["taxonomy_specialty"] },
   },
 };
@@ -69,8 +86,11 @@ const Specialty: Template<TemplateRenderProps> = ({
       <SpecialtyContent
         name={document.name}
         description={document.c_specialtyOverviewDescription}
-        locations={document._site.c_featuredLocations}
+        // locations={document._site.c_featuredLocations}
         articles={document._site.c_featuredArticles}
+        conditions={document.taxonomy_relatedConditions}
+        visitReasons={document.taxonomy_relatedReasonsForVisit}
+        procedures={document.taxonomy_relatedProcedures}
       />
       <Testimonial />
       <SpecialistBanner name={document.name} />

@@ -83,9 +83,7 @@ export default function FacilityContent({
           </div>
           <div className="grid grid-cols-3 gap-y-8 gap-x-24">
             {specialties &&
-              specialties
-                .slice(0, 12)
-                .map((spec) => <BasicContentCard content={spec} />)}
+              specialties.map((spec) => <BasicContentCard content={spec} />)}
           </div>
         </div>
       </div>
