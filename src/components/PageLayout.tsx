@@ -39,7 +39,7 @@ const searcher = provideHeadless({
 
 const chatConfig: HeadlessConfig = {
   apiKey: import.meta.env.YEXT_PUBLIC_CHAT_API_KEY,
-  botId: "synergic-chat",
+  botId: "veridian-health-chat",
 };
 
 export default function Layout({
