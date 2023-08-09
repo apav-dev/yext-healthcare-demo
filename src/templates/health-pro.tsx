@@ -9,7 +9,6 @@ import {
 } from "@yext/pages";
 import "../index.css";
 import PageLayout from "../components/PageLayout";
-import CenteredContainer from "../components/atoms/CenteredContainer";
 import ResponsiveStack from "../components/atoms/ResponsiveStack";
 import DoctorCard from "../components/DoctorCard";
 import Section from "../components/atoms/Section";
