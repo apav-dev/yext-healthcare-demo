@@ -32,7 +32,7 @@ export const config: TemplateConfig = {
     ],
     filter: {
       entityTypes: ["taxonomy_conditionTreated"],
-      savedFilterIds: ["1337143335"],
+      // savedFilterIds: ["1337143335"],
     },
   },
 };
@@ -51,7 +51,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
     viewport: "width=device-width, initial-scale=1",
   };
 };
-
 
 const Condition: Template<TemplateRenderProps> = ({
   document,
