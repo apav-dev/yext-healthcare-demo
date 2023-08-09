@@ -9,16 +9,26 @@ import InfoGridBanner from "./InfoGridBanner";
 
 export default function ConditionContent({ name, description, specialties }) {
   let fullProcedureList: any[] = [];
-  specialties.forEach((spec) => {
-    const procedures = spec.taxonomy_relatedProcedures;
-    if (procedures) {
-      fullProcedureList = [...fullProcedureList, ...procedures];
-    }
-  });
+  {
+    specialties &&
+      specialties.forEach((spec) => {
+        const procedures = spec.taxonomy_relatedProcedures;
+        if (procedures) {
+          fullProcedureList = [...fullProcedureList, ...procedures];
+        }
+      });
+  }
+  const scrollIds = ["overview"];
+  if (fullProcedureList.length > 0) {
+    scrollIds.push("procedures");
+  }
+  if (specialties) {
+    scrollIds.push("specialties");
+  }
   return (
     <div className="flex w-[85%] px-20 gap-8 mt-8">
       <ScrollspyNav
-        scrollTargetIds={["overview", "procedures", "specialties"]}
+        scrollTargetIds={scrollIds}
         offset={-300}
         activeNavClass="is-active"
         scrollDuration="500"
@@ -32,22 +42,26 @@ export default function ConditionContent({ name, description, specialties }) {
               <span>Overview</span>
             </a>
           </li>
-          <li className="whitespace-nowrap flex">
-            <a
-              className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
-              href="#procedures"
-            >
-              <span>Procedures We Offer</span>
-            </a>
-          </li>
-          <li className="whitespace-nowrap flex">
-            <a
-              className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
-              href="#specialties"
-            >
-              <span>Related Specialties</span>
-            </a>
-          </li>
+          {fullProcedureList.length > 0 && (
+            <li className="whitespace-nowrap flex">
+              <a
+                className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
+                href="#procedures"
+              >
+                <span>Procedures We Offer</span>
+              </a>
+            </li>
+          )}
+          {specialties && (
+            <li className="whitespace-nowrap flex">
+              <a
+                className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
+                href="#specialties"
+              >
+                <span>Related Specialties</span>
+              </a>
+            </li>
+          )}
         </ul>
       </ScrollspyNav>
 
@@ -61,27 +75,31 @@ export default function ConditionContent({ name, description, specialties }) {
             {description}
           </div>
         </div>
-        <div className="flex flex-col gap-12" id="procedures">
-          <div className="flex flex-col gap-6">
-            <div className="w-[88px] h-3 bg-green-700" />
-            <h3 className="text-text-500 text-zinc-900">Procedures We Offer</h3>
+        {fullProcedureList.length > 0 && (
+          <div className="flex flex-col gap-12" id="procedures">
+            <div className="flex flex-col gap-6">
+              <div className="w-[88px] h-3 bg-green-700" />
+              <h3 className="text-text-500 text-zinc-900">
+                Procedures We Offer
+              </h3>
+            </div>
+            <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
+              <span>{`Veridian offers the following procedures related to ${name}:`}</span>
+              <ul className="grid grid-cols-2 gap-4">
+                {fullProcedureList?.slice(0, 29).map((proc) => (
+                  <li
+                    className="underline decoration-green-700 underline-offset-8"
+                    key={proc.id}
+                  >
+                    {proc.name}
+                  </li>
+                ))}
+              </ul>
+            </p>
           </div>
-          <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
-            <span>{`Veridian offers the following procedures related to ${name}:`}</span>
-            <ul className="grid grid-cols-2 gap-4">
-              {fullProcedureList?.slice(0, 29).map((proc) => (
-                <li
-                  className="underline decoration-green-700 underline-offset-8"
-                  key={proc.id}
-                >
-                  {proc.name}
-                </li>
-              ))}
-            </ul>
-          </p>
-        </div>
+        )}
         {specialties && (
-          <div id="locations">
+          <div id="specialties">
             <InfoGridBanner
               title="Related Specialties"
               btnText=""
