@@ -9,10 +9,14 @@ import InsuranceCardIcon from "../Icons/InsuranceCardIcon";
 interface DoctorFilterSearchProps {
   // for closing the mobile search panel
   onSearchClick?: () => void;
+  navigateOnSearch?: boolean;
 }
 
 // TODO: Add Icons next search queries
-const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
+const DoctorFilterSearch = ({
+  onSearchClick,
+  navigateOnSearch,
+}: DoctorFilterSearchProps) => {
   const staticFilters = useSearchState((state) => state.filters.static);
 
   const searchActions = useSearchActions();
@@ -20,21 +24,27 @@ const DoctorFilterSearch = ({ onSearchClick }: DoctorFilterSearchProps) => {
   const { width } = useWindowSize();
 
   const handleSelect = (params: OnSelectParams) => {
-    const filteredFilters =
-      staticFilters?.filter(
-        // TODO: Typescript cleanup
-        (sf) => sf.filter.fieldId !== params.newFilter.fieldId
-      ) ?? [];
-    searchActions.setStaticFilters([
-      ...filteredFilters,
-      {
-        filter: params.newFilter,
-        selected: true,
-        displayName: params.newDisplayName,
-      },
-    ]);
-    if (width && width > 1024) {
-      searchActions.executeVerticalQuery();
+    if (navigateOnSearch) {
+      const urlParams = new URLSearchParams({});
+      urlParams.set(`sf_${params.newFilter.fieldId}`, params.newFilter.value);
+      window.location.href = `/doctor-finder?${urlParams.toString()}`;
+    } else {
+      const filteredFilters =
+        staticFilters?.filter(
+          // TODO: Typescript cleanup
+          (sf) => sf.filter.fieldId !== params.newFilter.fieldId
+        ) ?? [];
+      searchActions.setStaticFilters([
+        ...filteredFilters,
+        {
+          filter: params.newFilter,
+          selected: true,
+          displayName: params.newDisplayName,
+        },
+      ]);
+      if (width && width > 1024) {
+        searchActions.executeVerticalQuery();
+      }
     }
   };
 

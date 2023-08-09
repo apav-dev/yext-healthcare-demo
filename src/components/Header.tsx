@@ -135,9 +135,12 @@ export default function Header({ locations, specialties }: HeaderProps) {
     <header className="fixed top-0 right-0 left-0 z-10">
       <div className="relative isolate bg-white shadow">
         <nav className="flex justify-between items-center" aria-label="Global">
-          <div className="w-32 h-32 p-2.5 bg-green-700 justify-center items-center gap-2.5 inline-flex">
+          <a
+            href="/"
+            className="w-32 h-32 p-2.5 bg-green-700 justify-center items-center gap-2.5 inline-flex"
+          >
             <Icon name="home" height="12" width="12" color="text-white" />
-          </div>
+          </a>
           <div className="flex lg:hidden">
             <button
               type="button"
@@ -214,7 +217,7 @@ export default function Header({ locations, specialties }: HeaderProps) {
               </a>
               <a
                 href="/doctor-finder"
-                className="flex items-center space-x-2 rounded-md border-2 px-4 py-2 border-green hover:text-white hover:bg-green"
+                className="flex items-center space-x-2 rounded-md border-2 px-4 py-2 border-green  hover:bg-green"
               >
                 <span>Find a Doctor</span>
               </a>

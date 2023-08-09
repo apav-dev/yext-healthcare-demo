@@ -1,3 +1,4 @@
+import { twMerge } from "tailwind-merge";
 import BodyText from "./atoms/BodyText";
 import Selector from "./atoms/Selector";
 
@@ -5,7 +6,9 @@ export interface NavBarProps {
   items: {
     id: string;
     label?: string;
+    resultsCount?: number;
   }[];
+  selectedId?: string;
   onSelect?: (id: string) => void;
 }
 
@@ -13,7 +16,7 @@ export const initialProps: NavBarProps = {
   items: [{ id: "About" }, { id: "Insurances" }, { id: "Locations" }],
 };
 
-export default function NavBar({ items, onSelect }: NavBarProps) {
+export default function NavBar({ items, onSelect, selectedId }: NavBarProps) {
   const handleSelect = (id: string) => {
     onSelect?.(id);
   };
@@ -22,13 +25,19 @@ export default function NavBar({ items, onSelect }: NavBarProps) {
     <div className="mx-auto max-w-[1440px] px-20">
       <div className="h-16 justify-between border-b hidden sm:flex ">
         <div className="ml-6 flex justify-between flex-1">
-          {items.map(({ label, id }) => (
+          {items.map(({ label, id, resultsCount }) => (
             <button
               key={id}
-              className={`inline-flex items-center px-1 pt-1 border-transparent hover:border-green-500 border-b-2 text-sm font-medium`}
+              className={twMerge(
+                `inline-flex items-center px-1 pt-1 border-transparent hover:border-green-500 border-b-2 text-sm font-medium`,
+                selectedId === id && "border-green-500"
+              )}
               onClick={() => handleSelect(id)}
             >
               <div className="font-bold">{label ?? id}</div>
+              {resultsCount !== undefined && (
+                <div className="pl-0.5">{` (${resultsCount})`}</div>
+              )}
             </button>
           ))}
         </div>

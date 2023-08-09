@@ -1,4 +1,4 @@
-import { ComplexImageType, Image } from "@yext/sites-components";
+import { ComplexImageType, Image } from "@yext/pages/components";
 import GridContainer from "./atoms/GridContainer";
 import BodyText from "./atoms/BodyText";
 import HStack from "./atoms/HStack";
