@@ -49,15 +49,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   };
 };
 
-// const queryClient = new QueryClient();
-
 const Facility: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
-  // console.log("document", document);
-
   return (
-    // <QueryClientProvider client={queryClient}>
     <PageLayout
       featuredLocations={document._site.c_featuredLocations}
       featuredSpecialties={document._site.c_featuredSpecialties}
@@ -73,7 +68,6 @@ const Facility: Template<TemplateRenderProps> = ({
         specialties={document.taxonomy_relatedSpecialties}
       />
     </PageLayout>
-    // </QueryClientProvider>
   );
 };
 

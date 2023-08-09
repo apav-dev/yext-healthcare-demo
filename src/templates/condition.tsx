@@ -8,7 +8,6 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import "../index.css";
-// import Facility from "../types/autogen";
 import PageLayout from "../components/PageLayout";
 import HeroNoImage from "../components/condition/HeroNoImage";
 import ConditionContent from "../components/condition/ConditionContent";
@@ -48,15 +47,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   };
 };
 
-// const queryClient = new QueryClient();
-
 const Facility: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
-  // console.log("document", document);
-
   return (
-    // <QueryClientProvider client={queryClient}>
     <PageLayout
       featuredLocations={document._site.c_featuredLocations}
       featuredSpecialties={document._site.c_featuredSpecialties}
@@ -71,7 +65,6 @@ const Facility: Template<TemplateRenderProps> = ({
       <SpecialistBanner name={document.name} />
       <ServicesBanner specialties={document._site.c_featuredSpecialties} />
     </PageLayout>
-    // </QueryClientProvider>
   );
 };
 
