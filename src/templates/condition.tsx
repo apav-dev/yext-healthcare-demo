@@ -25,14 +25,14 @@ export const config: TemplateConfig = {
       "name",
       "slug",
       "description",
-      "c_diagnosticProcedures.name",
-      "c_diagnosticProcedures.id",
-      "c_treatments.name",
-      "c_treatments.id",
+      "c_relatedSpecialties2.taxonomy_relatedProcedures.name",
+      "c_relatedSpecialties2.taxonomy_relatedProcedures.id",
+      "c_relatedSpecialties2.name",
+      "c_relatedSpecialties2.id",
+      "c_relatedSpecialties2.slug",
     ],
     filter: {
       entityTypes: ["taxonomy_conditionTreated"],
-      savedFilterIds: ["1337143335"],
     },
   },
 };
@@ -64,7 +64,7 @@ const Condition: Template<TemplateRenderProps> = ({
         <Breadcrumbs
           breadcrumbs={[
             { label: "Home", link: "/" },
-            { label: "Conditions" },
+            { label: "Conditions", link: "#" },
             { label: document.name },
           ]}
         />
@@ -72,9 +72,8 @@ const Condition: Template<TemplateRenderProps> = ({
       <HeroNoImage name={document.name} />
       <ConditionContent
         description={document.description}
-        diagnostics={document.c_diagnosticProcedures}
+        specialties={document.c_relatedSpecialties2}
         name={document.name}
-        treatments={document.c_treatments}
       />
       <SpecialistBanner name={document.name} />
       <div className="px-20 py-8">

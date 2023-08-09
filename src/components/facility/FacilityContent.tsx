@@ -6,16 +6,18 @@ import RelatedProviderCard from "./RelatedProviderCard";
 import FacilitySpecialtyCard from "./BasicContentCard";
 import BasicContentCard from "./BasicContentCard";
 import Button from "./Button";
+import Reviews from "../Reviews";
 
 export default function FacilityContent({
   description,
   specialties,
   providers,
+  entityId,
 }) {
   return (
     <div className="flex xl:w-[95%] px-20 gap-8 mt-8">
       <ScrollspyNav
-        scrollTargetIds={["overview", "providers", "services"]}
+        scrollTargetIds={["overview", "providers", "services", "reviews"]}
         offset={-300}
         activeNavClass="is-active"
         scrollDuration="500"
@@ -43,6 +45,14 @@ export default function FacilityContent({
               href="#services"
             >
               <span>Services & Specialties</span>
+            </a>
+          </li>
+          <li className="whitespace-nowrap flex">
+            <a
+              className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
+              href="#reviews"
+            >
+              <span>Reviews</span>
             </a>
           </li>
         </ul>
@@ -85,6 +95,13 @@ export default function FacilityContent({
             {specialties &&
               specialties.map((spec) => <BasicContentCard content={spec} />)}
           </div>
+        </div>
+        <div className="flex flex-col gap-12" id="reviews">
+          <div className="flex flex-col gap-6">
+            <div className="w-[88px] h-3 bg-green-700" />
+            <h3 className="text-text-500 text-zinc-900">Reviews</h3>
+          </div>
+          <Reviews entityId={entityId} />
         </div>
       </div>
     </div>

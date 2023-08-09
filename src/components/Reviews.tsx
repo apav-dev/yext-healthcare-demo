@@ -83,7 +83,9 @@ const reviewSortOptions: Record<ReviewSort, { key: string; value: string }> = {
 
 const REVIEWS_LIMIT = 3;
 
-const reviewsUrl = `${YEXT_PUBLIC_FETCH_REVIEWS_URL}?api_key=${YEXT_PUBLIC_CONTENT_API_KEY}v=20230724`;
+const reviewsUrl = `${import.meta.env.YEXT_PUBLIC_FETCH_REVIEWS_URL}?api_key=${
+  import.meta.env.YEXT_PUBLIC_CONTENT_API_KEY
+}v=20230724`;
 
 const fetchReviews = async (
   id: string,

@@ -7,6 +7,7 @@ interface InfoGridBannerProps {
   title: string;
   content: any;
   contentMax?: number;
+  showButton?: boolean;
 }
 
 export default function InfoGridBanner({
@@ -15,6 +16,7 @@ export default function InfoGridBanner({
   title,
   content,
   contentMax,
+  showButton = true,
 }: InfoGridBannerProps) {
   return (
     <div className="flex flex-col gap-12">
@@ -31,9 +33,11 @@ export default function InfoGridBanner({
               <BasicContentCard key={item.id} content={item} />
             ))}
       </div>
-      <Button color="primary" href={btnLink}>
-        <span>{btnText}</span>
-      </Button>
+      {showButton && (
+        <Button color="primary" href={btnLink}>
+          <span>{btnText}</span>
+        </Button>
+      )}
     </div>
   );
 }

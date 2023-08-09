@@ -30,7 +30,7 @@ export const getHeadConfig: GetHeadConfig<
 };
 
 const searcher = provideHeadless({
-  apiKey: YEXT_PUBLIC_SEARCH_API_KEY,
+  apiKey: import.meta.env.YEXT_PUBLIC_SEARCH_API_KEY,
   experienceKey: "find-a-doc-specialties",
   locale: "en",
   headlessId: "universal-search",

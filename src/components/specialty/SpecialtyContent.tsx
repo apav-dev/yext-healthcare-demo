@@ -232,43 +232,10 @@ export default function SpecialtyContent({
               </h3>
             </div>
             <div className="flex flex-col gap-12">
-              <div className="grid gap-4  grid-cols-1 xl:grid-cols-2 grid-row-2">
-                <RelatedProviderCard
-                  provider={{
-                    name: "Adrian Harvey Mass, MD",
-                    headshot: {
-                      url: "https://a.mktgcdn.com/p/u8ugfM5UFs_lDO2tOZWUa1BKfITS0lMLv81NpcqseUk/400x400.jpg",
-                    },
-                    taxonomy_relatedSpecialties: [{ name }],
-                  }}
-                />
-                <RelatedProviderCard
-                  provider={{
-                    name: "Ismary DeCastro",
-                    headshot: {
-                      url: "https://a.mktgcdn.com/p/ZFkuxpBwjFPjALS5Gh5ZN9vUcRx_Hs2AkNlwbaCn5jo/400x400.jpg",
-                    },
-                    taxonomy_relatedSpecialties: [{ name }],
-                  }}
-                />
-                <RelatedProviderCard
-                  provider={{
-                    name: "Melissa Cadnapaphornchai",
-                    headshot: {
-                      url: "https://a.mktgcdn.com/p/W2r9w9CSm22-9fscvms7PV69I3dUB_bQl_ewiKvdSpY/400x400.jpg",
-                    },
-                    taxonomy_relatedSpecialties: [{ name }],
-                  }}
-                />
-                <RelatedProviderCard
-                  provider={{
-                    name: "Neelima Katragadda, MD",
-                    headshot: {
-                      url: "https://a.mktgcdn.com/p/xN51Lz6iOkM2_bshFK0QAwK4VdDeRxr7qWi2xhTzx5g/400x400.jpg",
-                    },
-                    taxonomy_relatedSpecialties: [{ name }],
-                  }}
-                />
+              <div className="grid gap-4 grid-cols-1 xl:grid-cols-2">
+                {providers.slice(0, 4).map((provider) => (
+                  <RelatedProviderCard provider={provider} />
+                ))}
               </div>
               <Button color="primary" href="/doctor-finder">
                 <span>Explore Providers</span>

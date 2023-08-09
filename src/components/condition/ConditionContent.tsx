@@ -4,17 +4,21 @@ import ScrollspyNav from "react-scrollspy-nav";
 import "../facility/FacilityContent.css";
 import RelatedProviderCard from "../facility/RelatedProviderCard";
 import Button from "../facility/Button";
+import { isArray } from "lodash";
+import InfoGridBanner from "./InfoGridBanner";
 
-export default function ConditionContent({
-  name,
-  description,
-  diagnostics,
-  treatments,
-}) {
+export default function ConditionContent({ name, description, specialties }) {
+  let fullProcedureList: any[] = [];
+  specialties.forEach((spec) => {
+    const procedures = spec.taxonomy_relatedProcedures;
+    if (procedures) {
+      fullProcedureList = [...fullProcedureList, ...procedures];
+    }
+  });
   return (
     <div className="flex w-[85%] px-20 gap-8 mt-8">
       <ScrollspyNav
-        scrollTargetIds={["overview", "diagnostics", "treatments"]}
+        scrollTargetIds={["overview", "procedures", "specialties"]}
         offset={-300}
         activeNavClass="is-active"
         scrollDuration="500"
@@ -31,27 +35,19 @@ export default function ConditionContent({
           <li className="whitespace-nowrap flex">
             <a
               className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
-              href="#diagnostics"
+              href="#procedures"
             >
-              <span>Diagnostic Procedures</span>
+              <span>Procedures We Offer</span>
             </a>
           </li>
           <li className="whitespace-nowrap flex">
             <a
               className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
-              href="#treatments"
+              href="#specialties"
             >
-              <span>Treatments</span>
+              <span>Related Specialties</span>
             </a>
           </li>
-          {/* <li className="whitespace-nowrap flex">
-            <a
-              className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
-              href="#insurance"
-            >
-              <span>Insurance Accepted</span>
-            </a>
-          </li> */}
         </ul>
       </ScrollspyNav>
 
@@ -65,36 +61,37 @@ export default function ConditionContent({
             {description}
           </div>
         </div>
-        <div className="flex flex-col gap-12" id="diagnostics">
+        <div className="flex flex-col gap-12" id="procedures">
           <div className="flex flex-col gap-6">
             <div className="w-[88px] h-3 bg-green-700" />
-            <h3 className="text-text-500 text-zinc-900">
-              Diagnostic Procedures
-            </h3>
+            <h3 className="text-text-500 text-zinc-900">Procedures We Offer</h3>
           </div>
           <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
-            <span>{`Our specialists provide the following diagnostic procedures for ${name}:`}</span>
-            <ul className="list-disc flex flex-col gap-4 list-inside">
-              {diagnostics?.map((diag) => (
-                <li key={diag.id}>{diag.name}</li>
+            <span>{`Veridian offers the following procedures related to ${name}:`}</span>
+            <ul className="grid grid-cols-2 gap-4">
+              {fullProcedureList?.slice(0, 29).map((proc) => (
+                <li
+                  className="underline decoration-green-700 underline-offset-8"
+                  key={proc.id}
+                >
+                  {proc.name}
+                </li>
               ))}
             </ul>
           </p>
         </div>
-        <div className="flex flex-col gap-12" id="treatments">
-          <div className="flex flex-col gap-6">
-            <div className="w-[88px] h-3 bg-green-700" />
-            <h3 className="text-text-500 text-zinc-900">Treatments</h3>
+        {specialties && (
+          <div id="locations">
+            <InfoGridBanner
+              title="Related Specialties"
+              btnText=""
+              content={specialties}
+              contentMax={9}
+              btnLink=""
+              showButton={false}
+            />
           </div>
-          <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
-            <span>{`Treatment for ${name} may include the following:`}</span>
-            <ul className="list-disc flex flex-col gap-4 list-inside">
-              {treatments?.map((treat) => (
-                <li key={treat.id}>{treat.name}</li>
-              ))}
-            </ul>
-          </p>
-        </div>
+        )}
       </div>
     </div>
   );

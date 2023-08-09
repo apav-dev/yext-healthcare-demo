@@ -56,35 +56,40 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   };
 };
 
+const queryClient = new QueryClient();
+
 const Facility: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
   return (
-    <PageLayout
-      featuredLocations={document._site.c_featuredLocations}
-      featuredSpecialties={document._site.c_featuredSpecialties}
-    >
-      <div className="mt-32">
-        <Breadcrumbs
-          breadcrumbs={[
-            { label: "Home", link: "/" },
-            { label: "Facilities" },
-            { label: document.name },
-          ]}
+    <QueryClientProvider client={queryClient}>
+      <PageLayout
+        featuredLocations={document._site.c_featuredLocations}
+        featuredSpecialties={document._site.c_featuredSpecialties}
+      >
+        <div className="mt-32">
+          <Breadcrumbs
+            breadcrumbs={[
+              { label: "Home", link: "/" },
+              { label: "Facilities", link: "#" },
+              { label: document.name },
+            ]}
+          />
+        </div>
+        <Hero
+          name={document.name}
+          coordinates={document.yextDisplayCoordinate}
+          address={document.address}
+          phone={document.mainPhone}
         />
-      </div>
-      <Hero
-        name={document.name}
-        coordinates={document.yextDisplayCoordinate}
-        address={document.address}
-        phone={document.mainPhone}
-      />
-      <FacilityContent
-        description={document.c_facilityDescription}
-        specialties={document.taxonomy_relatedSpecialties}
-        providers={document.c_relatedHealthcareProfessionals}
-      />
-    </PageLayout>
+        <FacilityContent
+          description={document.c_facilityDescription}
+          specialties={document.taxonomy_relatedSpecialties}
+          providers={document.c_relatedHealthcareProfessionals}
+          entityId={document.id}
+        />
+      </PageLayout>
+    </QueryClientProvider>
   );
 };
 
