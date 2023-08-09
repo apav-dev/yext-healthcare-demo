@@ -51,17 +51,17 @@ export default function Layout({
   containerClassName,
 }: LayoutProps) {
   return (
-    // <ChatHeadlessProvider config={chatConfig}>
-    <SearchHeadlessProvider searcher={searcher} routing={defaultRouter}>
-      <div className={`min-h-screen relative`} style={{ backgroundColor }}>
-        <Header
-          locations={featuredLocations}
-          specialties={featuredSpecialties}
-          // includeSearch={false}
-        />
-        <main className={containerClassName}>{children}</main>
-        <Footer />
-        {/* <ChatPopUp
+    <ChatHeadlessProvider config={chatConfig}>
+      <SearchHeadlessProvider searcher={searcher} routing={defaultRouter}>
+        <div className={`min-h-screen relative`} style={{ backgroundColor }}>
+          <Header
+            locations={featuredLocations}
+            specialties={featuredSpecialties}
+            // includeSearch={false}
+          />
+          <main className={containerClassName}>{children}</main>
+          <Footer />
+          <ChatPopUp
             customCssClasses={{
               headerCssClasses: {
                 container: "bg-gradient-to-tr from-green-600 to-green-800",
@@ -74,9 +74,9 @@ export default function Layout({
               },
             }}
             title="Synergic Virtual Assistant"
-          /> */}
-      </div>
-    </SearchHeadlessProvider>
-    // </ChatHeadlessProvider>
+          />
+        </div>
+      </SearchHeadlessProvider>
+    </ChatHeadlessProvider>
   );
 }
