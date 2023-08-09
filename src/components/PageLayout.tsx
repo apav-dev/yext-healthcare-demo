@@ -61,7 +61,7 @@ export default function Layout({
           />
           <main className={containerClassName}>{children}</main>
           <Footer />
-          <ChatPopUp
+          {/* <ChatPopUp
             customCssClasses={{
               headerCssClasses: {
                 container: "bg-gradient-to-tr from-green-600 to-green-800",
@@ -74,7 +74,7 @@ export default function Layout({
               },
             }}
             title="Synergic Virtual Assistant"
-          />
+          /> */}
         </div>
       </SearchHeadlessProvider>
     </ChatHeadlessProvider>
