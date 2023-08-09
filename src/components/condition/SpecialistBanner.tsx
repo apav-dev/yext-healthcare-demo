@@ -7,11 +7,13 @@ export default function SpecialistBanner({ name }) {
           <br />
           <span>{`${name} Specialists`}</span>
         </div>
-        <button className="px-8 py-4 rounded-full border border-white justify-center items-center gap-2 inline-flex hover:cursor-pointer hover:bg-zinc-900">
-          <div className="text-center text-white text-base font-bold leading-normal">
-            <span>Find a Specialist</span>
-          </div>
-        </button>
+        <a href="/doctor-finder">
+          <button className="px-8 py-4 rounded-full border border-white justify-center items-center gap-2 inline-flex hover:cursor-pointer hover:bg-zinc-900">
+            <div className="text-center text-white text-base font-bold leading-normal">
+              <span>Find a Specialist</span>
+            </div>
+          </button>
+        </a>
       </div>
     </div>
   );

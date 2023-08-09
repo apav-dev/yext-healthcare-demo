@@ -3,11 +3,17 @@ import BodyText from "../atoms/BodyText";
 import ScrollspyNav from "react-scrollspy-nav";
 import "./FacilityContent.css";
 import RelatedProviderCard from "./RelatedProviderCard";
-import FacilitySpecialtyCard from "./FacilitySpecialtyCard";
+import FacilitySpecialtyCard from "./BasicContentCard";
+import BasicContentCard from "./BasicContentCard";
+import Button from "./Button";
 
-export default function FacilityContent({ description, specialties }) {
+export default function FacilityContent({
+  description,
+  specialties,
+  providers,
+}) {
   return (
-    <div className="flex w-[85%] px-20 gap-8 mt-8">
+    <div className="flex xl:w-[95%] px-20 gap-8 mt-8">
       <ScrollspyNav
         scrollTargetIds={["overview", "providers", "services"]}
         offset={-300}
@@ -39,27 +45,16 @@ export default function FacilityContent({ description, specialties }) {
               <span>Services & Specialties</span>
             </a>
           </li>
-          {/* <li className="whitespace-nowrap flex">
-            <a
-              className="w-full text-base font-bold text-zinc-900 hover:text-neutral-500 pb-2"
-              href="#insurance"
-            >
-              <span>Insurance Accepted</span>
-            </a>
-          </li> */}
         </ul>
       </ScrollspyNav>
 
-      <div className="flex flex-col gap-8 mb-20">
+      <div className="flex flex-col gap-12 mb-20">
         <div className="flex flex-col gap-12" id="overview">
           <div className="flex flex-col gap-6">
             <div className="w-[88px] h-3 bg-green-700" />
             <h3 className="text-text-500 text-zinc-900">Overview</h3>
           </div>
-          <div className="text-neutral-500 text-base font-medium">
-            {description}
-          </div>
-          <div className="text-neutral-500 text-base font-medium">
+          <div className="text-neutral-500 text-base font-medium xl:pr-40">
             {description}
           </div>
         </div>
@@ -70,12 +65,14 @@ export default function FacilityContent({ description, specialties }) {
               Healthcare Providers
             </h3>
           </div>
-          <div className="grid gap-4 grid-cols-2 grid-row-2">
-            <RelatedProviderCard />
-            <RelatedProviderCard />
-            <RelatedProviderCard />
-            <RelatedProviderCard />
+          <div className="grid gap-4 grid-cols-1 xl:grid-cols-2">
+            {providers.slice(0, 4).map((provider) => (
+              <RelatedProviderCard provider={provider} />
+            ))}
           </div>
+          <Button color="primary" href="/doctor-finder">
+            <span>Explore Providers</span>
+          </Button>
         </div>
         <div className="flex flex-col gap-12" id="services">
           <div className="flex flex-col gap-6">
@@ -88,21 +85,9 @@ export default function FacilityContent({ description, specialties }) {
             {specialties &&
               specialties
                 .slice(0, 12)
-                .map((spec) => <FacilitySpecialtyCard specialty={spec} />)}
+                .map((spec) => <BasicContentCard content={spec} />)}
           </div>
         </div>
-        {/* <div className="flex flex-col gap-12" id="insurance">
-          <div className="flex flex-col gap-6">
-            <div className="w-[88px] h-3 bg-green-700" />
-            <h3 className="text-text-500 text-zinc-900">Insurance Accepted</h3>
-          </div>
-          <div className="text-neutral-500 text-base font-medium">
-            {description}
-          </div>
-          <div className="text-neutral-500 text-base font-medium">
-            {description}
-          </div>
-        </div> */}
       </div>
     </div>
   );

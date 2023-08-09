@@ -8,7 +8,7 @@ import ClockIcon from "../facility/ClockIcon";
 
 export default function HeroHalfImage({ name }) {
   return (
-    <div className="h-full flex justify-between mt-32">
+    <div className="h-full flex justify-between">
       <div className="pl-20 flex flex-col gap-6 justify-center w-[55%] py-20 sm:py-40">
         <div className="w-[88px] h-3 bg-green-700" />
         <h2 className="text-text-500 tracking-tight sm:text-6xl">{name}</h2>

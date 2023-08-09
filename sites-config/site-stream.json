@@ -9,7 +9,10 @@
     "c_featuredLocations.slug",
     "c_featuredLocations.address",
     "c_featuredSpecialties.name",
-    "c_featuredSpecialties.slug"
+    "c_featuredSpecialties.slug",
+    "c_featuredArticles.name",
+    "c_featuredArticles.id",
+    "c_featuredArticles.photoGallery"
   ],
   "localization": {
     "locales": ["en"],
