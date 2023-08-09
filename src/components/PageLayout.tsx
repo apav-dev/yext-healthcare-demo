@@ -62,17 +62,17 @@ export default function Layout({
           <main className={containerClassName}>{children}</main>
           <Footer />
           <ChatPopUp
-            // customCssClasses={{
-            //   headerCssClasses: {
-            //     container: "bg-gradient-to-tr from-green-600 to-green-800",
-            //   },
-            //   button: "bg-gradient-to-br from-green-600 to-green-700",
-            //   panelCssClasses: {
-            //     inputCssClasses: {
-            //       textArea: "focus:border-green-600 focus:ring-green-600",
-            //     },
-            //   },
-            // }}
+            customCssClasses={{
+              headerCssClasses: {
+                container: "bg-gradient-to-tr from-green-600 to-green-800",
+              },
+              button: "bg-gradient-to-br from-green-600 to-green-700",
+              panelCssClasses: {
+                inputCssClasses: {
+                  textArea: "focus:border-green-600 focus:ring-green-600",
+                },
+              },
+            }}
             title="Synergic Virtual Assistant"
           />
         </div>
