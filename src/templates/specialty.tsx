@@ -65,7 +65,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
 const Specialty: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
-  // console.log("document", document);
+  console.log("document", document);
 
   return (
     // <QueryClientProvider client={queryClient}>
@@ -87,6 +87,7 @@ const Specialty: Template<TemplateRenderProps> = ({
         name={document.name}
         description={document.c_specialtyOverviewDescription}
         // locations={document._site.c_featuredLocations}
+        // providers={document._site.c_featuredLocations}
         articles={document._site.c_featuredArticles}
         conditions={document.taxonomy_relatedConditions}
         visitReasons={document.taxonomy_relatedReasonsForVisit}
