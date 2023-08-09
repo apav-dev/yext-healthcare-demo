@@ -39,7 +39,6 @@ const DoctorLocator = () => {
   const { width } = useWindowSize();
 
   useEffect(() => {
-    console.log("selectedDoctorId", selectedDoctorId);
     if (selectedDoctorId) {
       setSelectedDoctor(
         doctors?.find((doctor) => doctor.rawData.id === selectedDoctorId)
@@ -64,7 +63,6 @@ const DoctorLocator = () => {
   }, [doctors]);
 
   const handleLocationSelect = (location: MapLocation) => {
-    console.log("handleLocationSelect", location);
     setSelectedDoctorId(location.id);
   };
 
@@ -106,7 +104,8 @@ const DoctorLocator = () => {
             customCssClasses={{
               paginationContainer: "py-8 shadow-none",
               label: "font-pt-sans-regular border-0",
-              selectedLabel: "font-pt-sans-bold border-0 bg-green text-white",
+              selectedLabel:
+                "font-pt-sans-bold border-0 bg-green-700 text-white",
               leftIconContainer: "border-0 px-4",
               rightIconContainer: "border-0 px-4",
             }}

@@ -1,5 +1,12 @@
+const { ComponentsContentPath } = require("@yext/search-ui-react");
+
 module.exports = {
-  content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+  content: [
+    "./src/**/*.{ts,tsx}",
+    "./lib/**/*.{js,jsx}",
+    ComponentsContentPath,
+    "node_modules/@yext/chat-ui-react/lib/**/*.{js,jsx}",
+  ],
   theme: {
     extend: {
       fontSize: {

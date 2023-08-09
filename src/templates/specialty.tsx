@@ -8,9 +8,7 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import "../index.css";
-// import Facility from "../types/autogen";
 import PageLayout from "../components/PageLayout";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import HeroHalfImage from "../components/specialty/HeroHalfImage";
 import SpecialtyContent from "../components/specialty/SpecialtyContent";
 import Testimonial from "../components/specialty/Testimonial";
@@ -63,15 +61,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   };
 };
 
-// const queryClient = new QueryClient();
-
 const Specialty: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
-  console.log("document", document);
-
   return (
-    // <QueryClientProvider client={queryClient}>
     <PageLayout
       featuredLocations={document._site.c_featuredLocations}
       featuredSpecialties={document._site.c_featuredSpecialties}
@@ -108,7 +101,6 @@ const Specialty: Template<TemplateRenderProps> = ({
         />
       </div>
     </PageLayout>
-    // </QueryClientProvider>
   );
 };
 

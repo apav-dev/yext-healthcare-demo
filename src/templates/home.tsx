@@ -77,7 +77,7 @@ const Home = ({ document }: TemplateRenderProps) => {
               <p className="text-white text-xl font-normal">
                 {c_primaryHero.description}
               </p>
-              <DoctorFilterSearch />
+              <DoctorFilterSearch navigateOnSearch />
             </div>
           </PhotoHero>
         </Section>

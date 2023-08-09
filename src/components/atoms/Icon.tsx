@@ -8,12 +8,15 @@ import {
   FaHashtag,
   FaChevronLeft,
   FaChevronRight,
+  FaChevronDown,
+  FaChevronUp,
   FaStar,
   FaHandHoldingMedical,
   FaSearch,
   FaMap,
   FaList,
   FaFilter,
+  FaSpinner,
 } from "react-icons/fa";
 import { TbFileCertificate } from "react-icons/tb";
 import { IconType } from "react-icons";
@@ -37,10 +40,13 @@ export type IconName =
   | "venus-mars"
   | "chevron-left"
   | "chevron-right"
+  | "chevron-down"
+  | "chevron-up"
   | "search"
   | "map"
   | "list"
-  | "filter";
+  | "filter"
+  | "spinner";
 
 const icons: Record<IconName, IconType> = {
   "file-certificate": TbFileCertificate,
@@ -55,10 +61,13 @@ const icons: Record<IconName, IconType> = {
   hand: FaHandHoldingMedical,
   "chevron-left": FaChevronLeft,
   "chevron-right": FaChevronRight,
+  "chevron-down": FaChevronDown,
+  "chevron-up": FaChevronUp,
   search: FaSearch,
   map: FaMap,
   list: FaList,
   filter: FaFilter,
+  spinner: FaSpinner,
 };
 
 export interface IconProps {

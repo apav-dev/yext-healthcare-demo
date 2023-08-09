@@ -10,7 +10,7 @@ import "../index.css";
 import PageLayout from "../components/PageLayout";
 import DoctorLocator from "../components/DoctorLocator";
 import DoctorFilterSearch from "../components/search/DoctorFilterSearch";
-import { Pagination, ResultsCount } from "@yext/search-ui-react";
+import { ResultsCount } from "@yext/search-ui-react";
 import FacetPopover from "../components/search/FacetPopover";
 
 export const getPath: GetPath<TemplateProps> = () => {
