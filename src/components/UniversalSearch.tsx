@@ -22,7 +22,6 @@ import GridSection from "./search/GridSection";
 import Taxonomy_specialty from "../types/search/specialties";
 import FaqCard from "./search/FaqCard";
 import NoResults from "./search/NoResults";
-import { isObjectLike } from "lodash";
 import SearchLoading from "./search/SearchLoading";
 
 export default function UniversalSearch() {
@@ -41,6 +40,16 @@ export default function UniversalSearch() {
     (state) => state.vertical.resultsCount
   );
   const searchLoading = useSearchState((state) => state.searchStatus.isLoading);
+
+  useEffect(() => {
+    searchActions.setUniversal();
+    searchActions.setRestrictVerticals([
+      "healthcare_professionals",
+      "specialties",
+      "blog_posts",
+      "faqs",
+    ]);
+  }, []);
 
   useEffect(() => {
     if (isUniveralSearch) {
@@ -66,6 +75,14 @@ export default function UniversalSearch() {
       searchActions.setVertical(id);
       searchActions.executeVerticalQuery();
     }
+  };
+
+  const handleSearchClick = (searchEventData: {
+    verticalKey?: string;
+    query?: string;
+  }) => {
+    searchActions.setQuery(searchEventData.query || "");
+    handleNavBarSelect(searchEventData.verticalKey || "all");
   };
 
   const determineCardComponent = () => {
@@ -110,6 +127,7 @@ export default function UniversalSearch() {
               icon: "mx-6",
               option: "px-6",
             }}
+            onSearch={handleSearchClick}
           />
           <button
             className="bg-white flex justify-center items-center p-4 my-auto rounded-full "

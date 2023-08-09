@@ -7,6 +7,12 @@ import { defaultRouter } from "../routing";
 import Header from "./Header";
 import { Address } from "../types/autogen";
 import Footer from "./Footer";
+import {
+  ChatHeadlessProvider,
+  HeadlessConfig,
+} from "@yext/chat-headless-react";
+import { ChatPanel, ChatPopUp } from "@yext/chat-ui-react";
+import "@yext/chat-ui-react/bundle.css";
 
 export interface LayoutProps {
   children?: React.ReactNode;
@@ -31,6 +37,11 @@ const searcher = provideHeadless({
   verticalKey: "healthcare_professionals",
 });
 
+const chatConfig: HeadlessConfig = {
+  apiKey: YEXT_PUBLIC_CHAT_API_KEY,
+  botId: "synergic-chat",
+};
+
 export default function Layout({
   children,
   backgroundColor,
@@ -40,16 +51,19 @@ export default function Layout({
   containerClassName,
 }: LayoutProps) {
   return (
-    <SearchHeadlessProvider searcher={searcher} routing={defaultRouter}>
-      <div className={`min-h-screen relative`} style={{ backgroundColor }}>
-        <Header
-          locations={featuredLocations}
-          specialties={featuredSpecialties}
-          // includeSearch={false}
-        />
-        <main className={containerClassName}>{children}</main>
-        <Footer />
-      </div>
-    </SearchHeadlessProvider>
+    <ChatHeadlessProvider config={chatConfig}>
+      <SearchHeadlessProvider searcher={searcher} routing={defaultRouter}>
+        <div className={`min-h-screen relative`} style={{ backgroundColor }}>
+          <Header
+            locations={featuredLocations}
+            specialties={featuredSpecialties}
+            // includeSearch={false}
+          />
+          <main className={containerClassName}>{children}</main>
+          <Footer />
+          {/* <ChatPopUp title="Chat" /> */}
+        </div>
+      </SearchHeadlessProvider>
+    </ChatHeadlessProvider>
   );
 }
