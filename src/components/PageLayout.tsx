@@ -31,14 +31,14 @@ export interface LayoutProps {
 }
 
 const searcher = provideHeadless({
-  apiKey: YEXT_PUBLIC_SEARCH_API_KEY,
+  apiKey: import.meta.env.YEXT_PUBLIC_SEARCH_API_KEY,
   experienceKey: "find-a-doc-specialties",
   locale: "en",
   verticalKey: "healthcare_professionals",
 });
 
 const chatConfig: HeadlessConfig = {
-  apiKey: YEXT_PUBLIC_CHAT_API_KEY,
+  apiKey: import.meta.env.YEXT_PUBLIC_CHAT_API_KEY,
   botId: "synergic-chat",
 };
 

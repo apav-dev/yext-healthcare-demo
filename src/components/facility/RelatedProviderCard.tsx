@@ -4,13 +4,12 @@ import CalendarIcon from "./CalendarIcon";
 import ClockIcon from "./ClockIcon";
 
 export default function RelatedProviderCard({ provider }) {
-  console.log(provider);
   return (
     <div className="p-8 bg-white rounded-2xl border border-stone-300 justify-start items-start gap-8 inline-flex">
       <div className="self-stretch flex-col justify-start items-center gap-4 inline-flex">
         <img
           className="w-28 h-28 relative rounded-full object-cover"
-          src={provider.headshot.url}
+          src={provider.headshot?.url}
         />
         <div className="rounded-full justify-start items-center gap-2 inline-flex">
           <StarIcon />
@@ -20,9 +19,12 @@ export default function RelatedProviderCard({ provider }) {
       <div className="grow shrink basis-0 flex-col justify-start items-start gap-4 inline-flex">
         <div className="self-stretch flex-col justify-start items-start gap-4 flex">
           <div className="w-[88px] h-3 bg-green-700" />
-          <div className="self-stretch text-zinc-900 text-2xl font-bold">
+          <a
+            href={`/${provider.slug}`}
+            className="self-stretch text-zinc-900 text-2xl font-bold hover:underline"
+          >
             {provider.name}
-          </div>
+          </a>
         </div>
         <div className="self-stretch flex-col justify-start items-start gap-4 flex">
           <div className="self-stretch rounded-full justify-start items-center gap-2 inline-flex">
@@ -32,12 +34,15 @@ export default function RelatedProviderCard({ provider }) {
             </div>
           </div>
         </div>
-        <div className="px-4 py-2 rounded-full border border-green-700 justify-center items-center gap-2 inline-flex">
+        <a
+          href={`/${provider.slug}`}
+          className="px-4 py-2 rounded-full border border-green-700 justify-center items-center gap-2 inline-flex"
+        >
           <CalendarIcon color={"#1A1A1A"} />
-          <div className="text-center text-zinc-900 text-base font-bold leading-normal">
+          <button className="text-center text-zinc-900 text-base font-bold leading-normal">
             Schedule
-          </div>
-        </div>
+          </button>
+        </a>
       </div>
     </div>
   );

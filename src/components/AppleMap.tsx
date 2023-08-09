@@ -41,7 +41,7 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
     script.dataset.callback = "initMapKit";
     script.dataset.libraries = "map,annotations,services";
     // NOTE: This token will expire in one year and need to be replaced
-    script.dataset.initialToken = YEXT_PUBLIC_APPLE_MAPS_TOKEN;
+    script.dataset.initialToken = import.meta.env.YEXT_PUBLIC_APPLE_MAPS_TOKEN;
 
     document.body.appendChild(script);
 

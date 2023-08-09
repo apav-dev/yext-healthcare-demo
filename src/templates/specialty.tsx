@@ -21,7 +21,32 @@ export const config: TemplateConfig = {
   stream: {
     $id: "specialties",
     localization: { locales: ["en"], primary: false },
-    fields: ["id", "name", "slug", "c_specialtyOverviewDescription"],
+    fields: [
+      "id",
+      "name",
+      "slug",
+      "c_specialtyOverviewDescription",
+      "taxonomy_relatedConditions.id",
+      "taxonomy_relatedConditions.name",
+      "taxonomy_relatedConditions.slug",
+      "taxonomy_relatedProcedures.id",
+      "taxonomy_relatedProcedures.name",
+      "taxonomy_relatedProcedures.slug",
+      "taxonomy_relatedReasonsForVisit.id",
+      "taxonomy_relatedReasonsForVisit.name",
+      "taxonomy_relatedReasonsForVisit.slug",
+      "taxonomy_subspecialties.id",
+      "taxonomy_subspecialties.name",
+      "taxonomy_subspecialties.slug",
+      "c_specialtyFacilities.id",
+      "c_specialtyFacilities.name",
+      "c_specialtyFacilities.slug",
+      "c_specialtyProfessionals.id",
+      "c_specialtyProfessionals.name",
+      "c_specialtyProfessionals.slug",
+      "c_specialtyProfessionals.headshot",
+      "c_specialtyProfessionals.taxonomy_relatedSpecialties.name",
+    ],
     filter: { entityTypes: ["taxonomy_specialty"] },
   },
 };
@@ -53,7 +78,7 @@ const Specialty: Template<TemplateRenderProps> = ({
         <Breadcrumbs
           breadcrumbs={[
             { label: "Home", link: "/" },
-            { label: "Specialties" },
+            { label: "Specialties", link: "#" },
             { label: document.name },
           ]}
         />
@@ -62,8 +87,12 @@ const Specialty: Template<TemplateRenderProps> = ({
       <SpecialtyContent
         name={document.name}
         description={document.c_specialtyOverviewDescription}
-        locations={document._site.c_featuredLocations}
+        locations={document.c_specialtyFacilities}
+        providers={document.c_specialtyProfessionals}
         articles={document._site.c_featuredArticles}
+        conditions={document.taxonomy_relatedConditions}
+        visitReasons={document.taxonomy_relatedReasonsForVisit}
+        procedures={document.taxonomy_relatedProcedures}
       />
       <Testimonial />
       <SpecialistBanner name={document.name} />

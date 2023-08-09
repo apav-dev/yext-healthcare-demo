@@ -12,7 +12,7 @@ import Section from "../components/atoms/Section";
 import PhotoHero from "../components/PhotoHero";
 import DoctorFilterSearch from "../components/search/DoctorFilterSearch";
 import HorizontalDivider from "../components/HoriztontalDivider";
-import { Image } from "@yext/pages/components";
+import { Image } from "@yext/sites-components";
 
 export const config: TemplateConfig = {
   stream: {
