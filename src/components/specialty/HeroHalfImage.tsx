@@ -26,7 +26,7 @@ export default function HeroHalfImage({ name }) {
       <img
         src="https://s3-alpha-sig.figma.com/img/1388/10d9/79b1f9547f452876f079d07433167ae8?Expires=1692576000&Signature=PKzL9PB2l58NNa8G-7kwU1sruup0AdMcnR2Zhzu64voVBtKteE8oIrpcbMrnnvLEecav0KkOaVizZkPIsGANqvGIOlC9odSf51ezh3Cg2c0m7Oohlt~NmogURdMUq73kqX3OxSS-GJEjtGtkj5LD3X7an1rYE1UUMHC9nYZ3Ir5Ue2OIsh6j0k~Edn~GKVoTlu4Uj3HcuO~SK6tMEHwH6PdZjhKmLaQ72JKJ3KGwtDYBE1gILriE8ao9XnF5pJ6uRoDnv0JuU5B-2k2Fh-Q~gFV8sUZrtfeD7~u8m6DpBDQik7~J7fNJqHXrV1V-MP5n7OukUrqhTPK9gmTZB82lbg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
         alt=""
-        className="w-[45%] object-cover"
+        className="w-[45%] object-cover max-h-fit"
       />
     </div>
   );
