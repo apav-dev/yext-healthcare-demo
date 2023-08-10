@@ -1,4 +1,5 @@
 import {
+  DirectAnswer,
   Pagination,
   ResultsCount,
   SearchBar,
@@ -181,6 +182,7 @@ export default function UniversalSearch() {
                 resultsCountContainer: "font-sans-bold text-lg mb-0 p-0",
               }}
             />
+            <DirectAnswer />
             {isUniveralSearch ? (
               universalResults && universalResults.length > 0 ? (
                 <UniversalResults
