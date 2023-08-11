@@ -8,6 +8,9 @@ export default function RelatedBlogs({
   description1,
   description2,
   description3,
+  link1,
+  link2,
+  link3,
 }) {
   return (
     <div className="bg-white py-24 sm:py-32">
@@ -33,7 +36,7 @@ export default function RelatedBlogs({
             <div className="max-w-xl">
               <div className="group relative">
                 <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                  <a href="#">
+                  <a href={link1}>
                     <span className="absolute inset-0"></span>
                     {name1}
                   </a>
@@ -57,7 +60,7 @@ export default function RelatedBlogs({
             <div className="max-w-xl">
               <div className="group relative">
                 <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                  <a href="#">
+                  <a href={link2}>
                     <span className="absolute inset-0"></span>
                     {name2}
                   </a>
@@ -81,7 +84,7 @@ export default function RelatedBlogs({
             <div className="max-w-xl">
               <div className="group relative">
                 <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                  <a href="#">
+                  <a href={link3}>
                     <span className="absolute inset-0"></span>
                     {name3}
                   </a>
