@@ -13,6 +13,7 @@ import PhotoHero from "../components/PhotoHero";
 import DoctorFilterSearch from "../components/search/DoctorFilterSearch";
 import HorizontalDivider from "../components/HoriztontalDivider";
 import { Image } from "@yext/sites-components";
+import Button from "../components/facility/Button";
 
 export const config: TemplateConfig = {
   stream: {
@@ -82,8 +83,29 @@ const Home = ({ document }: TemplateRenderProps) => {
           </PhotoHero>
         </Section>
         <Section>
+          <div className="grid grid-cols-2 w-full gap-6">
+            <img
+              src="https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2283&q=80"
+              className="object-cover w-100% lg:aspect-video my-auto"
+            />
+            <div className="flex gap-6 justify-center flex-col">
+              <HorizontalDivider />
+              <div className="self-stretch text-zinc-900 text-[52px] font-medium leading-[56px]">
+                Get the Right Care for You
+              </div>
+              <p className="self-stretch text-neutral-500 text-2xl font-normal leading-[33.99px]">
+                Not sure where to start? We'll help you find the perfect
+                healthcare provider.
+              </p>
+              <Button color="primary" href="/guided-doctor-finder">
+                Get Started
+              </Button>
+            </div>
+          </div>
+        </Section>
+        <Section>
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="flex-col justify-start items-start gap-6 inline-flex">
+            <div className="flex-col justify-center items-start gap-6 inline-flex">
               <HorizontalDivider />
               <div className="self-stretch text-zinc-900 text-[52px] font-medium leading-[56px]">
                 {c_locationHero.title}

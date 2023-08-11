@@ -25,7 +25,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="p-6 flex-col justify-start items-end gap-4 inline-flex">
+      {/* <div className="p-6 flex-col justify-start items-end gap-4 inline-flex">
         <div className="justify-start items-start gap-4 inline-flex">
           <div className="px-4 py-2 rounded-[999px] justify-center items-center gap-2 flex">
             <a
@@ -37,7 +37,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -49,7 +49,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
     >
       <section className="flex flex-col pt-32">
         {currentStep === 1 && (
-          <section className="flex flex-col gap-8 items-center pt-20 pb-[1000px]">
+          <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
               What kind of care are you looking for?
             </h3>
@@ -95,7 +95,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
           </section>
         )}
         {currentStep === 2 && (
-          <section className="flex flex-col gap-8 items-center pt-20 pb-96">
+          <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
               What type of insurance do you have?
             </h3>
@@ -157,7 +157,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
           </section>
         )}
         {currentStep === 3 && (
-          <section className="flex flex-col gap-8 items-center pt-20 pb-[1000px]">
+          <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
               Where would you like to receive care?
             </h3>
@@ -188,7 +188,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
           </section>
         )}
         {currentStep === 4 && (
-          <section className="flex flex-col gap-8 items-center pt-20 pb-[1000px]">
+          <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
               When would you like to see the doctor?
             </h3>
@@ -234,7 +234,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
           </section>
         )}
         {currentStep === 5 && (
-          <section className="flex flex-col gap-8 items-center pt-20 pb-[1000px]">
+          <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
               One moment, searching for providers that match your criteria...
             </h3>
