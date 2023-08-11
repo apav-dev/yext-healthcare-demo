@@ -57,7 +57,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
 
 const Blog: Template<TemplateRenderProps> = ({ document }: TemplateProps) => {
   return (
-    <PageLayout featuredSpecialties={document.taxonomy_relatedSpecialties}>
+    <PageLayout>
       <div className="mt-32">
         <Breadcrumbs
           breadcrumbs={[
