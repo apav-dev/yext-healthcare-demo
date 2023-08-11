@@ -28,6 +28,8 @@ import IntentContent from "../components/intent/IntentContent";
         "c_cityName",
         "c_intentPageDescription",
         "taxonomy_relatedSpecialties.name",
+        "c_directoryIntentPageLink.name",
+        "c_directoryIntentPageLink.slug",
         "c_directoryIntentPageLink.dm_directoryChildren.name",
         "c_directoryIntentPageLink.dm_directoryChildren.id",
         "c_directoryIntentPageLink.dm_directoryChildren.slug",
@@ -69,6 +71,9 @@ import IntentContent from "../components/intent/IntentContent";
   const Intent: Template<TemplateRenderProps> = ({
     document,
   }: TemplateProps) => {
+
+    let stateSlug = `/${document.slug.substring(0,2)}`;
+
     return (
       <QueryClientProvider client={queryClient}>
         <PageLayout
@@ -79,9 +84,9 @@ import IntentContent from "../components/intent/IntentContent";
           <Breadcrumbs
             breadcrumbs={[
               { label: "Home", link: "/" },
-              { label: "All Locations", link: "#" },
-              {label: "State", link: "#"},
-              {label: "City", link: "#"},
+              { label: "All Locations", link: "/root.html" },
+              {label: stateSlug.substring(1,3).toUpperCase(), link: stateSlug},
+              {label: document.c_directoryIntentPageLink[0].name, link: `/${document.c_directoryIntentPageLink[0].slug}`},
               { label: document.name },
             ]}
           />

@@ -90,9 +90,9 @@ const renderPopover = ({
                         <p aria-hidden="true" className="mt-1">
                           {featuredSection.description}
                         </p>
-                        <div className="flex justify-center ">
+                        <div className="flex justify-center my-4">
                           <a
-                            className="px-4 py-2 text-white bg-green rounded-lg  text-sm"
+                            className="px-4 py-2 top-full text-white bg-green-700 rounded-lg  text-sm hover:bg-green-900"
                             href={`/${featuredSection.cta?.link}`}
                           >
                             {featuredSection.cta?.text}
@@ -201,7 +201,7 @@ export default function Header({ locations, specialties }: HeaderProps) {
                       "Get access to exceptional clinical services close to where you live, work, and even on your phone.",
                     cta: {
                       text: "View all locations",
-                      link: "#",
+                      link: "/root.html",
                     },
                   },
                 })}
