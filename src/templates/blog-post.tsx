@@ -75,19 +75,21 @@ const Blog: Template<TemplateRenderProps> = ({ document }: TemplateProps) => {
         date={document.c_datePosted}
       />
       <BlogContent content={document.c_blogPostContentOriginal.markdown} />
-      <SpecialistBanner name={document.taxonomy_relatedSpecialties[0].name} />
+      <SpecialistBanner
+        name={document.taxonomy_relatedSpecialties?.[0]?.name}
+      />
       <RelatedBlogs
         name1={document.c_relatedBlogPosts[0]?.name}
         description1={document.c_relatedBlogPosts[0]?.c_blogPostContentSummary}
-        image1={document.c_relatedBlogPosts[0]?.photoGallery[0].image.url}
+        image1={document.c_relatedBlogPosts[0]?.photoGallery[0]?.image.url}
         link1={`/${document.c_relatedBlogPosts[0]?.slug}`}
         name2={document.c_relatedBlogPosts[1]?.name}
         description2={document.c_relatedBlogPosts[1]?.c_blogPostContentSummary}
-        image2={document.c_relatedBlogPosts[1]?.photoGallery[0].image.url}
+        image2={document.c_relatedBlogPosts[1]?.photoGallery[0]?.image.url}
         link2={`/${document.c_relatedBlogPosts[1]?.slug}`}
         name3={document.c_relatedBlogPosts[2]?.name}
         description3={document.c_relatedBlogPosts[2]?.c_blogPostContentSummary}
-        image3={document.c_relatedBlogPosts[2]?.photoGallery[0].image.url}
+        image3={document.c_relatedBlogPosts[2]?.photoGallery[0]?.image.url}
         link3={`/${document.c_relatedBlogPosts[2]?.slug}`}
       />
     </PageLayout>
