@@ -1,6 +1,7 @@
 import { CardProps } from "@yext/search-ui-react";
 import Ce_blogPost from "../../types/search/blog_posts";
 import { Image } from "@yext/pages/components";
+import { useEffect } from "react";
 
 export default function BlogCard({ result }: CardProps<Ce_blogPost>) {
   const {
