@@ -13,11 +13,11 @@ export default function HeroHalfImage({ name }) {
         <div className="w-[88px] h-3 bg-green-700" />
         <h2 className="text-text-500 tracking-tight sm:text-6xl">{name}</h2>
         <div className="flex flex-row gap-4">
-          <Button color="primary">
+          <Button color="primary" href="#">
             <CalendarIcon color="white" />
             <span>Schedule Appointment</span>
           </Button>
-          <Button color="secondary">
+          <Button color="secondary" href="#">
             <UserIcon />
             <span>Find a Specialist</span>
           </Button>
