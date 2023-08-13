@@ -41,7 +41,7 @@ export const config: TemplateConfig = {
 };
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return `${document.slug}`;
+  return document.slug ?? `blog-post/${document.id}`;
 };
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
