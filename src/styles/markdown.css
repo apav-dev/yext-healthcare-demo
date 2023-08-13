@@ -1,0 +1,15 @@
+ol,
+ul {
+  list-style-type: revert;
+  list-style: revert;
+  list-style-position: revert;
+  list-style-image: revert;
+  margin: revert;
+}
+
+li {
+  list-style-type: revert !important;
+  list-style: revert !important;
+  list-style-position: revert !important;
+  list-style-image: revert !important;
+}
