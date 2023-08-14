@@ -43,13 +43,22 @@ export default function UniversalSearch() {
   const searchLoading = useSearchState((state) => state.searchStatus.isLoading);
 
   useEffect(() => {
-    searchActions.setUniversal();
-    searchActions.setRestrictVerticals([
-      "healthcare_professionals",
-      "specialties",
-      "blog_posts",
-      "faqs",
-    ]);
+    const verticalKey = new URLSearchParams(window.location.search).get(
+      "verticalKey"
+    );
+    if (verticalKey) {
+      searchActions.setVertical(verticalKey);
+      searchActions.executeVerticalQuery();
+    } else {
+      searchActions.setUniversal();
+      searchActions.setRestrictVerticals([
+        "healthcare_professionals",
+        "specialties",
+        "blog_posts",
+        "faqs",
+      ]);
+      searchActions.executeUniversalQuery();
+    }
   }, []);
 
   useEffect(() => {
@@ -125,8 +134,7 @@ export default function UniversalSearch() {
               clearButton: "hidden",
               verticalDivider: "hidden",
               inputElement: "flex-1 pl-4",
-              icon: "mx-6",
-              option: "px-6",
+              icon: "mx-2",
             }}
             onSearch={handleSearchClick}
           />

@@ -92,7 +92,6 @@ const fetchReviews = async (
   sort?: ReviewSort,
   pageToken?: string
 ): Promise<ReviewsResponse> => {
-  // debugger;
   let requestUrl = reviewsUrl + "&entity.id=" + id;
   if (sort) {
     requestUrl += `&${reviewSortOptions[sort].key}=${reviewSortOptions[sort].value}`;
@@ -147,7 +146,6 @@ export default function Reviews({ entityId }: ReviewsProps) {
   };
 
   const handlePrevPageClick = () => {
-    debugger;
     setPageToken(prevPageToken);
   };
 

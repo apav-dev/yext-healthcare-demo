@@ -67,10 +67,10 @@ const DoctorFilterSearch = ({
               filterSearchContainer: "relative mb-0 lg:flex lg:items-center",
               inputElement:
                 "rounded-none border-0 border-r py-6 placeholder:text-disabled-gray w-80",
-              option: "py-2 px-4",
+              option: "py-2 px-4 text-left",
               highlighted: "text-blue text-sm",
               nonHighlighted: "text-sm",
-              sectionLabel: "text-lg",
+              sectionLabel: "text-lg text-left",
             }}
             onSelect={handleSelect}
             searchFields={[
@@ -93,10 +93,10 @@ const DoctorFilterSearch = ({
               filterSearchContainer: "mb-0 block lg:flex lg:items-center",
               inputElement:
                 "rounded-none py-6 border-0 border-r placeholder:text-disabled-gray w-80",
-              option: "py-2 px-4",
+              option: "py-2 px-4 text-left",
               highlighted: "text-blue text-sm",
               nonHighlighted: "text-sm",
-              sectionLabel: "text-lg",
+              sectionLabel: "text-lg text-left",
             }}
             onSelect={handleSelect}
             searchFields={[
@@ -115,10 +115,10 @@ const DoctorFilterSearch = ({
               filterSearchContainer: "mb-0 lg:flex lg:items-center",
               inputElement:
                 "rounded-none py-6 border-0 placeholder:text-disabled-gray w-80",
-              option: "py-2 px-4",
+              option: "py-2 px-4 text-left",
               highlighted: "text-blue text-sm",
               nonHighlighted: "text-sm",
-              sectionLabel: "text-lg",
+              sectionLabel: "text-lg text-left",
             }}
             onSelect={handleSelect}
             searchFields={[

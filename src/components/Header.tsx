@@ -207,20 +207,39 @@ export default function Header({ locations, specialties }: HeaderProps) {
                 })}
               </div>
             </Popover.Group>
-            <div className="flex space-x-6 text-green">
-              <a
-                href="/search"
-                className="flex items-center space-x-2 hover:underline"
-              >
-                <span>Search</span>
-                <Icon name="search" height="4" width="4" />
-              </a>
-              <a
-                href="/doctor-finder"
-                className="flex items-center space-x-2 rounded-md border-2 px-4 py-2 border-green  hover:bg-green"
-              >
-                <span>Find a Doctor</span>
-              </a>
+            <div className="flex flex-col gap-y-4">
+              <div className="justify-start items-start gap-12 flex">
+                <div className="text-center text-neutral-500 text-[13px] font-normal leading-normal">
+                  About
+                </div>
+                <div className="text-center text-neutral-500 text-[13px] font-normal leading-normal">
+                  Careers
+                </div>
+                <div className="text-center text-neutral-500 text-[13px] font-normal leading-normal">
+                  News
+                </div>
+                <div className="text-center text-neutral-500 text-[13px] font-normal leading-normal">
+                  Contact
+                </div>
+                <div className="text-center text-neutral-500 text-[13px] font-normal leading-normal">
+                  Login
+                </div>
+              </div>
+              <div className="flex space-x-6 justify-end">
+                <a
+                  href="/search"
+                  className="flex items-center space-x-2 hover:underline"
+                >
+                  <span>Search</span>
+                  <Icon name="search" height="4" width="4" />
+                </a>
+                <a
+                  href="/doctor-finder"
+                  className="flex items-center space-x-2 rounded-md border-2 px-4 py-2 border-green-700  hover:bg-green-700 hover:text-white"
+                >
+                  <span>Find a Doctor</span>
+                </a>
+              </div>
             </div>
           </div>
         </nav>

@@ -35,9 +35,9 @@ export default function NavBar({ items, onSelect, selectedId }: NavBarProps) {
               onClick={() => handleSelect(id)}
             >
               <div className="font-bold">{label ?? id}</div>
-              {resultsCount !== undefined && (
+              {/* {resultsCount !== undefined && (
                 <div className="pl-0.5">{` (${resultsCount})`}</div>
-              )}
+              )} */}
             </button>
           ))}
         </div>
