@@ -112,7 +112,7 @@ const DoctorLocator = () => {
           />
         </CenteredContainer>
       </div>
-      <div className="w-full h-[calc(100vh-356px)] z-0 relative">
+      <div className="w-full pl-[586.23px] h-[calc(100vh-356px)] z-0 relative">
         <button
           className="absolute top-4 right-2 bg-white z-[1] rounded-sm flex px-4 py-3 shadow items-center lg:hidden"
           onClick={() => setShowList(true)}

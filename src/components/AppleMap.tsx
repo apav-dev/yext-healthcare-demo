@@ -73,6 +73,28 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
     };
   }, []);
 
+  const findCenter = () => {
+    if (locations && locations.length > 0) {
+      const minLat = Math.min(
+        ...locations.map((location) => location.geocodedCoordinate?.latitude)
+      );
+      const maxLat = Math.max(
+        ...locations.map((location) => location.geocodedCoordinate?.latitude)
+      );
+      const minLng = Math.min(
+        ...locations.map((location) => location.geocodedCoordinate?.longitude)
+      );
+      const maxLng = Math.max(
+        ...locations.map((location) => location.geocodedCoordinate?.longitude)
+      );
+
+      return {
+        latitude: (minLat + maxLat) / 2,
+        longitude: (minLng + maxLng) / 2,
+      };
+    }
+  };
+
   useEffect(() => {
     console.log("locations", locations);
     if (mapContainerRef.current && window.mapkit) {
@@ -131,11 +153,10 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
         });
 
         map.showItems(markers);
+        const center = findCenter();
+
         map.setCenterAnimated(
-          new window.mapkit.Coordinate(
-            locations[0].geocodedCoordinate?.latitude,
-            locations[0].geocodedCoordinate?.longitude
-          ),
+          new window.mapkit.Coordinate(center.latitude, center.longitude),
           false
         );
       }

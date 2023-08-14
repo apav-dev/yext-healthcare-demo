@@ -30,12 +30,13 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
   const [selectedInsurance, setSelectedInsurance] = useState("");
   const [selectedCareType, setSelectedCareType] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
+  const [specialityFilter, setSpecialityFilter] = useState("");
 
   const [currentStep, setCurrentStep] = useState(1);
 
   useEffect(() => {
     const executeSearch = () => {
-      window.location.href = `/doctor-finder?${insuranceFilter}&${geoFilter}`;
+      window.location.href = `/doctor-finder?${insuranceFilter}&${geoFilter}&${specialityFilter}`;
     };
     if (currentStep === 5) {
       setTimeout(executeSearch, 1000);
@@ -55,6 +56,9 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
             </h3>
             <button
               onClick={() => {
+                setSpecialityFilter(
+                  `taxonomy_relatedSpecialties.name=Primary+Care`
+                );
                 setSelectedCareType("Primary");
                 setCurrentStep(2);
               }}
@@ -81,6 +85,9 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
             </button>
             <button
               onClick={() => {
+                setSpecialityFilter(
+                  `taxonomy_relatedSpecialties.name=Urgent+Care`
+                );
                 setCurrentStep(2);
                 setSelectedCareType("Urgent");
               }}

@@ -251,9 +251,9 @@ const Home = ({ document }: TemplateRenderProps) => {
             )}
           </div>
         </Section>
-        <Section>
+        {/* <Section>
           <FeaturedBlogs blogs={c_featuredBlogs.blogs} />
-        </Section>
+        </Section> */}
       </div>
     </PageLayout>
   );
