@@ -21,7 +21,7 @@ const MobilePanel = ({
 }: MobilePanelProps) => {
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10 lg:hidden" onClose={toggleOpen}>
+      <Dialog as="div" className="relative z-10" onClose={toggleOpen}>
         <Transition.Child
           as={Fragment}
           enter="transition-opacity ease-linear duration-300"

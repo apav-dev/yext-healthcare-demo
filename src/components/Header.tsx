@@ -8,6 +8,8 @@ import { twMerge } from "tailwind-merge";
 import BodyText from "./atoms/BodyText";
 import DoctorFilterSearch from "./search/DoctorFilterSearch";
 import MobilePanel from "./MobilePanel";
+import { SearchBar } from "@yext/search-ui-react";
+import SearchPanel from "./search/SearchPanel";
 
 export interface HeaderProps {
   locations?: {
@@ -130,6 +132,7 @@ export default function Header({ locations, specialties }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [searchPanelOpen, setSearchPanelOpen] = useState(false);
 
   return (
     <header className="fixed top-0 right-0 left-0 z-10">
@@ -226,13 +229,14 @@ export default function Header({ locations, specialties }: HeaderProps) {
                 </div>
               </div>
               <div className="flex space-x-6 justify-end">
-                <a
-                  href="/search"
+                <button
+                  // href="/search"
+                  onClick={() => setSearchPanelOpen(true)}
                   className="flex items-center space-x-2 hover:underline"
                 >
                   <span>Search</span>
                   <Icon name="search" height="4" width="4" />
-                </a>
+                </button>
                 <a
                   href="/doctor-finder"
                   className="flex items-center space-x-2 rounded-md border-2 px-4 py-2 border-green-700  hover:bg-green-700 hover:text-white"
@@ -243,6 +247,10 @@ export default function Header({ locations, specialties }: HeaderProps) {
             </div>
           </div>
         </nav>
+        <SearchPanel
+          open={searchPanelOpen}
+          toggleOpen={setSearchPanelOpen}
+        ></SearchPanel>
         <Dialog
           as="div"
           className="lg:hidden"

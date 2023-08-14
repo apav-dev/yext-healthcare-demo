@@ -46,6 +46,11 @@ export default function UniversalSearch() {
     const verticalKey = new URLSearchParams(window.location.search).get(
       "verticalKey"
     );
+    // if there is a query in the url, add it to the search state
+    const query = new URLSearchParams(window.location.search).get("query");
+    if (query) {
+      searchActions.setQuery(query);
+    }
     if (verticalKey) {
       searchActions.setVertical(verticalKey);
       searchActions.executeVerticalQuery();
