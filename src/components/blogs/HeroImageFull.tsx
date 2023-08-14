@@ -5,6 +5,13 @@ export default function HeroImageFull({
   author,
   date,
 }) {
+
+    const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  
   return (
     <div className="w-full h-full flex justify-between">
       <img src={image} alt="" className="w-[45%] object-cover" />
@@ -15,7 +22,12 @@ export default function HeroImageFull({
         <p className="text-text-100 text-gray-600 italic">
           <ul className="list-none">
             <li>Written by: {author}</li>
-            <li>Published: {date}</li>
+            <li>
+              Published:
+              <time dateTime={formattedDate} className="text-gray-500 ml-2">
+                {formattedDate}
+              </time>
+            </li>
           </ul>
         </p>
       </div>
