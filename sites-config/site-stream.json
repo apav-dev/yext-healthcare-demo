@@ -12,7 +12,8 @@
     "c_featuredSpecialties.slug",
     "c_featuredArticles.name",
     "c_featuredArticles.id",
-    "c_featuredArticles.photoGallery"
+    "c_featuredArticles.photoGallery",
+    "c_featuredArticles.slug"
   ],
   "localization": {
     "locales": ["en"],
