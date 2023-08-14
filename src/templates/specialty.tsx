@@ -14,7 +14,6 @@ import SpecialtyContent from "../components/specialty/SpecialtyContent";
 import Testimonial from "../components/specialty/Testimonial";
 import SpecialistBanner from "../components/condition/SpecialistBanner";
 import InfoGridBanner from "../components/condition/InfoGridBanner";
-import ArticlesSecetion from "../components/specialty/ArticlesSection";
 import Breadcrumbs from "../components/Breadcrumbs";
 
 export const config: TemplateConfig = {
