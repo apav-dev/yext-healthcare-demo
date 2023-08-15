@@ -1,6 +1,5 @@
 import { HexColor } from "@yext/studio";
 import * as React from "react";
-import SearchHeader from "./SearchHeader";
 import { provideHeadless } from "@yext/search-headless-react";
 import SearchHeadlessProvider from "./search/SearchHeadlessProvider";
 import { defaultRouter } from "../routing";
@@ -11,13 +10,13 @@ import {
   ChatHeadlessProvider,
   HeadlessConfig,
 } from "@yext/chat-headless-react";
-import { ChatPanel, ChatPopUp } from "@yext/chat-ui-react";
+import { ChatPopUp } from "@yext/chat-ui-react";
 import "@yext/chat-ui-react/bundle.css";
 
 export interface LayoutProps {
   children?: React.ReactNode;
   backgroundColor?: HexColor;
-  includeSearch?: boolean;
+  locator?: boolean;
   featuredLocations?: {
     name: string;
     address: Address;
@@ -45,7 +44,7 @@ const chatConfig: HeadlessConfig = {
 export default function Layout({
   children,
   backgroundColor,
-  includeSearch,
+  locator,
   featuredLocations,
   featuredSpecialties,
   containerClassName,
@@ -60,11 +59,11 @@ export default function Layout({
           <Header
             locations={featuredLocations}
             specialties={featuredSpecialties}
-            // includeSearch={false}
+            locator={locator}
           />
           <main className={containerClassName}>{children}</main>
           <div>
-            <Footer />
+            {!locator && <Footer />}
             <ChatPopUp
               customCssClasses={{
                 headerCssClasses: {

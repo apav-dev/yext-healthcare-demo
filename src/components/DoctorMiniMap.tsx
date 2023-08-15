@@ -11,6 +11,8 @@ export interface AppleMapProps {
 const DoctorMiniMap = ({ locations }: AppleMapProps) => {
   const [locationIdx, setLocationIdx] = useState(0);
 
+  console.log("locations", locations);
+
   const toggleLocation = (step: -1 | 1) => {
     if (!locations) {
       return;
@@ -27,16 +29,17 @@ const DoctorMiniMap = ({ locations }: AppleMapProps) => {
     setLocationIdx(newLocationIdx);
   };
 
+  const center = locations?.[locationIdx]
+    ? {
+        latitude: locations[locationIdx].geocodedCoordinate?.latitude,
+        longitude: locations[locationIdx].geocodedCoordinate?.longitude,
+      }
+    : undefined;
+
   return (
     <div className="w-full sm:w-[450px]">
       <div className="w-full h-80 ">
-        <AppleMap
-          locations={locations}
-          center={{
-            latitude: locations[locationIdx].geocodedCoordinate?.latitude,
-            longitude: locations[locationIdx].geocodedCoordinate?.longitude,
-          }}
-        />
+        <AppleMap locations={locations} center={center} />
       </div>
       {locations?.[locationIdx]?.address && (
         <div

@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { Address, Coordinate } from "../types/autogen";
-import { useLocatorContext } from "./DoctorLocator";
-import useWindowSize from "../hooks/useWindowSize";
 
 export interface MapLocation {
   id: string;
@@ -27,12 +25,7 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
   const [map, setMap] = useState<any>();
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // const { selectedId, setSelectedId } = useLocatorContext();
-
-  const { width } = useWindowSize();
-
   useEffect(() => {
-    console.log("loading mapkit");
     const script = document.createElement("script");
 
     script.src = "https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js";
@@ -73,6 +66,45 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (map && mapContainerRef.current && window.mapkit) {
+      map.removeAnnotations(map.annotations);
+      if (locations && locations.length > 0) {
+        const markers = locations?.map((location, idx) => {
+          const marker = new window.mapkit.MarkerAnnotation(
+            new window.mapkit.Coordinate(
+              location.geocodedCoordinate?.latitude,
+              location.geocodedCoordinate?.longitude
+            ),
+            {
+              glyphText: "●",
+              glyphColor: "#ffffff",
+              color: "#4F6A4E",
+            }
+          );
+
+          marker.addEventListener("select", handleLocationSelect, location);
+
+          return marker;
+        });
+
+        map.showItems(markers);
+
+        if (!center) {
+          const initialCenter = findCenter();
+          map.setCenterAnimated(
+            new window.mapkit.Coordinate(
+              initialCenter.latitude,
+              initialCenter.longitude
+            ),
+            false
+          );
+        }
+      }
+    }
+  }),
+    [locations];
+
   const findCenter = () => {
     if (locations && locations.length > 0) {
       const minLat = Math.min(
@@ -95,75 +127,6 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
     }
   };
 
-  useEffect(() => {
-    console.log("locations", locations);
-    if (mapContainerRef.current && window.mapkit) {
-      if (map && locations && locations.length > 0) {
-        // const landmarkAnnotationCallout = {
-        //   calloutElementForAnnotation: (annotation) => {
-        //     // const landmark = annotationsToLandmark.get(annotation);
-
-        //     const div = document.createElement("div");
-        //     div.className = "landmark";
-
-        //     const title = div.appendChild(document.createElement("h1"));
-        //     title.textContent = "Hello World";
-
-        //     const section = div.appendChild(document.createElement("section"));
-
-        //     return div;
-        //   },
-
-        //   // calloutAnchorOffsetForAnnotation: (annotation, element) => offset,
-
-        //   // calloutAppearanceAnimationForAnnotation: (annotation) =>
-        //   //   ".4s cubic-bezier(0.4, 0, 0, 1.5) " +
-        //   //   "0s 1 normal scale-and-fadein",
-        // };
-        const markers = locations?.map((location, idx) => {
-          const marker = new window.mapkit.MarkerAnnotation(
-            new window.mapkit.Coordinate(
-              location.geocodedCoordinate?.latitude,
-              location.geocodedCoordinate?.longitude
-            ),
-            {
-              glyphText: "●",
-              glyphColor: "#ffffff",
-              color: "#4F6A4E",
-              // callout: landmarkAnnotationCallout,
-            }
-            // {
-            //   title: "test",
-            // }
-          );
-
-          if (idx === 0 && width && width < 1024) {
-            marker.selected = true;
-          }
-
-          // marker.addEventListener(
-          //   "click",
-          //   (event: any) => {
-          //     handleLocationSelect(event.target);
-          //   },
-          //   location
-          // );
-
-          return marker;
-        });
-
-        map.showItems(markers);
-        const center = findCenter();
-
-        map.setCenterAnimated(
-          new window.mapkit.Coordinate(center.latitude, center.longitude),
-          false
-        );
-      }
-    }
-  }),
-    [locations];
-
   // useEffect(() => {
   //   if (center && map) {
   //     map.setCenterAnimated(
@@ -172,15 +135,16 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
   //   }
   // }, [center]);
 
-  const handleLocationSelect = (target: any) => {
-    const location = target._listeners.select?.[0].thisObject;
-    console.log("handleLocationSelect", location);
-    // if (location) {
-    //   setSelectedId(location.id);
-    // }
+  const handleLocationSelect = (r: any) => {
+    const location = r.target._listeners.select[0].thisObject;
+    if (location) {
+      onLocationSelect?.(location);
+    }
   };
 
   return <div ref={mapContainerRef} className={"w-full h-full"} />;
 };
 
-export default AppleMap;
+const AppleMapMemoized = memo(AppleMap);
+
+export default AppleMapMemoized;
