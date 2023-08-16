@@ -39,7 +39,7 @@ const DoctorMiniMap = ({ locations }: AppleMapProps) => {
   return (
     <div className="w-full sm:w-[450px]">
       <div className="w-full h-80 ">
-        <AppleMap locations={locations} center={center} />
+        <AppleMap doctors={locations} center={center} />
       </div>
       {locations?.[locationIdx]?.address && (
         <div

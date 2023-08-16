@@ -14,18 +14,26 @@ export default function FacetPopover({
   label,
 }: FacetPopoverProps) {
   const facets = useSearchState((state) => state.filters.facets);
+  const facet = facets?.find((facet) => facet.fieldId === facetFieldId);
 
   const [displayName, setDisplayName] = useState<string | null>(null);
   const [selectedCount, setSelectedCount] = useState<number>(0);
 
   useEffect(() => {
-    const facet = facets?.find((facet) => facet.fieldId === facetFieldId);
+    // const facet = facets?.find((facet) => facet.fieldId === facetFieldId);
     if (facet) {
       const selectedCount = facet.options.filter(
         (option) => option.selected
       ).length;
       setSelectedCount(selectedCount);
-      if (selectedCount == 1) {
+      if (selectedCount === 0) {
+        setDisplayName(
+          label ??
+            facets?.find((facet) => facet.fieldId === facetFieldId)
+              ?.displayName ??
+            ""
+        );
+      } else if (selectedCount == 1) {
         setDisplayName(
           facet.options.find((option) => option.selected)?.displayName ?? ""
         );
@@ -47,7 +55,7 @@ export default function FacetPopover({
           ""
       );
     }
-  }, [facets]);
+  }, [facet]);
 
   if (
     !facets ||

@@ -28,7 +28,7 @@ export interface HealthPro {
   slug: string;
 }
 
-export default function DoctorCard({ result }: CardProps<HealthPro>) {
+export default function DoctorSearchCard({ result }: CardProps<HealthPro>) {
   const { name, address, taxonomy_relatedSpecialties, headshot, slug } =
     result.rawData;
   const specialty = taxonomy_relatedSpecialties[0].name;

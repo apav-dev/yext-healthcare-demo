@@ -1,16 +1,16 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Icon from "./atoms/Icon";
 import { Address, ComplexImage } from "../types/autogen";
 import { twMerge } from "tailwind-merge";
-import BodyText from "./atoms/BodyText";
 import DoctorFilterSearch from "./search/DoctorFilterSearch";
 import MobilePanel from "./MobilePanel";
-import { ResultsCount, SearchBar } from "@yext/search-ui-react";
+import { ResultsCount } from "@yext/search-ui-react";
 import SearchPanel from "./search/SearchPanel";
 import FacetPopover from "./search/FacetPopover";
+import { useSearchState } from "@yext/search-headless-react";
 
 export interface HeaderProps {
   locations?: {
@@ -137,13 +137,37 @@ export default function Header({
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("Specialty, doctor...");
   const [searchPanelOpen, setSearchPanelOpen] = useState(false);
+
+  const staticFilters = useSearchState((state) => state.filters.static);
+
+  useEffect(() => {
+    if (staticFilters?.length) {
+      const specialtyFilter = staticFilters.find(
+        (f) => f.filter.fieldId === "taxonomy_relatedSpecialties.name"
+      );
+      const doctorFilter = staticFilters.find(
+        (f) => f.filter.fieldId === "name"
+      );
+
+      if (specialtyFilter) {
+        setSearchText(specialtyFilter.displayName ?? "");
+      } else if (doctorFilter) {
+        setSearchText(doctorFilter.displayName ?? "");
+      } else {
+        setSearchText("Specialty, doctor...");
+      }
+    }
+  }, [staticFilters]);
 
   return (
     <header className="fixed top-0 right-0 left-0 z-10">
-      <div className="relative isolate bg-white shadow">
-        <nav className="flex justify-between items-center" aria-label="Global">
+      <div className=" isolate bg-white shadow">
+        <nav
+          className="flex justify-between items-center relative"
+          aria-label="Global"
+        >
           <a
             href="/"
             className={twMerge(
@@ -173,7 +197,7 @@ export default function Header({
                     searchText ? "text-stone-900" : "text-stone-300"
                   )}
                 >
-                  {"Condition, procedure, doctor..."}
+                  {searchText}
                 </p>
               </div>
               {/* <div className="hidden z-0 lg:flex">
@@ -399,18 +423,14 @@ export default function Header({
               />
               <div className="flex ml-2 space-x-3.5 lg:ml-8">
                 <FacetPopover
-                  facetFieldId="taxonomy_relatedSpecialties.name"
-                  label="Specialty"
-                />
-                <FacetPopover
                   facetFieldId="taxonomy_relatedSpecialties.taxonomy_relatedConditions.name"
                   label="Conditions"
                 />
-                <FacetPopover
-                  facetFieldId="insuranceAccepted"
-                  label="Insurance Accepted"
-                />
                 <FacetPopover facetFieldId="gender" label="Gender" />
+                <FacetPopover
+                  facetFieldId="languages"
+                  label="Languages Spoken"
+                />
               </div>
             </div>
           </div>

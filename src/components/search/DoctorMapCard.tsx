@@ -1,16 +1,9 @@
 import { ComplexImageType, Image } from "@yext/pages/components";
 import VStack from "../atoms/VStack";
 import HStack from "../atoms/HStack";
-import HeadingText from "../atoms/HeadingText";
-// import Avatar from "../atoms/Avatar";
 import BodyText from "../atoms/BodyText";
-import Icon, { IconName } from "../atoms/Icon";
-import { CardProps } from "@yext/search-ui-react";
 import { Address as AddressType } from "../../types/autogen";
-import Address from "../Address";
-import HorizontalDivider from "../HoriztontalDivider";
 import SpecialtyIcon from "../Icons/SpecialtyIcon";
-import PhoneIcon from "../Icons/PhoneIcon";
 import LocationPinIcon from "../Icons/LocationPinIcon";
 import StarIcon from "../Icons/StarIcon";
 

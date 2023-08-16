@@ -24,10 +24,18 @@ const DoctorFilterSearch = ({
   const { width } = useWindowSize();
 
   const handleSelect = (params: OnSelectParams) => {
+    console.log(params);
     if (navigateOnSearch) {
       const urlParams = new URLSearchParams({});
       urlParams.set(`sf_${params.newFilter.fieldId}`, params.newFilter.value);
-      window.location.href = `/doctor-finder?${urlParams.toString()}`;
+
+      let path = `/doctor-finder?${urlParams.toString()}`;
+
+      if (params.newFilter.fieldId === "builtin.location") {
+        path = path + "&locationDisplayName=" + params.newDisplayName;
+      }
+
+      window.location.href = path;
     } else {
       const filteredFilters =
         staticFilters?.filter(
@@ -60,7 +68,7 @@ const DoctorFilterSearch = ({
           <div className="flex items-center border-b lg:border-0">
             <SpecialtyIcon />
             <FilterSearch
-              placeholder="Condition, procedure, doctor"
+              placeholder="Specialty, doctor..."
               sectioned
               customCssClasses={{
                 filterSearchContainer:

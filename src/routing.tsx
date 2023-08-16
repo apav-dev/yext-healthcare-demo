@@ -56,13 +56,22 @@ export const defaultRouter: Router = {
       const filtersFromUrl: SelectableStaticFilter[] = [];
       // set each as a fieldValue static filter
       searchParams.forEach((value, key) => {
-        if (key === "query") return;
+        if (!key.includes("sf_")) return;
+        const filterKey = key.replace("sf_", "");
+        const locationDisplayName = searchParams.get("locationDisplayName");
+        const displayName =
+          filterKey !== "builtin.location"
+            ? getFilterDisplayName(value)
+            : locationDisplayName
+            ? locationDisplayName
+            : value;
         filtersFromUrl.push({
           selected: true,
+          displayName,
           filter: {
             kind: "fieldValue",
             matcher: Matcher.Equals,
-            fieldId: key.replace("sf_", ""),
+            fieldId: filterKey,
             value,
           },
         });
@@ -75,4 +84,11 @@ export const defaultRouter: Router = {
       // }
     }
   },
+};
+
+const getFilterDisplayName = (filterValue: string) => {
+  // remove spaces and capitalize first letter of each word
+  return filterValue
+    .replace(/([A-Z])/g, " $1")
+    .replace(/^./, (str) => str.toUpperCase());
 };

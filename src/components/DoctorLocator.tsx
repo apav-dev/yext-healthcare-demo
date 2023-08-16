@@ -1,7 +1,5 @@
 import { Result, useSearchState } from "@yext/search-headless-react";
 import AppleMap, { MapLocation } from "./AppleMap";
-import BodyText from "./atoms/BodyText";
-import Icon from "./atoms/Icon";
 import DoctorSearchCard, { HealthPro } from "./search/DoctorSearchCard";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createCtx } from "../createCtx";
@@ -51,13 +49,7 @@ const DoctorLocator = () => {
   }, [width]);
 
   const locations = useMemo(() => {
-    return (
-      doctors?.map((doctor) => ({
-        address: doctor.rawData.address,
-        geocodedCoordinate: doctor.rawData.geocodedCoordinate,
-        id: doctor.rawData.id,
-      })) ?? []
-    );
+    return doctors?.map((doctor) => doctor.rawData) ?? [];
   }, [doctors]);
 
   const handleLocationSelect = useCallback(
@@ -123,7 +115,7 @@ const DoctorLocator = () => {
             <p className="text-green-700 font-semibold ml-1">SHOW LIST</p>
           </button>
           <AppleMap
-            locations={locations}
+            doctors={locations}
             onLocationSelect={handleLocationSelect}
             // center={{
             //   latitude: 40.7128,
@@ -131,7 +123,7 @@ const DoctorLocator = () => {
             // }}
           />
           {selectedDoctor && (
-            <div className="absolute bottom-0 left-0 w-full z-[1]">
+            <div className="absolute bottom-0 left-0 w-full z-[1] lg:hidden">
               <div className="p-4">
                 <DoctorMapCard
                   name={selectedDoctor.rawData.name}

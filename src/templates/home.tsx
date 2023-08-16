@@ -15,7 +15,7 @@ import HorizontalDivider from "../components/HoriztontalDivider";
 import { Image } from "@yext/sites-components";
 import Button from "../components/facility/Button";
 import FeaturedBlogs from "../components/FeaturedBlogs";
-
+``;
 export const config: TemplateConfig = {
   stream: {
     $id: "home",

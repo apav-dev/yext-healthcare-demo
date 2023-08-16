@@ -1,5 +1,9 @@
 import { memo, useEffect, useRef, useState } from "react";
+import { renderToString } from "react-dom/server";
 import { Address, Coordinate } from "../types/autogen";
+import { HealthPro } from "./search/DoctorSearchCard";
+import DoctorMapCard from "./search/DoctorMapCard";
+import DoctorPopover from "./DoctorPopover";
 
 export interface MapLocation {
   id: string;
@@ -8,11 +12,7 @@ export interface MapLocation {
 }
 
 export interface AppleMapProps {
-  locations?: {
-    id: string;
-    address?: Address;
-    geocodedCoordinate?: Coordinate;
-  }[];
+  doctors?: HealthPro[];
   center?: {
     latitude: number;
     longitude: number;
@@ -21,7 +21,7 @@ export interface AppleMapProps {
   onLocationSelect?: (location: MapLocation) => void;
 }
 
-const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
+const AppleMap = ({ doctors, center, onLocationSelect }: AppleMapProps) => {
   const [map, setMap] = useState<any>();
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -69,21 +69,47 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
   useEffect(() => {
     if (map && mapContainerRef.current && window.mapkit) {
       map.removeAnnotations(map.annotations);
-      if (locations && locations.length > 0) {
-        const markers = locations?.map((location, idx) => {
+      if (doctors && doctors.length > 0) {
+        // Offset between the callout and the associated annotation marker
+        // const offset = new DOMPoint(-148, -78);
+
+        const markers = doctors?.map((doctor, idx) => {
+          // Each annotation will use these functions to present a custom callout
+          const doctorAnnotationCallout = {
+            calloutElementForAnnotation: () => {
+              // Render your React component to a string
+              const renderedCard = renderToString(
+                <DoctorPopover
+                  name={doctor.name}
+                  address={doctor.address}
+                  headshot={doctor.headshot}
+                  specialty={doctor.taxonomy_relatedSpecialties?.[0].name}
+                />
+              );
+
+              // Create a new div and set its innerHTML to the rendered string
+              const div = document.createElement("div");
+              div.innerHTML = renderedCard;
+
+              // Return the div containing the rendered React component
+              return div;
+            },
+          };
+
           const marker = new window.mapkit.MarkerAnnotation(
             new window.mapkit.Coordinate(
-              location.geocodedCoordinate?.latitude,
-              location.geocodedCoordinate?.longitude
+              doctor.geocodedCoordinate?.latitude,
+              doctor.geocodedCoordinate?.longitude
             ),
             {
               glyphText: "●",
               glyphColor: "#ffffff",
               color: "#4F6A4E",
+              callout: doctorAnnotationCallout,
             }
           );
 
-          marker.addEventListener("select", handleLocationSelect, location);
+          marker.addEventListener("select", handleLocationSelect, doctor);
 
           return marker;
         });
@@ -103,21 +129,21 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
       }
     }
   }),
-    [locations];
+    [doctors];
 
   const findCenter = () => {
-    if (locations && locations.length > 0) {
+    if (doctors && doctors.length > 0) {
       const minLat = Math.min(
-        ...locations.map((location) => location.geocodedCoordinate?.latitude)
+        ...doctors.map((location) => location.geocodedCoordinate?.latitude)
       );
       const maxLat = Math.max(
-        ...locations.map((location) => location.geocodedCoordinate?.latitude)
+        ...doctors.map((location) => location.geocodedCoordinate?.latitude)
       );
       const minLng = Math.min(
-        ...locations.map((location) => location.geocodedCoordinate?.longitude)
+        ...doctors.map((location) => location.geocodedCoordinate?.longitude)
       );
       const maxLng = Math.max(
-        ...locations.map((location) => location.geocodedCoordinate?.longitude)
+        ...doctors.map((location) => location.geocodedCoordinate?.longitude)
       );
 
       return {
