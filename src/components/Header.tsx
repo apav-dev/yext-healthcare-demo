@@ -1,15 +1,16 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Icon from "./atoms/Icon";
 import { Address, ComplexImage } from "../types/autogen";
 import { twMerge } from "tailwind-merge";
-import BodyText from "./atoms/BodyText";
 import DoctorFilterSearch from "./search/DoctorFilterSearch";
 import MobilePanel from "./MobilePanel";
-import { SearchBar } from "@yext/search-ui-react";
+import { ResultsCount } from "@yext/search-ui-react";
 import SearchPanel from "./search/SearchPanel";
+import FacetPopover from "./search/FacetPopover";
+import { useSearchState } from "@yext/search-headless-react";
 
 export interface HeaderProps {
   locations?: {
@@ -21,6 +22,7 @@ export interface HeaderProps {
     name: string;
     slug: string;
   }[];
+  locator?: boolean;
 }
 
 const renderPopover = ({
@@ -128,23 +130,82 @@ const renderPopover = ({
   );
 };
 
-export default function Header({ locations, specialties }: HeaderProps) {
+export default function Header({
+  locations,
+  specialties,
+  locator,
+}: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("Specialty, doctor...");
   const [searchPanelOpen, setSearchPanelOpen] = useState(false);
+
+  const staticFilters = useSearchState((state) => state.filters.static);
+
+  useEffect(() => {
+    if (staticFilters?.length) {
+      const specialtyFilter = staticFilters.find(
+        (f) => f.filter.fieldId === "taxonomy_relatedSpecialties.name"
+      );
+      const doctorFilter = staticFilters.find(
+        (f) => f.filter.fieldId === "name"
+      );
+
+      if (specialtyFilter) {
+        setSearchText(specialtyFilter.displayName ?? "");
+      } else if (doctorFilter) {
+        setSearchText(doctorFilter.displayName ?? "");
+      } else {
+        setSearchText("Specialty, doctor...");
+      }
+    }
+  }, [staticFilters]);
 
   return (
     <header className="fixed top-0 right-0 left-0 z-10">
-      <div className="relative isolate bg-white shadow">
-        <nav className="flex justify-between items-center" aria-label="Global">
+      <div className=" isolate bg-white shadow">
+        <nav
+          className="flex justify-between items-center relative"
+          aria-label="Global"
+        >
           <a
             href="/"
-            className="w-32 h-32 p-2.5 bg-green-700 justify-center items-center gap-2.5 inline-flex"
+            className={twMerge(
+              "w-32 h-32 p-2.5 bg-green-700 justify-center items-center gap-2.5 inline-flex",
+              locator ? "w-16" : ""
+            )}
           >
             <Icon name="home" height="12" width="12" color="text-white" />
           </a>
-          <div className="flex lg:hidden">
+          {/* fake searchbar for mobile  */}
+          {locator && (
+            <div className="px-4 py-6 bg-light-green flex-1 lg:pt-0 lg:hidden">
+              <div
+                className="bg-white border border-green flex items-center px-6 py-4 lg:hidden "
+                onClick={() => setMobileSearchOpen(true)}
+              >
+                <Icon
+                  color="text-green"
+                  classname="text-sm"
+                  name="search"
+                  height={"4"}
+                  width={"4"}
+                />
+                <p
+                  className={twMerge(
+                    `ml-3`,
+                    searchText ? "text-stone-900" : "text-stone-300"
+                  )}
+                >
+                  {searchText}
+                </p>
+              </div>
+              {/* <div className="hidden z-0 lg:flex">
+                <DoctorFilterSearch />
+              </div> */}
+            </div>
+          )}
+          <div className="flex pr-8 pl-2 lg:hidden">
             <button
               type="button"
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-zinc-900"
@@ -154,7 +215,6 @@ export default function Header({ locations, specialties }: HeaderProps) {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-
           <div className="hidden lg:flex flex-1 justify-between px-6">
             <Popover.Group className="ml-8 block lg:self-stretch z-20">
               <div className="flex h-full space-x-8">
@@ -257,7 +317,7 @@ export default function Header({ locations, specialties }: HeaderProps) {
           open={mobileMenuOpen}
           onClose={setMobileMenuOpen}
         >
-          <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-light-green px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-dark-green">
+          <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-dark-green">
             <div className="flex items-center justify-between">
               <a href="/">
                 <Icon
@@ -350,36 +410,44 @@ export default function Header({ locations, specialties }: HeaderProps) {
             </div>
           </Dialog.Panel>
         </Dialog>
+        {locator && (
+          <div className="">
+            <div className="hidden lg:block">
+              <DoctorFilterSearch />
+            </div>
+            <div className="flex items-center py-4 border-b border-gray-200 h-20 shadow lg:px-6">
+              <ResultsCount
+                customCssClasses={{
+                  resultsCountContainer: "hidden text-2xl mb-0 p-0 lg:block",
+                }}
+              />
+              <div className="flex ml-2 space-x-3.5 lg:ml-8">
+                <FacetPopover
+                  facetFieldId="taxonomy_relatedSpecialties.taxonomy_relatedConditions.name"
+                  label="Conditions"
+                />
+                <FacetPopover facetFieldId="gender" label="Gender" />
+                <FacetPopover
+                  facetFieldId="languages"
+                  label="Languages Spoken"
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      {/* fake searchbar for mobile  */}
-      {/* {includeSearch && (
-        <div className="px-4 py-6 bg-light-green lg:pt-0">
-          <div
-            className="bg-white border border-green flex items-center px-6 py-4 lg:hidden "
-            onClick={() => setMobileSearchOpen(true)}
-          >
-            <Icon
-              color="text-green"
-              classname="text-sm"
-              name="search"
-              height={"4"}
-              width={"4"}
-            />
-            <BodyText
-              className="ml-3"
-              text={searchText ?? "Condition, procedure, doctor..."}
-              color={searchText ? "dark-gray" : "disabled-gray"}
-            />
-          </div>
-          <div className="hidden z-0 lg:flex">
-            <DoctorFilterSearch />
-          </div>
+      <MobilePanel
+        open={mobileSearchOpen}
+        toggleOpen={setMobileSearchOpen}
+        panelClassName="bg-white"
+        title="Find the right doctor for you"
+      >
+        <div className="bg-white">
+          <DoctorFilterSearch
+            onSearchClick={() => setMobileSearchOpen(false)}
+          />
         </div>
-      )}  */}
-      {/* Mobile Search
-      {/* <MobilePanel open={mobileSearchOpen} toggleOpen={setMobileSearchOpen}>
-        <DoctorFilterSearch onSearchClick={() => setMobileSearchOpen(false)} />
-      </MobilePanel> */}
+      </MobilePanel>
     </header>
   );
 }

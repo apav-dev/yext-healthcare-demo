@@ -12,7 +12,7 @@ import Icon from "./atoms/Icon";
 import NavBar from "./NavBar";
 import { useSearchActions, useSearchState } from "@yext/search-headless-react";
 import Section from "./atoms/Section";
-import DoctorCard, { HealthPro } from "./search/DoctorSearchCard";
+import DoctorSearchCard, { HealthPro } from "./search/DoctorSearchCard";
 import { useEffect, useState } from "react";
 import SpecialtyCard from "./search/SpecialtyCard";
 import BlogCard from "./search/BlogCard";
@@ -103,7 +103,7 @@ export default function UniversalSearch() {
   const determineCardComponent = () => {
     switch (vertical) {
       case "healthcare_professionals":
-        return DoctorCard;
+        return DoctorSearchCard;
       case "specialties":
         return SpecialtyCard;
       case "blog_posts":
@@ -204,14 +204,14 @@ export default function UniversalSearch() {
                   }}
                   verticalConfigMap={{
                     "healthcare_professionals": {
-                      CardComponent: DoctorCard,
+                      CardComponent: DoctorSearchCard,
                       SectionComponent: ({
                         results,
                         verticalKey,
                       }: SectionProps<HealthPro>) => (
                         <ListSection
                           results={results}
-                          CardComponent={DoctorCard}
+                          CardComponent={DoctorSearchCard}
                           verticalKey={verticalKey}
                           header={
                             <h2 className="text-2xl font-semibold text-green-700 pb-4">

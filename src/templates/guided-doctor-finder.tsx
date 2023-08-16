@@ -31,12 +31,13 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
   const [selectedCareType, setSelectedCareType] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [specialityFilter, setSpecialityFilter] = useState("");
+  const [locationDisplayName, setLocationDisplayName] = useState("");
 
   const [currentStep, setCurrentStep] = useState(1);
 
   useEffect(() => {
     const executeSearch = () => {
-      window.location.href = `/doctor-finder?${insuranceFilter}&${geoFilter}&${specialityFilter}`;
+      window.location.href = `/doctor-finder?${insuranceFilter}&${geoFilter}&${specialityFilter}&locationDisplayName=${locationDisplayName}`;
     };
     if (currentStep === 5) {
       setTimeout(executeSearch, 1000);
@@ -57,7 +58,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
             <button
               onClick={() => {
                 setSpecialityFilter(
-                  `taxonomy_relatedSpecialties.name=Primary+Care`
+                  `sf_taxonomy_relatedSpecialties.name=Primary+Care`
                 );
                 setSelectedCareType("Primary");
                 setCurrentStep(2);
@@ -86,7 +87,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
             <button
               onClick={() => {
                 setSpecialityFilter(
-                  `taxonomy_relatedSpecialties.name=Urgent+Care`
+                  `sf_taxonomy_relatedSpecialties.name=Urgent+Care`
                 );
                 setCurrentStep(2);
                 setSelectedCareType("Urgent");
@@ -183,6 +184,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
                 const { fieldId, matcher, value } = params.newFilter;
                 const newFilterParam = `sf_${fieldId}=${value}`;
                 setGeoFilter(newFilterParam);
+                setLocationDisplayName(params.newDisplayName);
                 setCurrentStep(4);
               }}
               searchFields={[
