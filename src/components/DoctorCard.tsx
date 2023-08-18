@@ -16,7 +16,8 @@ import CalendarIcon from "./Icons/CalendarIcon";
 
 export interface DoctorCardProps {
   name?: string;
-  specialty?: string;
+  specialtyName?: string;
+  specialtySlug?: string;
   headshot?: ComplexImageType;
   rating?: number;
   containerClassname?: string;
@@ -36,7 +37,8 @@ const sellingPoints: { icon: IconName; name: string }[] = [
 
 export default function DoctorCard({
   name,
-  specialty,
+  specialtyName,
+  specialtySlug,
   headshot,
   rating,
   containerClassname,
@@ -82,7 +84,7 @@ export default function DoctorCard({
                   </div>
                 </div>
                 <div className="text-zinc-900 text-xl font-normal">
-                  {specialty}
+                  <a href={`/${specialtySlug}`} className="hover:text-green-700">{specialtyName}</a>
                 </div>
               </div>
               <div className="self-stretch rounded-[999px] justify-start items-start gap-2 inline-flex">

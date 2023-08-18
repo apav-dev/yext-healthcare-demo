@@ -37,6 +37,7 @@ export const config: TemplateConfig = {
       "c_providerBio",
       "headshot",
       "taxonomy_relatedSpecialties.name",
+      "taxonomy_relatedSpecialties.slug",
       "address",
       "yextDisplayCoordinate",
       "c_alsoLocatedAt.address",
@@ -94,7 +95,8 @@ const HealthPro: Template<TemplateRenderProps> = ({
             <DoctorCard
               headshot={document.headshot}
               name={document.name}
-              specialty={document.taxonomy_relatedSpecialties?.[0].name}
+              specialtyName={document.taxonomy_relatedSpecialties?.[0].name}
+              specialtySlug={document.taxonomy_relatedSpecialties?.[0].slug}
               rating={4.5}
               address={document.address}
               // containerClassname="pr-6"
