@@ -9,9 +9,6 @@ import {
 import "../index.css";
 import PageLayout from "../components/PageLayout";
 import DoctorLocator from "../components/DoctorLocator";
-import DoctorFilterSearch from "../components/search/DoctorFilterSearch";
-import { ResultsCount } from "@yext/search-ui-react";
-import FacetPopover from "../components/search/FacetPopover";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return `doctor-finder`;
@@ -32,33 +29,9 @@ const DoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
     <PageLayout
       featuredLocations={document._site.c_featuredLocations}
       featuredSpecialties={document._site.c_featuredSpecialties}
+      locator
     >
-      <div className="pt-32">
-        <DoctorFilterSearch />
-        <div className="hidden lg:block">
-          <div className="flex items-center px-6 py-4 border-b border-gray-200 h-20 shadow">
-            <ResultsCount
-              customCssClasses={{
-                resultsCountContainer: "text-2xl mb-0 p-0",
-              }}
-            />
-            <div className="flex ml-8 space-x-3.5">
-              <FacetPopover
-                facetFieldId="taxonomy_relatedSpecialties.name"
-                label="Specialty"
-              />
-              <FacetPopover
-                facetFieldId="taxonomy_relatedSpecialties.taxonomy_relatedConditions.name"
-                label="Conditions"
-              />
-              <FacetPopover
-                facetFieldId="insuranceAccepted"
-                label="Insurance Accepted"
-              />
-              <FacetPopover facetFieldId="gender" label="Gender" />
-            </div>
-          </div>
-        </div>
+      <div className="pt-32 lg:pt-[356px]">
         {/* <Transition
         show={showList}
         enter="transition-opacity duration-75"

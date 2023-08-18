@@ -24,10 +24,18 @@ const DoctorFilterSearch = ({
   const { width } = useWindowSize();
 
   const handleSelect = (params: OnSelectParams) => {
+    console.log(params);
     if (navigateOnSearch) {
       const urlParams = new URLSearchParams({});
       urlParams.set(`sf_${params.newFilter.fieldId}`, params.newFilter.value);
-      window.location.href = `/doctor-finder?${urlParams.toString()}`;
+
+      let path = `/doctor-finder?${urlParams.toString()}`;
+
+      if (params.newFilter.fieldId === "builtin.location") {
+        path = path + "&locationDisplayName=" + params.newDisplayName;
+      }
+
+      window.location.href = path;
     } else {
       const filteredFilters =
         staticFilters?.filter(
@@ -54,82 +62,86 @@ const DoctorFilterSearch = ({
   };
 
   return (
-    <div className="hidden z-0 justify-center bg-stone-300 lg:flex ">
+    <div className="z-0 justify-center lg:bg-stone-300 lg:flex ">
       <div className="px-4 py-8 lg:flex lg:items-center">
-        <div className="px-8 py-2 bg-white flex rounded-[100px]">
-          <div className="flex items-center">
+        <div className="px-8 py-2 bg-white flex flex-col border lg:rounded-[100px] lg:flex-row lg:border-0">
+          <div className="flex items-center border-b lg:border-0">
             <SpecialtyIcon />
+            <FilterSearch
+              placeholder="Specialty, doctor..."
+              sectioned
+              customCssClasses={{
+                filterSearchContainer:
+                  "relative mb-0 flex-1 lg:flex lg:items-center",
+                inputElement:
+                  "rounded-none border-0 lg:border-r py-6 placeholder:text-disabled-gray w-80",
+                option: "py-2 px-4 text-left",
+                highlighted: "text-blue text-sm",
+                nonHighlighted: "text-sm",
+                sectionLabel: "text-lg text-left",
+              }}
+              onSelect={handleSelect}
+              searchFields={[
+                {
+                  fieldApiName: "taxonomy_relatedSpecialties.name",
+                  entityType: "healthcareProfessional",
+                },
+                {
+                  fieldApiName: "name",
+                  entityType: "healthcareProfessional",
+                },
+              ]}
+            />
           </div>
-          <FilterSearch
-            placeholder="Condition, procedure, doctor"
-            sectioned
-            customCssClasses={{
-              filterSearchContainer: "relative mb-0 lg:flex lg:items-center",
-              inputElement:
-                "rounded-none border-0 border-r py-6 placeholder:text-disabled-gray w-80",
-              option: "py-2 px-4",
-              highlighted: "text-blue text-sm",
-              nonHighlighted: "text-sm",
-              sectionLabel: "text-lg",
-            }}
-            onSelect={handleSelect}
-            searchFields={[
-              {
-                fieldApiName: "taxonomy_relatedSpecialties.name",
-                entityType: "healthcareProfessional",
-              },
-              {
-                fieldApiName: "name",
-                entityType: "healthcareProfessional",
-              },
-            ]}
-          />
-          <div className="flex items-center ml-8">
+
+          <div className="flex items-center border-b lg:border-0 lg:ml-8">
             <LocationPinIcon />
+            <FilterSearch
+              placeholder="City, state, or zip code"
+              customCssClasses={{
+                filterSearchContainer: "mb-0 block lg:flex lg:items-center",
+                inputElement:
+                  "rounded-none py-6 border-0 lg:border-r placeholder:text-disabled-gray w-80",
+                option: "py-2 px-4 text-left",
+                highlighted: "text-blue text-sm",
+                nonHighlighted: "text-sm",
+                sectionLabel: "text-lg text-left",
+              }}
+              onSelect={handleSelect}
+              searchFields={[
+                {
+                  fieldApiName: "builtin.location",
+                  entityType: "healthcareProfessional",
+                },
+              ]}
+            />
           </div>
-          <FilterSearch
-            placeholder="City, state, or zip code"
-            customCssClasses={{
-              filterSearchContainer: "mb-0 block lg:flex lg:items-center",
-              inputElement:
-                "rounded-none py-6 border-0 border-r placeholder:text-disabled-gray w-80",
-              option: "py-2 px-4",
-              highlighted: "text-blue text-sm",
-              nonHighlighted: "text-sm",
-              sectionLabel: "text-lg",
-            }}
-            onSelect={handleSelect}
-            searchFields={[
-              {
-                fieldApiName: "builtin.location",
-                entityType: "healthcareProfessional",
-              },
-            ]}
-          />
-          <div className="flex items-center ml-8">
+
+          <div className="flex items-center border-b lg:border-0 lg:ml-8">
             <InsuranceCardIcon />
+            <FilterSearch
+              placeholder="Insurance"
+              customCssClasses={{
+                filterSearchContainer: "mb-0 lg:flex lg:items-center",
+                inputElement:
+                  "rounded-none py-6 border-0 placeholder:text-disabled-gray w-80",
+                option: "py-2 px-4 text-left",
+                highlighted: "text-blue text-sm",
+                nonHighlighted: "text-sm",
+                sectionLabel: "text-lg text-left",
+              }}
+              onSelect={handleSelect}
+              searchFields={[
+                {
+                  fieldApiName: "insuranceAccepted",
+                  entityType: "healthcareProfessional",
+                },
+              ]}
+            />
           </div>
-          <FilterSearch
-            placeholder="Insurance"
-            customCssClasses={{
-              filterSearchContainer: "mb-0 lg:flex lg:items-center",
-              inputElement:
-                "rounded-none py-6 border-0 placeholder:text-disabled-gray w-80",
-              option: "py-2 px-4",
-              highlighted: "text-blue text-sm",
-              nonHighlighted: "text-sm",
-              sectionLabel: "text-lg",
-            }}
-            onSelect={handleSelect}
-            searchFields={[
-              {
-                fieldApiName: "insuranceAccepted",
-                entityType: "healthcareProfessional",
-              },
-            ]}
-          />
+
           <button
-            className="bg-green-700 flex justify-center items-center p-6 my-auto rounded-full"
+            className="bg-green-700 flex justify-center items-center p-6 my-6 rounded-full lg:my-0"
             onClick={handleSearchClick}
           >
             <Icon name="search" color="text-white" />

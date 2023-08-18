@@ -8,8 +8,9 @@ export interface MobilePanelProps {
   open: boolean;
   toggleOpen: (open: boolean) => void;
   children?: React.ReactNode;
-  panelClassName?: string;
   title?: string;
+  headerClassName?: string;
+  panelClassName?: string;
 }
 
 const MobilePanel = ({
@@ -18,10 +19,11 @@ const MobilePanel = ({
   children,
   panelClassName,
   title,
+  headerClassName,
 }: MobilePanelProps) => {
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10 lg:hidden" onClose={toggleOpen}>
+      <Dialog as="div" className="relative z-10" onClose={toggleOpen}>
         <Transition.Child
           as={Fragment}
           enter="transition-opacity ease-linear duration-300"
@@ -34,7 +36,7 @@ const MobilePanel = ({
           <div className="fixed inset-0 bg-black bg-opacity-25" />
         </Transition.Child>
 
-        <div className="fixed top-0 left-0 right-0 bottom-0  flex">
+        <div className="fixed top-0 left-0 right-0 bottom-0 flex">
           <Transition.Child
             as={Fragment}
             enter="transform transition ease-in-out duration-300"
@@ -46,11 +48,16 @@ const MobilePanel = ({
           >
             <Dialog.Panel
               className={twMerge(
-                "relative flex w-full flex-col overflow-y-auto bg-light-green pb-12 shadow-xl",
+                "relative flex w-full flex-col overflow-y-auto pb-12 shadow-xl",
                 panelClassName
               )}
             >
-              <div className="relative px-4 py-5 min-h-[80px]">
+              <div
+                className={twMerge(
+                  "relative px-4 py-5 min-h-[80px]",
+                  headerClassName
+                )}
+              >
                 <button
                   type="button"
                   className="absolute left-2 inline-flex items-center justify-center rounded-md p-2 text-gray-500"
@@ -61,7 +68,7 @@ const MobilePanel = ({
                 </button>
                 {title && (
                   <HeadingText
-                    classname="text-center px-6 border-b border-dark-green pb-4"
+                    classname="text-center px-6 "
                     level="Heading 2"
                     text={title}
                   />

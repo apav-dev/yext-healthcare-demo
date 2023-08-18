@@ -3,6 +3,7 @@ import { CardProps } from "@yext/search-ui-react";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import Icon from "../atoms/Icon";
 import Faq from "../../types/search/faqs";
+import RTF from "../RTFV1";
 
 export default function FaqCard({ result }: CardProps<Faq>) {
   const { question, answer } = result.rawData;
@@ -32,7 +33,9 @@ export default function FaqCard({ result }: CardProps<Faq>) {
         </Collapsible.Trigger>
       </div>
       <Collapsible.Content>
-        <p className="whitespace-pre-wrap">{answer}</p>
+        <div className="py-4">
+          <RTF>{answer as string}</RTF>
+        </div>
       </Collapsible.Content>
     </Collapsible.Root>
   );

@@ -48,12 +48,12 @@ const HeadlessProvider = ({
 
   // map the most recent search to the URL when a search is executed
   const { stateToRoute } = routing;
-  newSearcher.executeVerticalQuery = async () => {
-    const params = stateToRoute(searcher.state);
-    window.history.pushState({}, "", `?${params.toString()}`);
+  // newSearcher.executeVerticalQuery = async () => {
+  //   const params = stateToRoute(searcher.state);
+  //   window.history.pushState({}, "", `?${params.toString()}`);
 
-    return searcher.executeVerticalQuery();
-  };
+  //   return searcher.executeVerticalQuery();
+  // };
 
   return (
     <SearchHeadlessProvider searcher={newSearcher}>

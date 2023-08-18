@@ -107,7 +107,9 @@ const HealthPro: Template<TemplateRenderProps> = ({
                   // address: document.address,
                   geocodedCoordinate: document.yextDisplayCoordinate,
                 },
-                ...(document.c_alsoLocatedAt ?? []),
+                ...(document.c_alsoLocatedAt?.map((location) => ({
+                  geocodedCoordinate: location.yextDisplayCoordinate,
+                })) ?? []),
               ]}
             />
           </ResponsiveStack>

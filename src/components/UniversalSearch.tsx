@@ -12,7 +12,7 @@ import Icon from "./atoms/Icon";
 import NavBar from "./NavBar";
 import { useSearchActions, useSearchState } from "@yext/search-headless-react";
 import Section from "./atoms/Section";
-import DoctorCard, { HealthPro } from "./search/DoctorSearchCard";
+import DoctorSearchCard, { HealthPro } from "./search/DoctorSearchCard";
 import { useEffect, useState } from "react";
 import SpecialtyCard from "./search/SpecialtyCard";
 import BlogCard from "./search/BlogCard";
@@ -43,13 +43,27 @@ export default function UniversalSearch() {
   const searchLoading = useSearchState((state) => state.searchStatus.isLoading);
 
   useEffect(() => {
-    searchActions.setUniversal();
-    searchActions.setRestrictVerticals([
-      "healthcare_professionals",
-      "specialties",
-      "blog_posts",
-      "faqs",
-    ]);
+    const verticalKey = new URLSearchParams(window.location.search).get(
+      "verticalKey"
+    );
+    // if there is a query in the url, add it to the search state
+    const query = new URLSearchParams(window.location.search).get("query");
+    if (query) {
+      searchActions.setQuery(query);
+    }
+    if (verticalKey) {
+      searchActions.setVertical(verticalKey);
+      searchActions.executeVerticalQuery();
+    } else {
+      searchActions.setUniversal();
+      searchActions.setRestrictVerticals([
+        "healthcare_professionals",
+        "specialties",
+        "blog_posts",
+        "faqs",
+      ]);
+      searchActions.executeUniversalQuery();
+    }
   }, []);
 
   useEffect(() => {
@@ -89,7 +103,7 @@ export default function UniversalSearch() {
   const determineCardComponent = () => {
     switch (vertical) {
       case "healthcare_professionals":
-        return DoctorCard;
+        return DoctorSearchCard;
       case "specialties":
         return SpecialtyCard;
       case "blog_posts":
@@ -125,8 +139,7 @@ export default function UniversalSearch() {
               clearButton: "hidden",
               verticalDivider: "hidden",
               inputElement: "flex-1 pl-4",
-              icon: "mx-6",
-              option: "px-6",
+              icon: "mx-2",
             }}
             onSearch={handleSearchClick}
           />
@@ -191,14 +204,14 @@ export default function UniversalSearch() {
                   }}
                   verticalConfigMap={{
                     "healthcare_professionals": {
-                      CardComponent: DoctorCard,
+                      CardComponent: DoctorSearchCard,
                       SectionComponent: ({
                         results,
                         verticalKey,
                       }: SectionProps<HealthPro>) => (
                         <ListSection
                           results={results}
-                          CardComponent={DoctorCard}
+                          CardComponent={DoctorSearchCard}
                           verticalKey={verticalKey}
                           header={
                             <h2 className="text-2xl font-semibold text-green-700 pb-4">

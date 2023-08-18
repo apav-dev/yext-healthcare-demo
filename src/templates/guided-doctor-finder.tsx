@@ -30,12 +30,14 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
   const [selectedInsurance, setSelectedInsurance] = useState("");
   const [selectedCareType, setSelectedCareType] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
+  const [specialityFilter, setSpecialityFilter] = useState("");
+  const [locationDisplayName, setLocationDisplayName] = useState("");
 
   const [currentStep, setCurrentStep] = useState(1);
 
   useEffect(() => {
     const executeSearch = () => {
-      window.location.href = `/doctor-finder?${insuranceFilter}&${geoFilter}`;
+      window.location.href = `/doctor-finder?${insuranceFilter}&${geoFilter}&${specialityFilter}&locationDisplayName=${locationDisplayName}`;
     };
     if (currentStep === 5) {
       setTimeout(executeSearch, 1000);
@@ -49,12 +51,15 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
     >
       <section className="flex flex-col pt-32">
         {currentStep === 1 && (
-          <section className="flex flex-col gap-8 items-center pt-20 pb-[1000px]">
+          <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
               What kind of care are you looking for?
             </h3>
             <button
               onClick={() => {
+                setSpecialityFilter(
+                  `sf_taxonomy_relatedSpecialties.name=Primary+Care`
+                );
                 setSelectedCareType("Primary");
                 setCurrentStep(2);
               }}
@@ -81,6 +86,9 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
             </button>
             <button
               onClick={() => {
+                setSpecialityFilter(
+                  `sf_taxonomy_relatedSpecialties.name=Urgent+Care`
+                );
                 setCurrentStep(2);
                 setSelectedCareType("Urgent");
               }}
@@ -95,7 +103,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
           </section>
         )}
         {currentStep === 2 && (
-          <section className="flex flex-col gap-8 items-center pt-20 pb-96">
+          <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
               What type of insurance do you have?
             </h3>
@@ -157,7 +165,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
           </section>
         )}
         {currentStep === 3 && (
-          <section className="flex flex-col gap-8 items-center pt-20 pb-[1000px]">
+          <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
               Where would you like to receive care?
             </h3>
@@ -176,6 +184,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
                 const { fieldId, matcher, value } = params.newFilter;
                 const newFilterParam = `sf_${fieldId}=${value}`;
                 setGeoFilter(newFilterParam);
+                setLocationDisplayName(params.newDisplayName);
                 setCurrentStep(4);
               }}
               searchFields={[
@@ -188,7 +197,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
           </section>
         )}
         {currentStep === 4 && (
-          <section className="flex flex-col gap-8 items-center pt-20 pb-[1000px]">
+          <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
               When would you like to see the doctor?
             </h3>
@@ -234,7 +243,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
           </section>
         )}
         {currentStep === 5 && (
-          <section className="flex flex-col gap-8 items-center pt-20 pb-[1000px]">
+          <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
               One moment, searching for providers that match your criteria...
             </h3>

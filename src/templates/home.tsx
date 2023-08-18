@@ -13,7 +13,9 @@ import PhotoHero from "../components/PhotoHero";
 import DoctorFilterSearch from "../components/search/DoctorFilterSearch";
 import HorizontalDivider from "../components/HoriztontalDivider";
 import { Image } from "@yext/sites-components";
-
+import Button from "../components/facility/Button";
+import FeaturedBlogs from "../components/FeaturedBlogs";
+``;
 export const config: TemplateConfig = {
   stream: {
     $id: "home",
@@ -30,6 +32,13 @@ export const config: TemplateConfig = {
       "c_featuredDirectory.directory.name",
       "c_featuredDirectory.directory.slug",
       "c_featuredDirectory.cta",
+      "c_featuredBlogs.blogs.id",
+      "c_featuredBlogs.blogs.name",
+      "c_featuredBlogs.blogs.c_author.name",
+      "c_featuredBlogs.blogs.c_datePosted",
+      "c_featuredBlogs.blogs.photoGallery",
+      "c_featuredBlogs.blogs.c_blogPostContentSummary",
+      "c_featuredBlogs.blogs.slug",
     ],
     filter: { entityIds: ["home"] },
   },
@@ -58,9 +67,10 @@ const Home = ({ document }: TemplateRenderProps) => {
     c_locationHero,
     c_servicesHero,
     c_featuredDirectory,
+    c_featuredBlogs,
   } = document as HomeType;
 
-  console.log(c_featuredDirectory);
+  console.log(c_featuredBlogs);
 
   return (
     <PageLayout
@@ -82,8 +92,29 @@ const Home = ({ document }: TemplateRenderProps) => {
           </PhotoHero>
         </Section>
         <Section>
+          <div className="grid grid-cols-2 w-full gap-6">
+            <img
+              src="https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2283&q=80"
+              className="object-cover w-100% lg:aspect-video my-auto"
+            />
+            <div className="flex gap-6 justify-center flex-col">
+              <HorizontalDivider />
+              <div className="self-stretch text-zinc-900 text-[52px] font-medium leading-[56px]">
+                Get the Right Care for You
+              </div>
+              <p className="self-stretch text-neutral-500 text-2xl font-normal leading-[33.99px]">
+                Not sure where to start? We'll help you find the perfect
+                healthcare provider.
+              </p>
+              <Button color="primary" href="/guided-doctor-finder">
+                Get Started
+              </Button>
+            </div>
+          </div>
+        </Section>
+        <Section>
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="flex-col justify-start items-start gap-6 inline-flex">
+            <div className="flex-col justify-center items-start gap-6 inline-flex">
               <HorizontalDivider />
               <div className="self-stretch text-zinc-900 text-[52px] font-medium leading-[56px]">
                 {c_locationHero.title}
@@ -220,108 +251,9 @@ const Home = ({ document }: TemplateRenderProps) => {
             )}
           </div>
         </Section>
-        <Section>
-          <div className="py-8 bg-zinc-100 flex-col justify-center items-center gap-12 inline-flex">
-            <div className="self-stretch h-14 flex-col justify-start items-start gap-6 flex">
-              <div className="self-stretch text-center text-zinc-900 text-[52px] font-medium leading-[56px]">
-                Featured Stories & Topics
-              </div>
-            </div>
-            <div className="justify-start items-start gap-3 inline-flex">
-              <div className="px-4 py-2 rounded-[999px] border border-neutral-500 justify-center items-center gap-2 flex">
-                <div className="text-center text-zinc-900 text-base font-bold leading-normal">
-                  Arrhythmias
-                </div>
-              </div>
-              <div className="px-4 py-2 rounded-[999px] border border-neutral-500 justify-center items-center gap-2 flex">
-                <div className="text-center text-zinc-900 text-base font-bold leading-normal">
-                  Autism
-                </div>
-              </div>
-              <div className="px-4 py-2 rounded-[999px] border border-neutral-500 justify-center items-center gap-2 flex">
-                <div className="text-center text-zinc-900 text-base font-bold leading-normal">
-                  Breast Cancer
-                </div>
-              </div>
-              <div className="px-4 py-2 rounded-[999px] border border-neutral-500 justify-center items-center gap-2 flex">
-                <div className="text-center text-zinc-900 text-base font-bold leading-normal">
-                  Gynecology
-                </div>
-              </div>
-              <div className="px-4 py-2 rounded-[999px] border border-neutral-500 justify-center items-center gap-2 flex">
-                <div className="text-center text-zinc-900 text-base font-bold leading-normal">
-                  Primary Care
-                </div>
-              </div>
-              <div className="px-4 py-2 rounded-[999px] border border-neutral-500 justify-center items-center gap-2 flex">
-                <div className="text-center text-zinc-900 text-base font-bold leading-normal">
-                  Pediatric Cancer
-                </div>
-              </div>
-            </div>
-            <div className="w-[1110px] justify-start items-start gap-12 inline-flex">
-              <div className="grow shrink basis-0 self-stretch flex-col justify-start items-start inline-flex">
-                <img
-                  className="self-stretch h-[262px]"
-                  src="https://via.placeholder.com/338x262"
-                />
-                <div className="self-stretch grow shrink basis-0 p-6 flex-col justify-start items-start gap-2.5 flex">
-                  <div className="self-stretch grow shrink basis-0 flex-col justify-start items-start gap-6 flex">
-                    <div className="self-stretch grow shrink basis-0 text-zinc-900 text-2xl font-normal leading-[33.99px]">
-                      New Research: Benefits of Exercise for Health
-                    </div>
-                    <div className="w-[99px] pb-2 justify-start items-start gap-3 inline-flex">
-                      <div className="grow shrink basis-0 text-zinc-900 text-base font-bold leading-normal">
-                        See More
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="grow shrink basis-0 self-stretch flex-col justify-start items-start inline-flex">
-                <img
-                  className="self-stretch h-[262px]"
-                  src="https://via.placeholder.com/338x262"
-                />
-                <div className="self-stretch h-[202px] p-6 flex-col justify-start items-start gap-2.5 flex">
-                  <div className="self-stretch grow shrink basis-0 flex-col justify-start items-start gap-6 flex">
-                    <div className="self-stretch grow shrink basis-0 text-zinc-900 text-2xl font-normal leading-[33.99px]">
-                      Uncovering the Latest Advances in Medical Care
-                    </div>
-                    <div className="w-[99px] pb-2 justify-start items-start gap-3 inline-flex">
-                      <div className="grow shrink basis-0 text-zinc-900 text-base font-bold leading-normal">
-                        See More
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="grow shrink basis-0 self-stretch flex-col justify-start items-start inline-flex">
-                <img
-                  className="self-stretch h-[262px]"
-                  src="https://via.placeholder.com/338x262"
-                />
-                <div className="self-stretch h-[202px] p-6 flex-col justify-start items-start gap-2.5 flex">
-                  <div className="self-stretch grow shrink basis-0 flex-col justify-start items-start gap-6 flex">
-                    <div className="self-stretch grow shrink basis-0 text-zinc-900 text-2xl font-normal leading-[33.99px]">
-                      How to Improve Your Wellbeing with Diet and Exercise
-                    </div>
-                    <div className="w-[99px] pb-2 justify-start items-start gap-3 inline-flex">
-                      <div className="grow shrink basis-0 text-zinc-900 text-base font-bold leading-normal">
-                        See More
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="px-8 py-4 bg-green-700 rounded-[999px] justify-center items-center gap-2 inline-flex">
-              <div className="text-center text-white text-base font-bold leading-normal">
-                Explore More
-              </div>
-            </div>
-          </div>
-        </Section>
+        {/* <Section>
+          <FeaturedBlogs blogs={c_featuredBlogs.blogs} />
+        </Section> */}
       </div>
     </PageLayout>
   );

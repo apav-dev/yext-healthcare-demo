@@ -1,3 +1,4 @@
+import RTF from "./RTFV1";
 import BodyText from "./atoms/BodyText";
 import VStack from "./atoms/VStack";
 
@@ -17,7 +18,8 @@ export default function Faqs({ faqs }: FaqsProps) {
           return (
             <VStack key={idx} classname="gap-y-6">
               <BodyText weight="Bold" text={faq.question as string} />
-              <BodyText text={faq.answer as string} />
+              {/* <BodyText text={faq.answer as string} /> */}
+              <RTF>{faq.answer as string}</RTF>
             </VStack>
           );
         })}

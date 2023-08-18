@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
+import { renderToString } from "react-dom/server";
 import { Address, Coordinate } from "../types/autogen";
-import { useLocatorContext } from "./DoctorLocator";
-import useWindowSize from "../hooks/useWindowSize";
+import { HealthPro } from "./search/DoctorSearchCard";
+import DoctorMapCard from "./search/DoctorMapCard";
+import DoctorPopover from "./DoctorPopover";
 
 export interface MapLocation {
   id: string;
@@ -10,11 +12,7 @@ export interface MapLocation {
 }
 
 export interface AppleMapProps {
-  locations?: {
-    id: string;
-    address?: Address;
-    geocodedCoordinate?: Coordinate;
-  }[];
+  doctors?: HealthPro[];
   center?: {
     latitude: number;
     longitude: number;
@@ -23,16 +21,11 @@ export interface AppleMapProps {
   onLocationSelect?: (location: MapLocation) => void;
 }
 
-const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
+const AppleMap = ({ doctors, center, onLocationSelect }: AppleMapProps) => {
   const [map, setMap] = useState<any>();
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // const { selectedId, setSelectedId } = useLocatorContext();
-
-  const { width } = useWindowSize();
-
   useEffect(() => {
-    console.log("loading mapkit");
     const script = document.createElement("script");
 
     script.src = "https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js";
@@ -74,74 +67,91 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
   }, []);
 
   useEffect(() => {
-    console.log("locations", locations);
-    if (mapContainerRef.current && window.mapkit) {
-      if (map && locations && locations.length > 0) {
-        // const landmarkAnnotationCallout = {
-        //   calloutElementForAnnotation: (annotation) => {
-        //     // const landmark = annotationsToLandmark.get(annotation);
+    if (map && mapContainerRef.current && window.mapkit) {
+      map.removeAnnotations(map.annotations);
+      if (doctors && doctors.length > 0) {
+        // Offset between the callout and the associated annotation marker
+        // const offset = new DOMPoint(-148, -78);
 
-        //     const div = document.createElement("div");
-        //     div.className = "landmark";
+        const markers = doctors?.map((doctor, idx) => {
+          // Each annotation will use these functions to present a custom callout
+          const doctorAnnotationCallout = {
+            calloutElementForAnnotation: () => {
+              // Render your React component to a string
+              const renderedCard = renderToString(
+                <DoctorPopover
+                  name={doctor.name}
+                  address={doctor.address}
+                  headshot={doctor.headshot}
+                  specialty={doctor.taxonomy_relatedSpecialties?.[0].name}
+                />
+              );
 
-        //     const title = div.appendChild(document.createElement("h1"));
-        //     title.textContent = "Hello World";
+              // Create a new div and set its innerHTML to the rendered string
+              const div = document.createElement("div");
+              div.innerHTML = renderedCard;
 
-        //     const section = div.appendChild(document.createElement("section"));
+              // Return the div containing the rendered React component
+              return div;
+            },
+          };
 
-        //     return div;
-        //   },
-
-        //   // calloutAnchorOffsetForAnnotation: (annotation, element) => offset,
-
-        //   // calloutAppearanceAnimationForAnnotation: (annotation) =>
-        //   //   ".4s cubic-bezier(0.4, 0, 0, 1.5) " +
-        //   //   "0s 1 normal scale-and-fadein",
-        // };
-        const markers = locations?.map((location, idx) => {
           const marker = new window.mapkit.MarkerAnnotation(
             new window.mapkit.Coordinate(
-              location.geocodedCoordinate?.latitude,
-              location.geocodedCoordinate?.longitude
+              doctor.geocodedCoordinate?.latitude,
+              doctor.geocodedCoordinate?.longitude
             ),
             {
               glyphText: "●",
               glyphColor: "#ffffff",
               color: "#4F6A4E",
-              // callout: landmarkAnnotationCallout,
+              callout: doctorAnnotationCallout,
             }
-            // {
-            //   title: "test",
-            // }
           );
 
-          if (idx === 0 && width && width < 1024) {
-            marker.selected = true;
-          }
-
-          // marker.addEventListener(
-          //   "click",
-          //   (event: any) => {
-          //     handleLocationSelect(event.target);
-          //   },
-          //   location
-          // );
+          marker.addEventListener("select", handleLocationSelect, doctor);
 
           return marker;
         });
 
         map.showItems(markers);
-        map.setCenterAnimated(
-          new window.mapkit.Coordinate(
-            locations[0].geocodedCoordinate?.latitude,
-            locations[0].geocodedCoordinate?.longitude
-          ),
-          false
-        );
+
+        if (!center) {
+          const initialCenter = findCenter();
+          map.setCenterAnimated(
+            new window.mapkit.Coordinate(
+              initialCenter.latitude,
+              initialCenter.longitude
+            ),
+            false
+          );
+        }
       }
     }
   }),
-    [locations];
+    [doctors];
+
+  const findCenter = () => {
+    if (doctors && doctors.length > 0) {
+      const minLat = Math.min(
+        ...doctors.map((location) => location.geocodedCoordinate?.latitude)
+      );
+      const maxLat = Math.max(
+        ...doctors.map((location) => location.geocodedCoordinate?.latitude)
+      );
+      const minLng = Math.min(
+        ...doctors.map((location) => location.geocodedCoordinate?.longitude)
+      );
+      const maxLng = Math.max(
+        ...doctors.map((location) => location.geocodedCoordinate?.longitude)
+      );
+
+      return {
+        latitude: (minLat + maxLat) / 2,
+        longitude: (minLng + maxLng) / 2,
+      };
+    }
+  };
 
   // useEffect(() => {
   //   if (center && map) {
@@ -151,15 +161,16 @@ const AppleMap = ({ locations, center, onLocationSelect }: AppleMapProps) => {
   //   }
   // }, [center]);
 
-  const handleLocationSelect = (target: any) => {
-    const location = target._listeners.select?.[0].thisObject;
-    console.log("handleLocationSelect", location);
-    // if (location) {
-    //   setSelectedId(location.id);
-    // }
+  const handleLocationSelect = (r: any) => {
+    const location = r.target._listeners.select[0].thisObject;
+    if (location) {
+      onLocationSelect?.(location);
+    }
   };
 
   return <div ref={mapContainerRef} className={"w-full h-full"} />;
 };
 
-export default AppleMap;
+const AppleMapMemoized = memo(AppleMap);
+
+export default AppleMapMemoized;
