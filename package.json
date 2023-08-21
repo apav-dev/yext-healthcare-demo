@@ -9,7 +9,8 @@
     "dev": "yext pages build && yext pages generate-test-data && pages dev",
     "prod": "pages prod",
     "features": "pages generate features",
-    "ci": "pages generate ci"
+    "ci": "pages generate ci",
+    "studio": "studio"
   },
   "engines": {
     "node": "18"
@@ -45,9 +46,9 @@
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "@vitejs/plugin-react": "^3.1.0",
-    "@yext/pages": "^1.0.0-beta.26",
-    "@yext/studio": "^0.15.0",
-    "@yext/studio-plugin": "^0.15.0",
+    "@yext/pages": "1.0.0-beta.26",
+    "@yext/studio": "^0.18.0",
+    "@yext/studio-plugin": "^0.18.0",
     "autoprefixer": "^10.4.8",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.7",

@@ -1,4 +1,4 @@
-import { ComplexImageType, Image } from "@yext/pages/components";
+import { Image } from "@yext/sites-components";
 import HStack from "./atoms/HStack";
 import VStack from "./atoms/VStack";
 import HeadingText from "./atoms/HeadingText";
@@ -14,11 +14,18 @@ import StarIcon from "./Icons/StarIcon";
 import HorizontalDivider from "./HoriztontalDivider";
 import CalendarIcon from "./Icons/CalendarIcon";
 
+type ImageType = {
+  alternateText?: string;
+  height: number;
+  width: number;
+  url: string;
+};
+
 export interface DoctorCardProps {
   name?: string;
   specialtyName?: string;
   specialtySlug?: string;
-  headshot?: ComplexImageType;
+  headshot?: ImageType;
   rating?: number;
   containerClassname?: string;
   address: Address;
@@ -56,19 +63,19 @@ export default function DoctorCard({
             width={210}
           />
         )}
-        <div className="rounded-[999px] justify-start items-start gap-2 inline-flex">
+        <div className="rounded-full justify-start items-start gap-2 inline-flex">
           <div className="w-6 h-6 px-[3px] py-1 justify-center items-center flex">
             <div className="text-center text-amber-400 text-base font-black">
               <StarIcon />
             </div>
           </div>
-          <div className="w-[41px] text-zinc-900 text-xl font-bold">4.5</div>
+          <div className="text-zinc-900 text-xl font-bold">4.5</div>
         </div>
       </div>
       <div className="grow shrink basis-0 flex-col justify-start items-start gap-6 inline-flex">
         <div className="self-stretch justify-start items-start gap-4 inline-flex">
           <div className="grow shrink basis-0 flex-col justify-start items-start gap-4 inline-flex">
-            <div className="self-stretch h-[84px] flex-col justify-start items-start gap-4 flex">
+            <div className="self-stretch flex-col justify-start items-start gap-4 flex">
               {/* <div className="w-[88px] h-3 bg-green-700"></div>
                */}
               <HorizontalDivider />
@@ -76,15 +83,20 @@ export default function DoctorCard({
                 {name}
               </div>
             </div>
-            <div className="self-stretch h-[104px] flex-col justify-start items-start gap-4 flex">
+            <div className="self-stretch flex-col justify-start items-start gap-4 flex">
               <div className="self-stretch rounded-[999px] justify-start items-start gap-2 inline-flex">
-                <div className="w-6 h-6 p-1 justify-center items-center flex">
+                <div className="p-1 justify-center items-center flex">
                   <div className="text-center text-neutral-500 text-base font-light">
                     <SpecialtyIcon />
                   </div>
                 </div>
                 <div className="text-zinc-900 text-xl font-normal">
-                  <a href={`/${specialtySlug}`} className="hover:text-green-700">{specialtyName}</a>
+                  <a
+                    href={`/${specialtySlug}`}
+                    className="hover:text-green-700"
+                  >
+                    {specialtyName}
+                  </a>
                 </div>
               </div>
               <div className="self-stretch rounded-[999px] justify-start items-start gap-2 inline-flex">

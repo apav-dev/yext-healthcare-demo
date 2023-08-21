@@ -76,6 +76,13 @@ const queryClient = new QueryClient();
 const HealthPro: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
+  const educationInfo = document.educationList?.map(
+    (education) => education.institutionName
+  );
+
+  const relatedFacilityInfo = document.c_relatedHealthcareFacilities?.map(
+    (facility) => facility.name
+  );
   return (
     <QueryClientProvider client={queryClient}>
       <PageLayout
@@ -107,9 +114,9 @@ const HealthPro: Template<TemplateRenderProps> = ({
                   // address: document.address,
                   geocodedCoordinate: document.yextDisplayCoordinate,
                 },
-                ...(document.c_alsoLocatedAt?.map((location) => ({
-                  geocodedCoordinate: location.yextDisplayCoordinate,
-                })) ?? []),
+                // ...(document.c_alsoLocatedAt?.map((location) => ({
+                //   geocodedCoordinate: location.yextDisplayCoordinate,
+                // })) ?? []),
               ]}
             />
           </ResponsiveStack>
@@ -138,9 +145,7 @@ const HealthPro: Template<TemplateRenderProps> = ({
                 {
                   icon: "school",
                   name: "Education",
-                  details: document.educationList?.map(
-                    (education) => education.institutionName
-                  ),
+                  details: educationInfo,
                 },
                 {
                   icon: "file-certificate",
@@ -150,9 +155,7 @@ const HealthPro: Template<TemplateRenderProps> = ({
                 {
                   icon: "hospital",
                   name: "Practice Names",
-                  details: document.c_relatedHealthcareFacilities?.map(
-                    (facility) => facility.name
-                  ),
+                  details: relatedFacilityInfo,
                 },
                 {
                   icon: "stethoscope",

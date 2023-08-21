@@ -31,7 +31,7 @@ const ResponsiveStack = ({
 // gap,
 ResponsiveStackProps) => {
   return (
-    <div className={twMerge(`flex flex-col sm:flex-row`, className)}>
+    <div className={twMerge(`flex flex-col lg:flex-row`, className)}>
       {children}
     </div>
   );
