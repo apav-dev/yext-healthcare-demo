@@ -1,11 +1,16 @@
 import { twMerge } from "tailwind-merge";
-import { Color, textColorMap } from "../../types/tailwind";
+import {
+  Color,
+  textColorMap,
+  TextSize,
+  tailwindTextSize,
+} from "../../types/tailwind";
 export interface BodyTextProps {
   text: string;
   weight?: "Regular" | "Bold";
   color?: Color;
   className?: string;
-  size?: "sm" | "base";
+  size?: TextSize;
 }
 
 export const initialProps: BodyTextProps = {
@@ -23,13 +28,14 @@ export default function BodyText({
   size,
 }: BodyTextProps) {
   const textColor = textColorMap[color ?? "dark-gray"];
+  const textSize = tailwindTextSize[size ?? "base"];
 
   return (
     <p
       className={twMerge(
         `text-base ${textColor} ${
           weight === "Bold" ? "font-bold" : "font-regular"
-        } ${size ? "text-sm" : "text-base"}`,
+        } ${textSize}`,
         className
       )}
     >

@@ -24,6 +24,17 @@ import Faqs from "../components/Faqs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { HealthPro as HealthProType } from "../components/search/DoctorSearchCard";
+import HorizontalDivider from "../components/HoriztontalDivider";
+import LocationPinIcon from "../components/Icons/LocationPinIcon";
+import PhoneIcon from "../components/Icons/PhoneIcon";
+import SpecialtyIcon from "../components/Icons/SpecialtyIcon";
+import HStack from "../components/atoms/HStack";
+import Image from "../components/atoms/Image";
+import HeadingText from "../components/atoms/HeadingText";
+import VStack from "../components/atoms/VStack";
+import Button from "../components/atoms/Button";
+import StarIcon from "../components/Icons/StarIcon";
+import CalendarIcon from "../components/Icons/CalendarIcon";
 
 export const config: TemplateConfig = {
   stream: {
@@ -99,15 +110,54 @@ const HealthPro: Template<TemplateRenderProps> = ({
         />
         <Section backgroundColor="bg-stone-50">
           <ResponsiveStack className="gap-x-6">
-            <DoctorCard
-              headshot={document.headshot}
-              name={document.name}
-              specialtyName={document.taxonomy_relatedSpecialties?.[0].name}
-              specialtySlug={document.taxonomy_relatedSpecialties?.[0].slug}
-              rating={4.5}
-              address={document.address}
-              // containerClassname="pr-6"
-            />
+            <HStack classname="justify-start items-center gap-8">
+              <VStack classname="justify-start items-center gap-4">
+                <Image img={document.headshot} />
+                <HStack classname="justify-center items-center gap-2">
+                  <StarIcon />
+                  <BodyText
+                    text="4.5"
+                    color="dark-gray"
+                    size="xl"
+                    weight="Bold"
+                  />
+                </HStack>
+              </VStack>
+              <VStack classname="justify-start items-start gap-6">
+                <HorizontalDivider />
+                <HeadingText
+                  level="Heading 2"
+                  classname="text-zinc-900 text-[52px] font-medium leading-[56px]"
+                  text={document.name}
+                />
+                <HStack classname="items-center gap-2">
+                  <SpecialtyIcon />
+                  <BodyText
+                    text={document.taxonomy_relatedSpecialties?.[0].name}
+                    size="xl"
+                  />
+                </HStack>
+                <HStack classname="items-center gap-2">
+                  <PhoneIcon />
+                  <BodyText text="212 - 212 - 3000" size="xl" />
+                </HStack>
+                <HStack classname="items-center gap-2">
+                  <LocationPinIcon />
+                  <BodyText
+                    text={`${document.address.line1}, ${document.address.city}, ${document.address.region}, ${document.address.postalCode}`}
+                    size="xl"
+                  />
+                </HStack>
+                <Button type="primary">
+                  <CalendarIcon />
+                  <BodyText
+                    color="white"
+                    size="base"
+                    text="Schedule an Appointment"
+                  />
+                </Button>
+              </VStack>
+            </HStack>
             <DoctorMiniMap
               locations={[
                 {
