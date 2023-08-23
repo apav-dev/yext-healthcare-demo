@@ -35,6 +35,7 @@ import VStack from "../components/atoms/VStack";
 import Button from "../components/atoms/Button";
 import StarIcon from "../components/Icons/StarIcon";
 import CalendarIcon from "../components/Icons/CalendarIcon";
+import StudioMap from "../components/StudioMap";
 
 export const config: TemplateConfig = {
   stream: {
@@ -109,8 +110,8 @@ const HealthPro: Template<TemplateRenderProps> = ({
           ]}
         />
         <Section backgroundColor="bg-stone-50">
-          <ResponsiveStack className="gap-x-6">
-            <HStack classname="justify-start items-center gap-8">
+          <ResponsiveStack className="gap-y-6 lg:gap-x-6">
+            <HStack classname="justify-start items-center gap-8 basis-2/3">
               <VStack classname="justify-start items-center gap-4">
                 <Image img={document.headshot} />
                 <HStack classname="justify-center items-center gap-2">
@@ -158,17 +159,7 @@ const HealthPro: Template<TemplateRenderProps> = ({
                 </Button>
               </VStack>
             </HStack>
-            <DoctorMiniMap
-              locations={[
-                {
-                  // address: document.address,
-                  geocodedCoordinate: document.yextDisplayCoordinate,
-                },
-                // ...(document.c_alsoLocatedAt?.map((location) => ({
-                //   geocodedCoordinate: location.yextDisplayCoordinate,
-                // })) ?? []),
-              ]}
-            />
+            <StudioMap coordinate={document.yextDisplayCoordinate} />
           </ResponsiveStack>
         </Section>
         <Section title="Availability">
