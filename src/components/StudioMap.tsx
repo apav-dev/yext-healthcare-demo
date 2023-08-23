@@ -1,4 +1,4 @@
-import { LocationMap } from "@yext/pages/components";
+import { LocationMap } from "@yext/sites-components";
 // import { Coordinate } from "../types/autogen";
 import { GoogleMaps } from "@yext/components-tsx-maps";
 
@@ -37,8 +37,8 @@ export default function StudioMap({ coordinate }: StudioMapProps) {
       className="w-full basis-1/3 drop-shadow-lg"
       clientKey="gme-yextinc"
       coordinate={coordinate}
-      provider={GoogleMaps}
       singleZoom={15}
+      providerOptions={GoogleMaps}
     >
       {mappinSVG}
     </LocationMap>
