@@ -87,6 +87,22 @@ const DoctorFilterSearch = ({
                   entityType: "healthcareProfessional",
                 },
                 {
+                  fieldApiName: "taxonomy_relatedSpecialties.taxonomy_relatedConditions.name",
+                  entityType: "healthcareProfessional",
+                },
+                {
+                  fieldApiName: "taxonomy_relatedSpecialties.taxonomy_relatedProcedures.name",
+                  entityType: "healthcareProfessional",
+                },
+                {
+                  fieldApiName: "taxonomy_relatedSpecialties.taxonomy_relatedReasonsForVisit.name",
+                  entityType: "healthcareProfessional",
+                },
+                {
+                  fieldApiName: "taxonomy_relatedSpecialties.taxonomy_subspecialties.name",
+                  entityType: "healthcareProfessional",
+                },
+                {
                   fieldApiName: "name",
                   entityType: "healthcareProfessional",
                 },
