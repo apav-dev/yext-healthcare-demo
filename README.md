@@ -1,6 +1,6 @@
 # Yext Studio Starter
 
-## What is Studio?
+## What is Studio? 
 
 Studio is a tool that lets Admins and Developers alike build React Applications with ease. For now, we're focused on Applications corresponding to a Site. But, that may change in the future. It provides a no-code, visual editor that allows users to add and remove Components to pages, and configure Components on a page. 
 
