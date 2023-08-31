@@ -1,4 +1,4 @@
-import { Image } from "@yext/pages/components";
+import { Image } from "@yext/sites-components";
 import GridContainer from "./atoms/GridContainer";
 import BodyText from "./atoms/BodyText";
 import HStack from "./atoms/HStack";

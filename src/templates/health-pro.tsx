@@ -11,7 +11,6 @@ import AppointmentGrid from "../components/AppointmentGrid";
 import DoctorBackground from "../components/DoctorBackground";
 import DoctorCard from "../components/DoctorCard";
 import Faqs from "../components/Faqs";
-import Insurances from "../components/Insurances";
 import StaticMap from "../components/StaticMap";
 import StudioLayout from "../components/StudioLayout";
 import StudioReviews from "../components/StudioReviews";
