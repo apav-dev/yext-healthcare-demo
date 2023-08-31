@@ -4,6 +4,7 @@ import Header from "./Header";
 import { provideHeadless } from "@yext/search-headless-react";
 import SearchHeadlessProvider from "./search/SearchHeadlessProvider";
 import { defaultRouter } from "../routing";
+import { __YEXT_PUBLIC_SEARCH_API_KEY__ } from "../../studio.config.js";
 
 export interface LayoutProps {
   children?: React.ReactNode;
@@ -12,7 +13,7 @@ export interface LayoutProps {
 }
 
 const searcher = provideHeadless({
-  apiKey: import.meta.env.__YEXT_PUBLIC_SEARCH_API_KEY__,
+  apiKey: __YEXT_PUBLIC_SEARCH_API_KEY__,
   experienceKey: "find-a-doc-specialties",
   locale: "en",
   verticalKey: "healthcare_professionals",
