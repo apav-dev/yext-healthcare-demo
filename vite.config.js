@@ -3,6 +3,9 @@ import react from "@vitejs/plugin-react";
 import yextSSG from "@yext/pages/vite-plugin";
 
 export default defineConfig(({ command, mode }) => {
+  console.log("dang");
+  console.log(process.env.YEXT_PUBLIC_SEARCH_API_KEY);
+  console.log("pang");
   return {
     define: {
       __YEXT_PUBLIC_SEARCH_API_KEY__: JSON.stringify(process.env.YEXT_PUBLIC_SEARCH_API_KEY),
