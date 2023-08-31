@@ -1,4 +1,4 @@
-import { ComplexImageType, Image } from "@yext/pages/components";
+import { ComplexImageType, Image } from "@yext/sites-components";
 import VStack from "../atoms/VStack";
 import HStack from "../atoms/HStack";
 import HeadingText from "../atoms/HeadingText";
