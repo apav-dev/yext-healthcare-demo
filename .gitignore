@@ -6,7 +6,7 @@ dist/
 sites-config/features.json
 functions/functionMetadata.json
 *.local
-local_data
+localData
 
 .DS_Store
 

@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { Address, Coordinate } from "../types/autogen";
+import { AddressType, Coordinate } from "../types/autogen";
 import { useLocatorContext } from "./DoctorLocator";
 import useWindowSize from "../hooks/useWindowSize";
 
 export interface MapLocation {
   id: string;
-  address?: Address;
+  address?: AddressType;
   geocodedCoordinate?: Coordinate;
 }
 
 export interface AppleMapProps {
   locations?: {
     id: string;
-    address?: Address;
+    address?: AddressType;
     geocodedCoordinate?: Coordinate;
   }[];
   center?: {
