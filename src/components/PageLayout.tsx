@@ -12,7 +12,7 @@ export interface LayoutProps {
 }
 
 const searcher = provideHeadless({
-  apiKey: __YEXT_PUBLIC_SEARCH_API_KEY__,
+  apiKey: import.meta.env.__YEXT_PUBLIC_SEARCH_API_KEY__,
   experienceKey: "find-a-doc-specialties",
   locale: "en",
   verticalKey: "healthcare_professionals",
