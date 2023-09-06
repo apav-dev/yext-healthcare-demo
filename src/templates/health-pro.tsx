@@ -10,15 +10,13 @@ import {
 import "../index.css";
 import PageLayout from "../components/PageLayout";
 import ResponsiveStack from "../components/atoms/ResponsiveStack";
-import DoctorCard from "../components/DoctorCard";
 import Section from "../components/atoms/Section";
-import DoctorMiniMap from "../components/DoctorMiniMap";
 import AppointmentGrid from "../components/AppointmentGrid";
 import BodyText from "../components/atoms/BodyText";
 import Insurances from "../components/Insurances";
 import DoctorBackground from "../components/DoctorBackground";
-import { ScrollableContainer } from "../components/ScrollingContainer";
-import { ScrollableSection } from "../components/atoms/ScrollableSection";
+import ScrollableContainer from "../components/ScrollingContainer";
+import ScrollableSection from "../components/atoms/ScrollableSection";
 import Reviews from "../components/Reviews";
 import Faqs from "../components/Faqs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -36,6 +34,7 @@ import Button from "../components/atoms/Button";
 import StarIcon from "../components/Icons/StarIcon";
 import CalendarIcon from "../components/Icons/CalendarIcon";
 import StudioMap from "../components/StudioMap";
+import ProviderContent from "../components/ProviderContent";
 
 export const config: TemplateConfig = {
   stream: {
@@ -83,8 +82,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   };
 };
 
-const queryClient = new QueryClient();
-
 const HealthPro: Template<TemplateRenderProps> = ({
   document,
 }: TemplateProps) => {
@@ -96,77 +93,84 @@ const HealthPro: Template<TemplateRenderProps> = ({
     (facility) => facility.name
   );
   return (
-    <QueryClientProvider client={queryClient}>
-      <PageLayout
-        featuredLocations={document._site.c_featuredLocations}
-        featuredSpecialties={document._site.c_featuredSpecialties}
-        containerClassName="pt-32"
-      >
-        <Breadcrumbs
-          breadcrumbs={[
-            { label: "Home", link: "/" },
-            { label: "Healthcare Providers", link: "#" },
-            { label: document.name },
-          ]}
-        />
-        <Section backgroundColor="bg-stone-50">
-          <ResponsiveStack className="gap-y-6 lg:gap-x-6">
-            <HStack classname="justify-start items-center gap-8 basis-2/3">
-              <VStack classname="justify-start items-center gap-4">
-                <Image img={document.headshot} />
-                <HStack classname="justify-center items-center gap-2">
-                  <StarIcon />
-                  <BodyText
-                    text="4.5"
-                    color="dark-gray"
-                    size="xl"
-                    weight="Bold"
-                  />
-                </HStack>
-              </VStack>
-              <VStack classname="justify-start items-start gap-6">
-                <HorizontalDivider />
-                <HeadingText
-                  level="Heading 2"
-                  classname="text-zinc-900 text-[52px] font-medium leading-[56px]"
-                  text={document.name}
+    <PageLayout
+      featuredLocations={document._site.c_featuredLocations}
+      featuredSpecialties={document._site.c_featuredSpecialties}
+      containerClassName="pt-32"
+    >
+      <Breadcrumbs
+        breadcrumbs={[
+          { label: "Home", link: "/" },
+          { label: "Healthcare Providers", link: "#" },
+          { label: document.name },
+        ]}
+      />
+      <Section backgroundColor="bg-stone-50">
+        <ResponsiveStack className="gap-y-6 lg:gap-x-6">
+          <HStack classname="justify-start items-center gap-8 basis-2/3">
+            <VStack classname="justify-start items-center gap-4">
+              <Image img={document.headshot} />
+              <HStack classname="justify-center items-center gap-2">
+                <StarIcon />
+                <BodyText
+                  text="4.5"
+                  color="dark-gray"
+                  size="xl"
+                  weight="Bold"
                 />
-                <HStack classname="items-center gap-2">
-                  <SpecialtyIcon />
-                  <BodyText
-                    text={document.taxonomy_relatedSpecialties?.[0].name}
-                    size="xl"
-                  />
-                </HStack>
-                <HStack classname="items-center gap-2">
-                  <PhoneIcon />
-                  <BodyText text="212 - 212 - 3000" size="xl" />
-                </HStack>
-                <HStack classname="items-center gap-2">
-                  <LocationPinIcon />
-                  <BodyText
-                    text={`${document.address.line1}, ${document.address.city}, ${document.address.region}, ${document.address.postalCode}`}
-                    size="xl"
-                  />
-                </HStack>
-                <Button type="primary">
-                  <CalendarIcon />
-                  <BodyText
-                    color="white"
-                    size="base"
-                    text="Schedule an Appointment"
-                  />
-                </Button>
-              </VStack>
-            </HStack>
-            <StudioMap coordinate={document.yextDisplayCoordinate} />
-          </ResponsiveStack>
-        </Section>
-        <Section title="Availability">
-          <AppointmentGrid />
-        </Section>
+              </HStack>
+            </VStack>
+            <VStack classname="justify-start items-start gap-6">
+              <HorizontalDivider />
+              <HeadingText
+                level="Heading 2"
+                classname="text-zinc-900 text-[52px] font-medium leading-[56px]"
+                text={document.name}
+              />
+              <HStack classname="items-center gap-2">
+                <SpecialtyIcon />
+                <BodyText
+                  text={document.taxonomy_relatedSpecialties?.[0].name}
+                  size="xl"
+                />
+              </HStack>
+              <HStack classname="items-center gap-2">
+                <PhoneIcon />
+                <BodyText text="212 - 212 - 3000" size="xl" />
+              </HStack>
+              <HStack classname="items-center gap-2">
+                <LocationPinIcon />
+                <BodyText
+                  text={`${document.address.line1}, ${document.address.city}, ${document.address.region}, ${document.address.postalCode}`}
+                  size="xl"
+                />
+              </HStack>
+              <Button type="primary">
+                <CalendarIcon />
+                <BodyText
+                  color="white"
+                  size="base"
+                  text="Schedule an Appointment"
+                />
+              </Button>
+            </VStack>
+          </HStack>
+          <StudioMap coordinate={document.yextDisplayCoordinate} />
+        </ResponsiveStack>
+      </Section>
+      <Section title="Availability">
+        <AppointmentGrid />
+      </Section>
+      <Section title="About">
+        <BodyText text={document.c_providerBio} />
+      </Section>
+    </PageLayout>
+  );
+};
 
-        <ScrollableContainer>
+export default HealthPro;
+
+/* <ScrollableContainer>
           <ScrollableSection
             title="About"
             backgroundColor="scroll-mt-[166px]"
@@ -237,10 +241,4 @@ const HealthPro: Template<TemplateRenderProps> = ({
           <ScrollableSection title="FAQs" backgroundColor="scroll-mt-[166px]">
             <Faqs faqs={document.c_faqs} />
           </ScrollableSection>
-        </ScrollableContainer>
-      </PageLayout>
-    </QueryClientProvider>
-  );
-};
-
-export default HealthPro;
+        </ScrollableContainer> */

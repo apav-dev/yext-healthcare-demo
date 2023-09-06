@@ -28,7 +28,9 @@ interface ScrollableContainerProps {
   children: ReactNode;
 }
 
-export const ScrollableContainer = ({ children }: ScrollableContainerProps) => {
+export default function ScrollableContainer({
+  children,
+}: ScrollableContainerProps) {
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const [sectionTitles, setSectionTitles] = useState<{ [key: string]: string }>(
     {}
@@ -61,4 +63,4 @@ export const ScrollableContainer = ({ children }: ScrollableContainerProps) => {
       {children}
     </ScrollableContext.Provider>
   );
-};
+}

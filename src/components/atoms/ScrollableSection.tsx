@@ -13,12 +13,12 @@ export const initialProps = {
 };
 
 // Scrollable.Section
-export const ScrollableSection = ({
+export default function ScrollableSection({
   title,
   children,
   backgroundColor,
-}: ScrollableSectionProps) => {
-  const { registerSection } = useContext(ScrollableContext)!;
+}: ScrollableSectionProps) {
+  const registerSection = useContext(ScrollableContext)!.registerSection;
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
   const id = uuid();
@@ -36,4 +36,4 @@ export const ScrollableSection = ({
       </div>
     </section>
   );
-};
+}
