@@ -76,7 +76,7 @@ export default function Layout({
                   },
                 },
               }}
-              title="Synergic Virtual Assistant"
+              title="Veridian Virtual Assistant"
             />
           </div>
         </div>
