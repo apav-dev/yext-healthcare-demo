@@ -18,6 +18,7 @@ import {
 } from "@yext/search-headless-react";
 import type { Result } from "@yext/search-headless";
 import type { Content } from "../types/docSearch/content";
+import { BsFiletypePdf } from "react-icons/bs";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return `doc-search`;
@@ -34,10 +35,10 @@ export const getHeadConfig: GetHeadConfig<
 };
 
 const docSearchHeadless = provideHeadless({
-  experienceKey: "blog-and-document-search",
+  experienceKey: "handbook-search",
   locale: "en",
   apiKey: "cecfca4dac59395a87f9f57766abd38e",
-  verticalKey: "content",
+  verticalKey: "handbooks",
   headlessId: "doc-search", // Because the whole app is wrapped ina different headless provider
 });
 
@@ -56,29 +57,35 @@ const Inner = () => {
           searchBarContainer: "my-0",
         }}
       />
-      {isLoading && (
-        // Make a nice loading state
-        <LoadingSkeleton nRows={7} />
-      )}
-      <div className="flex flex-col gap-y-2 text-base">
-        {results?.map((result, i) => {
-          console.log({ result });
-          return (
-            <div key={`result-${i}`} className="py-4">
-              <a
-                href={result.rawData?.c_file?.url ?? ""}
-                className="hover:underline"
+      {isLoading && <LoadingSkeleton nRows={7} />}
+      <div className="flex flex-col gap-y-3 text-base">
+        {!isLoading &&
+          results?.map((result, i) => {
+            return (
+              <div
+                key={`result-${i}`}
+                className="py-3 pl-3 pr-14 flex flex-row gap-x-3 rounded-lg border border-slate-200 overflow-ellipsis overflow-hidden"
               >
-                <h2 className="font-medium text-slate-700 text-base">
-                  {result.name}
-                </h2>
-              </a>
-              <p className="text-slate-600 line-clamp-3 overflow-ell">
-                {result.segment}
-              </p>
-            </div>
-          );
-        })}
+                <div className="flex-shrink-0">
+                  <BsFiletypePdf className="w-6 h-6 mt-2 text-slate-600" />
+                </div>
+                <div className="flex flex-col gap-y-1 w-full shrink-0">
+                  <a
+                    href={result.rawData?.c_file?.url ?? ""}
+                    target="_blank"
+                    className="hover:underline"
+                  >
+                    <h2 className="font-medium text-slate-700 text-base line-clamp-1 whitespace-nowrap overflow-ellipsis">
+                      {result.name}
+                    </h2>
+                  </a>
+                  <p className="text-sm text-slate-600 line-clamp-3 overflow-ellipsis overflow-hidden">
+                    {result.segment?.text}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );
