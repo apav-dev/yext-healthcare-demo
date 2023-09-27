@@ -6,10 +6,9 @@
   "type": "module",
   "license": "BSD-3-Clause",
   "scripts": {
-    "dev": "yext pages build && yext pages generate-test-data && pages dev",
+    "dev": "pages dev",
     "prod": "pages prod",
-    "features": "pages generate features",
-    "ci": "pages generate ci"
+    "build:local": "pages build"
   },
   "engines": {
     "node": "18"
@@ -26,13 +25,14 @@
     "@yext/react-components": "^0.0.6",
     "@yext/search-headless-react": "^2.3.0",
     "@yext/search-ui-react": "^1.3.0",
-    "@yext/sites-components": "^1.0.0-rc.2",
+    "@yext/sites-components": "^1.0.0-rc.4",
     "markdown-to-jsx": "^7.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.10.1",
     "react-markdown": "^8.0.7",
     "react-scrollspy-nav": "^1.3.0",
+    "remark-gfm": "^4.0.0",
     "tailwind-merge": "^1.13.2",
     "uuid": "^9.0.0"
   },
@@ -44,10 +44,9 @@
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
-    "@vitejs/plugin-react": "^3.1.0",
-    "@yext/pages": "^1.0.0-beta.26",
-    "@yext/studio": "^0.15.0",
-    "@yext/studio-plugin": "^0.15.0",
+    "@vitejs/plugin-react": "^4.0.4",
+    "@yext/pages": "^1.0.0-rc.4",
+    "@yext/studio": "^0.24.0",
     "autoprefixer": "^10.4.8",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.7",
@@ -56,6 +55,7 @@
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.8",
     "typescript": "^4.9.5",
-    "vite": "^4.1.1"
+    "vite": "^4.4.9",
+    "vite-plugin-cjs-interop": "^1.1.0"
   }
 }

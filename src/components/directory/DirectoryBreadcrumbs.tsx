@@ -1,8 +1,8 @@
 import * as React from "react";
 import { ReactNode } from "react";
 import { HomeIcon } from "@heroicons/react/20/solid";
-import { Link } from "@yext/pages/components";
-import classNames from "classnames";
+import { Link } from "@yext/sites-components";
+import clsx from "clsx";
 import { FaChevronRight } from "react-icons/fa";
 
 export interface BreadCrumbProps {
@@ -42,10 +42,7 @@ const DirectoryBreadcrumbs = (props: BreadCrumbsProps) => {
   return (
     <div className="h-14 px-20 py-4 justify-start items-start gap-4 inline-flex">
       {breadcrumbs?.length && (
-        <nav
-          className={classNames("Breadcrumbs", className)}
-          aria-label="Breadcrumb"
-        >
+        <nav className={clsx("Breadcrumbs", className)} aria-label="Breadcrumb">
           <ol className="justify-start items-start gap-3 flex">
             <Breadcrumb name={`Home`} slug={`index.html`} {...props} />
             <div className="w-5 h-5 relative">

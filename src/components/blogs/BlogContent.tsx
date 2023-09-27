@@ -1,11 +1,15 @@
-import { Markdown } from "@yext/react-components";
-import BodyText from "../atoms/BodyText";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
-export default function BlogContent({ content }) {
+interface BlogContentProps {
+  content: string;
+}
+
+export default function BlogContent({ content }: BlogContentProps) {
   return (
-    <div className="mx-auto py-8 prose lg:prose-xl">
+    <article className="mx-auto py-8 prose lg:prose-xl">
       <div className="w-[20%] h-3 bg-green-700 mb-6" />
-      <Markdown content={content} />
-    </div>
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+    </article>
   );
 }

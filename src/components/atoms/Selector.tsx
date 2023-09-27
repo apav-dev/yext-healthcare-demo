@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Select from "@radix-ui/react-select";
-import classnames from "classnames";
+import clsx from "clsx";
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -59,7 +59,7 @@ const SelectItem = React.forwardRef(
   ({ children, className, ...props }, forwardedRef) => {
     return (
       <Select.Item
-        className={classnames(
+        className={clsx(
           "text-lg font-serif-regular leading-none rounded-[3px] flex items-center h-[25px] py-8 pr-[35px] pl-[25px] relative select-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1",
           className
         )}
