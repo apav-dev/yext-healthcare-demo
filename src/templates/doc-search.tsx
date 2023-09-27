@@ -16,7 +16,7 @@ import {
   SearchHeadlessProvider,
   provideHeadless,
 } from "@yext/search-headless-react";
-import type { Result } from "@yext/search-headless-react";
+import type { Result } from "@yext/search-headless";
 import type { Content } from "../types/docSearch/content";
 
 export const getPath: GetPath<TemplateProps> = () => {
@@ -62,6 +62,7 @@ const Inner = () => {
       )}
       <div className="flex flex-col gap-y-2 text-base">
         {results?.map((result, i) => {
+          console.log({ result });
           return (
             <div key={`result-${i}`} className="py-4">
               <a
@@ -73,12 +74,7 @@ const Inner = () => {
                 </h2>
               </a>
               <p className="text-slate-600 line-clamp-3 overflow-ell">
-                {/* Give me a bunch of lorem ipsum */}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                vitae diam euismod, aliquam nisl quis, ultricies nunc. Donec
-                vitae nunc euismod, aliquam nisl quis, ultricies nunc. Donec
-                bibendum, nisl nec aliquam ultricies, nunc nisl aliquet nunc,
-                ornare aliquam nisl nunc nec nisi. Donec vitae nunc euismod,
+                {result.segment}
               </p>
             </div>
           );

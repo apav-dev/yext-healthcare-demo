@@ -23,6 +23,8 @@
     "@tanstack/react-query": "^4.32.0",
     "@yext/chat-ui-react": "^0.7.2",
     "@yext/react-components": "^0.0.6",
+    "@yext/search-core": "^2.5.0-alpha.2",
+    "@yext/search-headless": "^2.5.0-alpha.2",
     "@yext/search-headless-react": "^2.3.0",
     "@yext/search-ui-react": "^1.3.0",
     "@yext/sites-components": "^1.0.0-rc.4",
