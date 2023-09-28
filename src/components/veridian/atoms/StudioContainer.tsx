@@ -16,7 +16,7 @@ const studioContainerVariants = cva("", {
   variants: {
     layout: {
       flex: "flex flex-col lg:flex-row",
-      grid: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+      grid: "grid grid-cols-3",
       row: "flex flex-row",
       column: "flex flex-col",
     },
