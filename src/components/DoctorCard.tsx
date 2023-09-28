@@ -84,7 +84,12 @@ export default function DoctorCard({
                   </div>
                 </div>
                 <div className="text-zinc-900 text-xl font-normal">
-                  <a href={`/${specialtySlug}`} className="hover:text-green-700">{specialtyName}</a>
+                  <a
+                    href={`/${specialtySlug}`}
+                    className="hover:text-green-700"
+                  >
+                    {specialtyName}
+                  </a>
                 </div>
               </div>
               <div className="self-stretch rounded-[999px] justify-start items-start gap-2 inline-flex">

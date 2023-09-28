@@ -1,6 +1,5 @@
 import { twMerge } from "tailwind-merge";
 import BodyText from "./atoms/BodyText";
-import HeadingText from "./atoms/HeadingText";
 import Icon from "./atoms/Icon";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";

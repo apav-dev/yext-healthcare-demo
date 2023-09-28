@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { twMerge } from "tailwind-merge";
-import HeadingText from "../atoms/HeadingText";
+import HeadingText from "../../components/atoms/HeadingText";
 import { FocusedItemData, SearchBar } from "@yext/search-ui-react";
 import Icon from "../atoms/Icon";
 import { VerticalResults, provideHeadless } from "@yext/search-headless-react";

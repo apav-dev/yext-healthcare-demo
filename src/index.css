@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "KaiseiDecol-Medium";
+  src: url(./assets/fonts/KaiseiDecol-Medium);
+}
+
+@font-face {
+  font-family: "KaiseiDecol-Regular";
+  src: url(./assets/fonts/KaiseiDecol-Regular);
+}
+
+@font-face {
+  font-family: "Inter var";
+  src: url(./assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
