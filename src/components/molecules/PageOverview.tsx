@@ -2,6 +2,7 @@ import Container from "../atoms/StudioContainer";
 import Heading from "../atoms/Heading";
 import StudioImage from "../atoms/StudioImage";
 import StyledText from "../atoms/StyledText";
+import Button from "../atoms/Button";
 
 export interface PageOverviewProps {
   /**
@@ -19,6 +20,10 @@ export interface PageOverviewProps {
    * @label Body
    */
   body?: string;
+  /**
+   * @label Button Text
+   */
+  buttonText?: string;
 }
 
 export const initialProps: PageOverviewProps = {
@@ -47,6 +52,11 @@ const PageOverview = ({ image, headingText, body }: PageOverviewProps) => {
       />
       <Heading rank="1" text={headingText ?? ""} />
       <StyledText color="moss" text={body} />
+      <Button
+        className="max-w-[250px]"
+        text="Pay My Bill Online"
+        type="Primary"
+      />
     </Container>
   );
 };
