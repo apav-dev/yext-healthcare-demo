@@ -7,13 +7,13 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import "../index.css";
-import PageLayout from "../components/PageLayout";
+import PageLayout from "../PageLayout";
 import {
   SearchHeadlessProvider,
   provideHeadless,
 } from "@yext/search-headless-react";
-import UniversalSearch from "../components/UniversalSearch";
-import Breadcrumbs from "../components/Breadcrumbs";
+import UniversalSearch from "../UniversalSearch";
+import Breadcrumbs from "../Breadcrumbs";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return `search`;

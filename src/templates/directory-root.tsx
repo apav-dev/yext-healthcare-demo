@@ -1,4 +1,4 @@
-import PageLayout from "../components/PageLayout";
+import PageLayout from "../PageLayout";
 import "../index.css";
 import {
   GetPath,
@@ -9,12 +9,12 @@ import {
   TemplateProps,
 } from "@yext/pages";
 import { Home as HomeType } from "../types/autogen";
-import Section from "../components/atoms/Section";
-import PhotoHero from "../components/PhotoHero";
-import HorizontalDivider from "../components/HoriztontalDivider";
+import Section from "../atoms/Section";
+import PhotoHero from "../PhotoHero";
+import HorizontalDivider from "../HoriztontalDivider";
 import { Image } from "@yext/sites-components";
-import DirectoryRootGrid from "../components/directory/DirectoryRootGrid";
-import DoctorFilterSearch from "../components/search/DoctorFilterSearch";
+import DirectoryRootGrid from "../directory/DirectoryRootGrid";
+import DoctorFilterSearch from "../search/DoctorFilterSearch";
 
 export const config: TemplateConfig = {
   stream: {

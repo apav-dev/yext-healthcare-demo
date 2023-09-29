@@ -8,13 +8,13 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import "../index.css";
-import PageLayout from "../components/PageLayout";
-import SpecialistBanner from "../components/condition/SpecialistBanner";
-import InfoGridBanner from "../components/condition/InfoGridBanner";
-import Breadcrumbs from "../components/Breadcrumbs";
-import HeroImageFull from "../components/blogs/HeroImageFull";
-import RelatedBlogs from "../components/blogs/RelatedBlogs";
-import BlogContent from "../components/blogs/BlogContent";
+import PageLayout from "../PageLayout";
+import SpecialistBanner from "../condition/SpecialistBanner";
+import InfoGridBanner from "../condition/InfoGridBanner";
+import Breadcrumbs from "../Breadcrumbs";
+import HeroImageFull from "../blogs/HeroImageFull";
+import RelatedBlogs from "../blogs/RelatedBlogs";
+import BlogContent from "../blogs/BlogContent";
 
 export const config: TemplateConfig = {
   stream: {

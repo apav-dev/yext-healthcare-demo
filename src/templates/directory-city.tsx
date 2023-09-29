@@ -22,14 +22,13 @@ import {
 } from "@yext/pages";
 import { isProduction } from "@yext/pages/util";
 import "../index.css";
-import PageLayout from "../components/PageLayout";
-// import EditTool from "../components/EditTool";
-import Breadcrumbs from "../components/Breadcrumbs";
-import DirectoryBreadcrumbs from "../components/directory/DirectoryBreadcrumbs";
-import DirectoryCityGrid from "../components/directory/DirectoryCityGrid";
-import Section from "../components/atoms/Section";
-import PhotoHero from "../components/PhotoHero";
-import Button from "../components/facility/Button";
+import PageLayout from "../PageLayout";
+import Breadcrumbs from "../Breadcrumbs";
+import DirectoryBreadcrumbs from "../directory/DirectoryBreadcrumbs";
+import DirectoryCityGrid from "../directory/DirectoryCityGrid";
+import Section from "../atoms/Section";
+import PhotoHero from "../PhotoHero";
+import Button from "../facility/Button";
 
 export const config: TemplateConfig = {
   stream: {

@@ -1,5 +1,5 @@
 import { CTA } from "./types/autogen";
-import HorizontalDivider from "./components/HoriztontalDivider";
+import HorizontalDivider from "./HoriztontalDivider";
 
 export interface InfoCardProps {
   title: string;

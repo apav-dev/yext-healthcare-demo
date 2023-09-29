@@ -9,11 +9,11 @@ import {
 } from "@yext/pages";
 import "../index.css";
 // import Facility from "../types/autogen";
-import PageLayout from "../components/PageLayout";
+import PageLayout from "../PageLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Hero from "../components/facility/Hero";
-import FacilityContent from "../components/facility/FacilityContent";
-import Breadcrumbs from "../components/Breadcrumbs";
+import Hero from "../facility/Hero";
+import FacilityContent from "../facility/FacilityContent";
+import Breadcrumbs from "../Breadcrumbs";
 
 export const config: TemplateConfig = {
   stream: {

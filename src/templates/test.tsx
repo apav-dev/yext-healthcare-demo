@@ -1,3 +1,4 @@
+import { GetPath, TemplateProps } from "@yext/pages";
 import Main from "../components/atoms/Main";
 import Page from "../components/atoms/Page";
 import StudioContainer from "../components/atoms/StudioContainer";
@@ -8,7 +9,11 @@ import VeridianHeader from "../components/molecules/VeridianHeader";
 
 import "../index.css";
 
-const VerdianPageLayout = () => {
+export const getPath: GetPath<TemplateProps> = () => {
+  return "test";
+};
+
+export default function Test() {
   return (
     <Page>
       <VeridianHeader />
@@ -32,6 +37,4 @@ const VerdianPageLayout = () => {
       <VeridianFooter />
     </Page>
   );
-};
-
-export default VerdianPageLayout;
+}

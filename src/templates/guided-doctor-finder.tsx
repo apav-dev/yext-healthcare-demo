@@ -7,7 +7,7 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import "../index.css";
-import PageLayout from "../components/PageLayout";
+import PageLayout from "../PageLayout";
 import { FilterSearch } from "@yext/search-ui-react";
 import { useEffect, useState } from "react";
 

@@ -12,11 +12,11 @@ import {
 } from "@yext/pages";
 import { isProduction } from "@yext/pages/util";
 import "../index.css";
-import PageLayout from "../components/PageLayout";
-import DirectoryBreadcrumbs from "../components/directory/DirectoryBreadcrumbs";
-import DirectoryStateGrid from "../components/directory/DirectoryStateGrid";
-import Section from "../components/atoms/Section";
-import PhotoHero from "../components/PhotoHero";
+import PageLayout from "../PageLayout";
+import DirectoryBreadcrumbs from "../directory/DirectoryBreadcrumbs";
+import DirectoryStateGrid from "../directory/DirectoryStateGrid";
+import Section from "../atoms/Section";
+import PhotoHero from "../PhotoHero";
 
 export const config: TemplateConfig = {
   stream: {

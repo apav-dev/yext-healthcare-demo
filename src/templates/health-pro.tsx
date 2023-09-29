@@ -8,22 +8,22 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import "../index.css";
-import PageLayout from "../components/PageLayout";
-import ResponsiveStack from "../components/atoms/ResponsiveStack";
-import DoctorCard from "../components/DoctorCard";
-import Section from "../components/atoms/Section";
-import DoctorMiniMap from "../components/DoctorMiniMap";
-import AppointmentGrid from "../components/AppointmentGrid";
-import BodyText from "../components/atoms/BodyText";
-import Insurances from "../components/Insurances";
-import DoctorBackground from "../components/DoctorBackground";
-import { ScrollableContainer } from "../components/ScrollingContainer";
-import { ScrollableSection } from "../components/atoms/ScrollableSection";
-import Reviews from "../components/Reviews";
-import Faqs from "../components/Faqs";
+import PageLayout from "../PageLayout";
+import ResponsiveStack from "../atoms/ResponsiveStack";
+import DoctorCard from "../DoctorCard";
+import Section from "../atoms/Section";
+import DoctorMiniMap from "../DoctorMiniMap";
+import AppointmentGrid from "../AppointmentGrid";
+import BodyText from "../atoms/BodyText";
+import Insurances from "../Insurances";
+import DoctorBackground from "../DoctorBackground";
+import { ScrollableContainer } from "../ScrollingContainer";
+import { ScrollableSection } from "../atoms/ScrollableSection";
+import Reviews from "../Reviews";
+import Faqs from "../Faqs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Breadcrumbs from "../components/Breadcrumbs";
-import { HealthPro as HealthProType } from "../components/search/DoctorSearchCard";
+import Breadcrumbs from "../Breadcrumbs";
+import { HealthPro as HealthProType } from "../search/DoctorSearchCard";
 
 export const config: TemplateConfig = {
   stream: {

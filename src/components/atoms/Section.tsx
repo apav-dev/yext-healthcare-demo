@@ -1,34 +1,19 @@
-import { twMerge } from "tailwind-merge";
-import HeadingText from "./HeadingText";
+import { cva } from "cva";
+import { cn } from "../../utils";
+
+const sectionVariants = cva("flex flex-col pt-8 pb-1 pr-28", {
+  variants: {},
+});
 
 export interface SectionProps {
   children?: React.ReactNode;
-  containerClassname?: string;
-  backgroundColor?: string;
-  title?: string;
+  className?: string;
 }
 
-export const initialProps: SectionProps = {
-  title: "Section Title",
+const Section = ({ children, className }: SectionProps) => {
+  return (
+    <section className={cn(sectionVariants({ className }))}>{children}</section>
+  );
 };
 
-export default function Section({
-  children,
-  backgroundColor,
-  containerClassname,
-  title,
-}: SectionProps) {
-  return (
-    <section className={backgroundColor}>
-      <div
-        className={twMerge(
-          "py-12 px-20 max-w-[1440px] mx-auto flex flex-col gap-12",
-          containerClassname
-        )}
-      >
-        {title && <p className="text-zinc-900 text-2xl font-bold">{title}</p>}
-        {children}
-      </div>
-    </section>
-  );
-}
+export default Section;

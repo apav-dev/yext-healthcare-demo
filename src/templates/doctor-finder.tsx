@@ -7,8 +7,8 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import "../index.css";
-import PageLayout from "../components/PageLayout";
-import DoctorLocator from "../components/DoctorLocator";
+import PageLayout from "../PageLayout";
+import DoctorLocator from "../DoctorLocator";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return `doctor-finder`;
