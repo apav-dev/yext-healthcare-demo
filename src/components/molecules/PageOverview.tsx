@@ -6,24 +6,24 @@ import Button from "../atoms/Button";
 
 export interface PageOverviewProps {
   /**
-   * @label Image
+   * @displayName Image
    */
   image?: {
     url: string;
     alt?: string;
   };
   /**
-   * @label Heading Text
+   * @displayName Heading Text
    */
   headingText?: string;
   /**
-   * @label Body
+   * @displayName Body
    */
   body?: string;
   /**
-   * @label Button Text
+   * @displayName Button Text
    */
-  buttonText?: string;
+  ctaText?: string;
 }
 
 export const initialProps: PageOverviewProps = {
@@ -33,9 +33,15 @@ export const initialProps: PageOverviewProps = {
   },
   headingText: "Heading Text goes here",
   body: "text goes here",
+  ctaText: "Pay My Bill Online",
 };
 
-const PageOverview = ({ image, headingText, body }: PageOverviewProps) => {
+const PageOverview = ({
+  image,
+  headingText,
+  body,
+  ctaText,
+}: PageOverviewProps) => {
   return (
     <Container
       layout="column"
@@ -52,11 +58,7 @@ const PageOverview = ({ image, headingText, body }: PageOverviewProps) => {
       />
       <Heading rank="1" text={headingText ?? ""} />
       <StyledText color="moss" text={body} />
-      <Button
-        className="max-w-[250px]"
-        text="Pay My Bill Online"
-        type="Primary"
-      />
+      <Button className="max-w-[250px]" text={ctaText ?? ""} type="Primary" />
     </Container>
   );
 };

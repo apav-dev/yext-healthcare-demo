@@ -16,14 +16,25 @@ const studioContainerVariants = cva("", {
   variants: {
     layout: {
       flex: "flex flex-col lg:flex-row",
-      grid: "grid grid-cols-3",
+      grid: "grid",
       row: "flex flex-row",
       column: "flex flex-col",
+    },
+    columnCount: {
+      "1": "grid-cols-1",
+      "2": "grid-cols-2",
+      "3": "grid-cols-3",
+      "4": "grid-cols-4",
+      "5": "grid-cols-5",
+      "6": "grid-cols-6",
     },
     columnSpan: {
       "1": "col-span-1",
       "2": "col-span-2",
       "3": "col-span-3",
+      "4": "col-span-4",
+      "5": "col-span-5",
+      "6": "col-span-6",
     },
     backgroundColor: {
       white: "bg-white",
@@ -63,10 +74,15 @@ export interface StudioContainerProps {
    */
   layout?: "flex" | "grid" | "row" | "column";
   /**
+   * @displayName Column Count
+   * @tooltip Defines the number of columns the container has. NOTE: Only works with grid layout
+   */
+  columnCount?: "1" | "2" | "3" | "4" | "5" | "6";
+  /**
    * @displayName Column Span
    * @tooltip Defines the number of columns the container spans. NOTE: Only works with grid layout
    */
-  columnSpan?: "1" | "2" | "3";
+  columnSpan?: "1" | "2" | "3" | "4" | "5" | "6";
   /**
    * @displayName Padding Top
    * @tooltip Defines the padding top of the container
@@ -127,6 +143,7 @@ export interface StudioContainerProps {
 
 export const initialProps: StudioContainerProps = {
   layout: "flex",
+  columnCount: "3",
   columnSpan: "1",
   paddingTop: "0px",
   paddingBottom: "0px",
@@ -144,6 +161,7 @@ const StudioContainer = ({
   className,
   layout,
   children,
+  columnCount,
   columnSpan,
   paddingTop,
   paddingBottom,
@@ -161,6 +179,7 @@ const StudioContainer = ({
         studioContainerVariants({
           layout,
           className,
+          columnCount,
           columnSpan,
           paddingBottom,
           paddingLeft,
