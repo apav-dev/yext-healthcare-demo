@@ -61,6 +61,7 @@ const Inner = () => {
       <div className="flex flex-col gap-y-3 text-base">
         {!isLoading &&
           results?.map((result, i) => {
+            console.log({ result });
             return (
               <div
                 key={`result-${i}`}
