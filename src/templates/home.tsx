@@ -74,23 +74,24 @@ const Home = ({ document }: TemplateRenderProps) => {
 
   return (
     <PageLayout
+      headerLogoURL={document._site.c_headerLogo?.url}
       featuredLocations={document._site.c_featuredLocations}
       featuredSpecialties={document._site.c_featuredSpecialties}
     >
       <div className="pt-32">
-        <Section containerClassname="p-0">
-          <PhotoHero image={c_primaryHero.image}>
-            <div className="flex flex-col gap-4">
-              <h1 className="text-white text-center text-[84px] font-extrabold leading-[108px]">
-                {c_primaryHero.title}
-              </h1>
-              <p className="text-white text-xl font-normal">
-                {c_primaryHero.description}
-              </p>
-              <DoctorFilterSearch navigateOnSearch />
-            </div>
-          </PhotoHero>
-        </Section>
+        {/* <Section containerClassname="p-0"> */}
+        <PhotoHero image={c_primaryHero.image}>
+          <div className="flex flex-col gap-4">
+            <h1 className="text-white text-center text-[84px] font-extrabold leading-[108px]">
+              {c_primaryHero.title}
+            </h1>
+            <p className="text-white text-xl font-normal mb-6">
+              {c_primaryHero.description}
+            </p>
+            <DoctorFilterSearch navigateOnSearch />
+          </div>
+        </PhotoHero>
+        {/* </Section> */}
         <Section>
           <div className="grid grid-cols-2 w-full gap-6">
             <img
@@ -123,14 +124,9 @@ const Home = ({ document }: TemplateRenderProps) => {
                 {c_locationHero.description}
               </div>
               {c_locationHero.cta && (
-                <a
-                  className="px-8 py-4 bg-green-700 rounded-[999px] justify-center items-center gap-2 inline-flex"
-                  href={c_locationHero.cta.link}
-                >
-                  <div className="text-center text-white text-base font-bold leading-normal">
-                    {c_locationHero.cta?.label}
-                  </div>
-                </a>
+                <Button color="primary" href={c_locationHero.cta.link}>
+                  {c_locationHero.cta?.label}
+                </Button>
               )}
             </div>
             <div className="p-10 flex-col justify-center items-center gap-2.5 inline-flex">
@@ -167,14 +163,9 @@ const Home = ({ document }: TemplateRenderProps) => {
                   {c_servicesHero.description}
                 </div>
                 {c_servicesHero.cta && (
-                  <a
-                    className="px-8 py-4 bg-green-700 rounded-[999px] justify-center items-center gap-2 inline-flex"
-                    href={c_servicesHero.cta.link}
-                  >
-                    <div className="text-center text-white text-base font-bold leading-normal">
-                      {c_servicesHero.cta?.label}
-                    </div>
-                  </a>
+                  <Button color="primary" href={c_servicesHero.cta.link}>
+                    {c_servicesHero.cta?.label}
+                  </Button>
                 )}
               </div>
             </div>
@@ -227,11 +218,14 @@ const Home = ({ document }: TemplateRenderProps) => {
             </div>
             <div className="grid grid-cols-3 w-full gap-x-[98px] gap-y-4">
               {c_featuredDirectory.directory.map((item) => (
-                <div className="self-stretch justify-start items-center gap-[98px] inline-flex">
-                  <div className="grow shrink basis-0 h-[50px] pb-4 border-b border-stone-300 justify-start items-end gap-4 flex">
-                    <div className="grow shrink basis-0 text-zinc-900 text-2xl font-medium underline leading-[33.99px]">
+                <div className="self-stretch justify-start items-center gap-[98px] inline-flex min-h-fit">
+                  <div className="grow shrink basis-0 pb-4 border-b border-stone-300 justify-start items-end gap-4 flex min-h-fit">
+                    <a
+                      href={`/${item.slug}`}
+                      className="grow shrink basis-0 text-zinc-900 text-2xl font-medium underline leading-[33.99px]"
+                    >
                       {item.name}
-                    </div>
+                    </a>
                     <div className="text-center text-green-700 text-base font-light">
                       +
                     </div>
@@ -240,14 +234,9 @@ const Home = ({ document }: TemplateRenderProps) => {
               ))}
             </div>
             {c_featuredDirectory.cta && (
-              <a
-                className="px-8 py-4 bg-green-700 rounded-[999px] justify-center items-center gap-2 inline-flex"
-                href={c_featuredDirectory.cta.link}
-              >
-                <div className="text-center text-white text-base font-bold leading-normal">
-                  {c_featuredDirectory.cta.label}
-                </div>
-              </a>
+              <Button color="primary" href={c_featuredDirectory.cta.link}>
+                {c_featuredDirectory.cta?.label}
+              </Button>
             )}
           </div>
         </Section>

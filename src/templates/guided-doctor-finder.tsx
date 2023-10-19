@@ -46,8 +46,9 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
 
   return (
     <PageLayout
-      featuredLocations={document._site.c_featuredLocations}
-      featuredSpecialties={document._site.c_featuredSpecialties}
+    headerLogoURL={document._site.c_headerLogo?.url}
+    featuredLocations={document._site.c_featuredLocations}
+    featuredSpecialties={document._site.c_featuredSpecialties}
     >
       <section className="flex flex-col pt-32">
         {currentStep === 1 && (

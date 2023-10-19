@@ -9,6 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        "cta-green": "#176456",
+        "primary-green": "#448539",
+        "light-green": "#EDF0EB",
+      },
       fontSize: {
         "text-100": ["13px", "23.994px"],
         "text-500": ["52px", "56px"],

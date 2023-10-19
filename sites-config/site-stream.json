@@ -13,7 +13,8 @@
     "c_featuredArticles.name",
     "c_featuredArticles.id",
     "c_featuredArticles.photoGallery",
-    "c_featuredArticles.slug"
+    "c_featuredArticles.slug",
+    "c_headerLogo"
   ],
   "localization": {
     "locales": ["en"],

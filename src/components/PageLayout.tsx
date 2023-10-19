@@ -17,6 +17,7 @@ export interface LayoutProps {
   children?: React.ReactNode;
   backgroundColor?: HexColor;
   locator?: boolean;
+  headerLogoURL?: string;
   featuredLocations?: {
     name: string;
     address: Address;
@@ -45,6 +46,7 @@ export default function Layout({
   children,
   backgroundColor,
   locator,
+  headerLogoURL,
   featuredLocations,
   featuredSpecialties,
   containerClassName,
@@ -57,6 +59,7 @@ export default function Layout({
           style={{ backgroundColor }}
         >
           <Header
+            headerLogoURL={headerLogoURL}
             locations={featuredLocations}
             specialties={featuredSpecialties}
             locator={locator}
@@ -67,9 +70,9 @@ export default function Layout({
             <ChatPopUp
               customCssClasses={{
                 headerCssClasses: {
-                  container: "bg-gradient-to-tr from-green-600 to-green-800",
+                  container: "bg-gradient-to-tr from-primary-green to-cta-green",
                 },
-                button: "bg-gradient-to-br from-green-600 to-green-700",
+                button: "bg-gradient-to-br from-primary-green to-cta-green",
                 panelCssClasses: {
                   inputCssClasses: {
                     textArea: "focus:border-green-600 focus:ring-green-600",

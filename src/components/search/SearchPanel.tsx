@@ -127,7 +127,7 @@ const MobilePanel = ({
                   onSearch={handleSearchClick}
                 />
                 <button
-                  className="bg-green-700 flex justify-center items-center p-6 my-auto rounded-full"
+                  className="bg-cta-green hover:bg-primary-green flex justify-center items-center p-6 my-auto rounded-full"
                   // onClick={handleSearchClick}
                 >
                   <Icon name="search" color="text-white" />

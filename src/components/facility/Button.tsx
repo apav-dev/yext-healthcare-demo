@@ -1,18 +1,18 @@
 interface ButtonProps {
   children: React.ReactNode;
-  color: "primary" | "secondary";
+  color: "primary" | "cta";
   href: string;
 }
 
 export default function Button({ children, color, href }: ButtonProps) {
   const colorVariants = {
-    primary: "bg-green-700",
-    secondary: "bg-zinc-900",
+    cta: "bg-cta-green",
+    primary: "bg-primary-green",
   };
 
   const hoverColorVariants = {
-    primary: "hover:bg-green-900",
-    secondary: "hover:bg-neutral-500",
+    cta: "hover:bg-primary-green",
+    primary: "hover:bg-cta-green",
   };
 
   return (

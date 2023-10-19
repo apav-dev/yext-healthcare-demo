@@ -12,7 +12,6 @@ interface DoctorFilterSearchProps {
   navigateOnSearch?: boolean;
 }
 
-// TODO: Add Icons next search queries
 const DoctorFilterSearch = ({
   onSearchClick,
   navigateOnSearch,
@@ -64,7 +63,7 @@ const DoctorFilterSearch = ({
   return (
     <div className="z-0 justify-center lg:bg-stone-300 lg:flex ">
       <div className="px-4 py-8 lg:flex lg:items-center">
-        <div className="px-8 py-2 bg-white flex flex-col border lg:rounded-[100px] lg:flex-row lg:border-0">
+        <div className="px-8 py-4 bg-white flex flex-col border lg:rounded-[100px] lg:flex-row lg:border-0">
           <div className="flex items-center border-b lg:border-0">
             <SpecialtyIcon />
             <FilterSearch
@@ -157,7 +156,7 @@ const DoctorFilterSearch = ({
           </div>
 
           <button
-            className="bg-green-700 flex justify-center items-center p-6 my-6 rounded-full lg:my-0"
+            className="bg-cta-green hover:bg-primary-green flex justify-center items-center p-4 my-6 rounded-full lg:my-0"
             onClick={handleSearchClick}
           >
             <Icon name="search" color="text-white" />
