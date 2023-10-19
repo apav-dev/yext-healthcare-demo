@@ -57,8 +57,9 @@ const Condition: Template<TemplateRenderProps> = ({
 }: TemplateProps) => {
   return (
     <PageLayout
-      featuredLocations={document._site.c_featuredLocations}
-      featuredSpecialties={document._site.c_featuredSpecialties}
+    headerLogoURL={document._site.c_headerLogo?.url}
+    featuredLocations={document._site.c_featuredLocations}
+    featuredSpecialties={document._site.c_featuredSpecialties}
     >
       <div className="mt-32">
         <Breadcrumbs

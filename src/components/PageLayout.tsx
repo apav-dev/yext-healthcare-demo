@@ -17,6 +17,7 @@ export interface LayoutProps {
   children?: React.ReactNode;
   backgroundColor?: HexColor;
   locator?: boolean;
+  headerLogoURL?: string;
   featuredLocations?: {
     name: string;
     address: Address;
@@ -45,6 +46,7 @@ export default function Layout({
   children,
   backgroundColor,
   locator,
+  headerLogoURL,
   featuredLocations,
   featuredSpecialties,
   containerClassName,
@@ -57,6 +59,7 @@ export default function Layout({
           style={{ backgroundColor }}
         >
           <Header
+            headerLogoURL={headerLogoURL}
             locations={featuredLocations}
             specialties={featuredSpecialties}
             locator={locator}

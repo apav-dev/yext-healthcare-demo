@@ -113,6 +113,7 @@ const City: Template<TemplateRenderProps> = ({
   return (
     <>
       <PageLayout
+        headerLogoURL={document._site.c_headerLogo?.url}
         featuredLocations={document._site.c_featuredLocations}
         featuredSpecialties={document._site.c_featuredSpecialties}
       >

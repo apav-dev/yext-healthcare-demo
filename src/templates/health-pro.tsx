@@ -79,6 +79,7 @@ const HealthPro: Template<TemplateRenderProps> = ({
   return (
     <QueryClientProvider client={queryClient}>
       <PageLayout
+        headerLogoURL={document._site.c_headerLogo?.url}
         featuredLocations={document._site.c_featuredLocations}
         featuredSpecialties={document._site.c_featuredSpecialties}
         containerClassName="pt-32"
