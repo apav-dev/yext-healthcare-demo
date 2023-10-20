@@ -77,6 +77,7 @@ const Home = ({ document }: TemplateRenderProps) => {
       headerLogoURL={document._site.c_headerLogo?.url}
       featuredLocations={document._site.c_featuredLocations}
       featuredSpecialties={document._site.c_featuredSpecialties}
+      footerLogoURL={document._site.c_footerLogo?.url}
     >
       <div className="pt-32">
         {/* <Section containerClassname="p-0"> */}

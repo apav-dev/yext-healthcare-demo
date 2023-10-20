@@ -18,6 +18,7 @@ export interface LayoutProps {
   backgroundColor?: HexColor;
   locator?: boolean;
   headerLogoURL?: string;
+  footerLogoURL?: string;
   featuredLocations?: {
     name: string;
     address: Address;
@@ -50,6 +51,7 @@ export default function Layout({
   featuredLocations,
   featuredSpecialties,
   containerClassName,
+  footerLogoURL,
 }: LayoutProps) {
   return (
     <ChatHeadlessProvider config={chatConfig}>
@@ -66,7 +68,7 @@ export default function Layout({
           />
           <main className={containerClassName}>{children}</main>
           <div>
-            {!locator && <Footer />}
+            {!locator && <Footer footerLogoURL={footerLogoURL}/>}
             <ChatPopUp
               customCssClasses={{
                 headerCssClasses: {

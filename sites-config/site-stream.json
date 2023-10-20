@@ -14,7 +14,8 @@
     "c_featuredArticles.id",
     "c_featuredArticles.photoGallery",
     "c_featuredArticles.slug",
-    "c_headerLogo"
+    "c_headerLogo",
+    "c_footerLogo"
   ],
   "localization": {
     "locales": ["en"],

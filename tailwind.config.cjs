@@ -13,6 +13,8 @@ module.exports = {
         "cta-green": "#176456",
         "primary-green": "#448539",
         "light-green": "#EDF0EB",
+        "prefooter-green": "#A4DAD2",
+        "footer-dark-green": "#182C1D"
       },
       fontSize: {
         "text-100": ["13px", "23.994px"],
