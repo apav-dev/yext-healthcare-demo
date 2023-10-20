@@ -127,7 +127,7 @@ export default function SpecialtyContent({
       <div className="flex flex-col gap-12 mb-20">
         <div className="flex flex-col gap-12" id="overview">
           <div className="flex flex-col gap-6">
-            <div className="w-[88px] h-3 bg-green-700" />
+            <div className="w-[88px] h-3 bg-primary-green" />
             <h3 className="text-text-500 text-zinc-900">Overview</h3>
           </div>
           <div className="text-neutral-500 text-base font-medium">
@@ -137,7 +137,7 @@ export default function SpecialtyContent({
         {conditions && (
           <div className="flex flex-col gap-12" id="conditions">
             <div className="flex flex-col gap-6">
-              <div className="w-[88px] h-3 bg-green-700" />
+              <div className="w-[88px] h-3 bg-primary-green" />
               <h3 className="text-text-500 text-zinc-900">What We Treat</h3>
             </div>
             <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
@@ -152,7 +152,7 @@ export default function SpecialtyContent({
                   .map((condition) => (
                     <li key={condition.id}>
                       <a
-                        className="hover:cursor-pointer hover:text-zinc-900 underline decoration-green-700 underline-offset-8"
+                        className="hover:cursor-pointer hover:text-zinc-900 underline decoration-primary-green underline-offset-8"
                         href={`/${condition.slug}`}
                       >
                         {condition.name}
@@ -166,7 +166,7 @@ export default function SpecialtyContent({
         {procedures && (
           <div className="flex flex-col gap-12" id="procedures">
             <div className="flex flex-col gap-6">
-              <div className="w-[88px] h-3 bg-green-700" />
+              <div className="w-[88px] h-3 bg-primary-green" />
               <h3 className="text-text-500 text-zinc-900">
                 Treatments We Offer
               </h3>
@@ -183,7 +183,7 @@ export default function SpecialtyContent({
                   .map((procedure) => (
                     <li key={procedure.id}>
                       <a
-                        className="hover:cursor-pointer hover:text-zinc-900 underline decoration-green-700 underline-offset-8"
+                        className="hover:cursor-pointer hover:text-zinc-900 underline decoration-primary-green underline-offset-8"
                         href={`/${procedure.slug}`}
                       >
                         {procedure.name}
@@ -197,7 +197,7 @@ export default function SpecialtyContent({
         {visitReasons && (
           <div className="flex flex-col gap-12" id="visitReasons">
             <div className="flex flex-col gap-6">
-              <div className="w-[88px] h-3 bg-green-700" />
+              <div className="w-[88px] h-3 bg-primary-green" />
               <h3 className="text-text-500 text-zinc-900">Reasons To Visit</h3>
             </div>
             <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
@@ -212,7 +212,7 @@ export default function SpecialtyContent({
                   .map((reason) => (
                     <li key={reason.id}>
                       <a
-                        className="hover:cursor-pointer hover:text-zinc-900 underline decoration-green-700 underline-offset-8"
+                        className="hover:cursor-pointer hover:text-zinc-900 underline decoration-primary-green underline-offset-8"
                         href={`/${reason.slug}`}
                       >
                         {reason.name}
@@ -226,7 +226,7 @@ export default function SpecialtyContent({
         {providers && (
           <div className="flex flex-col gap-12" id="providers">
             <div className="flex flex-col gap-6">
-              <div className="w-[88px] h-3 bg-green-700" />
+              <div className="w-[88px] h-3 bg-primary-green" />
               <h3 className="text-text-500 text-zinc-900">
                 {`${name} Specialists`}
               </h3>

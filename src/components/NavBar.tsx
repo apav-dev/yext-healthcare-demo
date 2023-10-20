@@ -29,8 +29,8 @@ export default function NavBar({ items, onSelect, selectedId }: NavBarProps) {
             <button
               key={id}
               className={twMerge(
-                `inline-flex items-center px-1 pt-1 border-transparent hover:border-green-500 border-b-2 text-sm font-medium`,
-                selectedId === id && "border-green-500"
+                `inline-flex items-center px-1 pt-1 border-transparent hover:border-primary-green border-b-2 text-sm font-medium`,
+                selectedId === id && "border-primary-green"
               )}
               onClick={() => handleSelect(id)}
             >

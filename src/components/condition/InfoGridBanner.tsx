@@ -21,7 +21,7 @@ export default function InfoGridBanner({
   return (
     <div className="flex flex-col gap-12">
       <div className="flex flex-col gap-6">
-        <div className="w-[88px] h-3 bg-green-700" />
+        <div className="w-[88px] h-3 bg-primary-green" />
         <h3 className="text-text-500 text-zinc-900">{title}</h3>
       </div>
       <div className="grid grid-cols-3 gap-y-8 gap-x-24">

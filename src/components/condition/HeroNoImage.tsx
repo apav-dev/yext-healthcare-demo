@@ -10,7 +10,7 @@ export default function HeroNoImage({ name }) {
   return (
     <div className="h-full flex justify-between">
       <div className="pl-20 flex flex-col gap-6 justify-center py-8 bg-stone-50 w-full">
-        <div className="w-[88px] h-3 bg-green-700" />
+        <div className="w-[88px] h-3 bg-primary-green" />
         <h2 className="text-text-500 tracking-tight sm:text-6xl">{name}</h2>
         <div className="flex flex-row gap-4">
           <Button color="primary">
@@ -18,7 +18,7 @@ export default function HeroNoImage({ name }) {
             <span>Schedule Appointment</span>
           </Button>
           <Button color="secondary">
-            <UserIcon />
+            <UserIcon color="black" />
             <span>Find a Specialist</span>
           </Button>
         </div>

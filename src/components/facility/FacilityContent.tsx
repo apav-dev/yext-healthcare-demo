@@ -61,7 +61,7 @@ export default function FacilityContent({
       <div className="flex flex-col gap-12 mb-20">
         <div className="flex flex-col gap-12" id="overview">
           <div className="flex flex-col gap-6">
-            <div className="w-[88px] h-3 bg-green-700" />
+            <div className="w-[88px] h-3 bg-primary-green" />
             <h3 className="text-text-500 text-zinc-900">Overview</h3>
           </div>
           <div className="text-neutral-500 text-base font-medium xl:pr-40">
@@ -70,7 +70,7 @@ export default function FacilityContent({
         </div>
         <div className="flex flex-col gap-12" id="providers">
           <div className="flex flex-col gap-6">
-            <div className="w-[88px] h-3 bg-green-700" />
+            <div className="w-[88px] h-3 bg-primary-green" />
             <h3 className="text-text-500 text-zinc-900">
               Healthcare Providers
             </h3>
@@ -86,7 +86,7 @@ export default function FacilityContent({
         </div>
         <div className="flex flex-col gap-12" id="services">
           <div className="flex flex-col gap-6">
-            <div className="w-[88px] h-3 bg-green-700" />
+            <div className="w-[88px] h-3 bg-primary-green" />
             <h3 className="text-text-500 text-zinc-900">
               Services & Specialties
             </h3>
@@ -98,7 +98,7 @@ export default function FacilityContent({
         </div>
         <div className="flex flex-col gap-12" id="reviews">
           <div className="flex flex-col gap-6">
-            <div className="w-[88px] h-3 bg-green-700" />
+            <div className="w-[88px] h-3 bg-primary-green" />
             <h3 className="text-text-500 text-zinc-900">Reviews</h3>
           </div>
           <Reviews entityId={entityId} />

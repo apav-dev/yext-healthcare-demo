@@ -20,7 +20,7 @@ export default function RelatedProviderCardFull({ provider }) {
       </div>
       <div className="grow shrink basis-0 flex-col justify-start items-start gap-4 inline-flex">
         <div className="self-stretch flex-col justify-start items-start gap-4 flex">
-          <div className="w-[88px] h-3 bg-green-700" />
+          <div className="w-[88px] h-3 bg-primary-green" />
           <a
             href={`/${provider.slug}`}
             className="self-stretch text-zinc-900 text-2xl font-bold hover:underline"
@@ -58,7 +58,7 @@ export default function RelatedProviderCardFull({ provider }) {
         </div>
         <a
           href={`/${provider.slug}`}
-          className="px-4 py-2 rounded-full border border-green-700 justify-center items-center gap-2 inline-flex"
+          className="px-4 py-2 rounded-full border border-primary-green justify-center items-center gap-2 inline-flex"
         >
           <CalendarIcon color={"#1A1A1A"} />
           <button className="text-center text-zinc-900 text-base font-bold leading-normal">

@@ -68,7 +68,7 @@ export default function ConditionContent({ name, description, specialties }) {
       <div className="flex flex-col gap-8 mb-20">
         <div className="flex flex-col gap-12" id="overview">
           <div className="flex flex-col gap-6">
-            <div className="w-[88px] h-3 bg-green-700" />
+            <div className="w-[88px] h-3 bg-primary-green" />
             <h3 className="text-text-500 text-zinc-900">Overview</h3>
           </div>
           <div className="text-neutral-500 text-base font-medium">
@@ -78,7 +78,7 @@ export default function ConditionContent({ name, description, specialties }) {
         {fullProcedureList.length > 0 && (
           <div className="flex flex-col gap-12" id="procedures">
             <div className="flex flex-col gap-6">
-              <div className="w-[88px] h-3 bg-green-700" />
+              <div className="w-[88px] h-3 bg-primary-green" />
               <h3 className="text-text-500 text-zinc-900">
                 Procedures We Offer
               </h3>
@@ -88,7 +88,7 @@ export default function ConditionContent({ name, description, specialties }) {
               <ul className="grid grid-cols-2 gap-4">
                 {fullProcedureList?.slice(0, 29).map((proc) => (
                   <li
-                    className="underline decoration-green-700 underline-offset-8"
+                    className="underline decoration-primary-green underline-offset-8"
                     key={proc.id}
                   >
                     {proc.name}

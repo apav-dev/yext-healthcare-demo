@@ -46,11 +46,11 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
 
   return (
     <PageLayout
-    headerLogoURL={document._site.c_headerLogo?.url}
-    featuredLocations={document._site.c_featuredLocations}
-    featuredSpecialties={document._site.c_featuredSpecialties}
+      headerLogoURL={document._site.c_headerLogo?.url}
+      featuredLocations={document._site.c_featuredLocations}
+      featuredSpecialties={document._site.c_featuredSpecialties}
     >
-      <section className="flex flex-col pt-32">
+      <section className="flex flex-col py-32 min-h-[750px]">
         {currentStep === 1 && (
           <section className="flex flex-col gap-8 items-center pt-20">
             <h3 className="text-2xl font-bold">
@@ -67,7 +67,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
               className={`text-xl py-4 px-8 border rounded-full w-80 ${
                 selectedCareType === "Primary"
                   ? "bg-green-900 text-white"
-                  : "border-zinc-900 hover:bg-green-700 hover:text-white hover:border-green-700"
+                  : "border-zinc-900 hover:bg-primary-green hover:text-white hover:border-primary-green"
               }`}
             >
               Primary care
@@ -80,7 +80,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
               className={`text-xl py-4 px-8 border rounded-full w-80 ${
                 selectedCareType === "Specialty"
                   ? "bg-green-900 text-white"
-                  : "border-zinc-900 hover:bg-green-700 hover:text-white hover:border-green-700"
+                  : "border-zinc-900 hover:bg-primary-green hover:text-white hover:border-primary-green"
               }`}
             >
               Specialty care
@@ -96,7 +96,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
               className={`text-xl py-4 px-8 border rounded-full w-80 ${
                 selectedCareType === "Urgent"
                   ? "bg-green-900 text-white"
-                  : "border-zinc-900 hover:bg-green-700 hover:text-white hover:border-green-700"
+                  : "border-zinc-900 hover:bg-primary-green hover:text-white hover:border-primary-green"
               }`}
             >
               Urgent care
@@ -117,7 +117,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
               className={`text-xl py-4 px-8 border rounded-full w-80 ${
                 selectedInsurance === "Medicare"
                   ? "bg-green-900 text-white"
-                  : "border-zinc-900 hover:bg-green-700 hover:text-white hover:border-green-700"
+                  : "border-zinc-900 hover:bg-primary-green hover:text-white hover:border-primary-green"
               }`}
             >
               Medicare
@@ -131,7 +131,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
               className={`text-xl py-4 px-8 border rounded-full w-80 ${
                 selectedInsurance === "Medicaid"
                   ? "bg-green-900 text-white"
-                  : "border-zinc-900 hover:bg-green-700 hover:text-white hover:border-green-700"
+                  : "border-zinc-900 hover:bg-primary-green hover:text-white hover:border-primary-green"
               }`}
             >
               Medicaid
@@ -145,7 +145,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
               className={`text-xl py-4 px-8 border rounded-full w-80 ${
                 selectedInsurance === "Medicare Advantage"
                   ? "bg-green-900 text-white"
-                  : "border-zinc-900 hover:bg-green-700 hover:text-white hover:border-green-700"
+                  : "border-zinc-900 hover:bg-primary-green hover:text-white hover:border-primary-green"
               }`}
             >
               Medicare Advantage
@@ -158,7 +158,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
               className={`text-xl py-4 px-8 border rounded-full w-80 ${
                 selectedInsurance === "Other"
                   ? "bg-green-900 text-white"
-                  : "border-zinc-900 hover:bg-green-700 hover:text-white hover:border-green-700"
+                  : "border-zinc-900 hover:bg-primary-green hover:text-white hover:border-primary-green"
               }`}
             >
               Employer-based / Other
@@ -210,7 +210,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
               className={`text-xl py-4 px-8 border rounded-full w-80 ${
                 selectedTime === "Now"
                   ? "bg-green-900 text-white"
-                  : "border-zinc-900 hover:bg-green-700 hover:text-white hover:border-green-700"
+                  : "border-zinc-900 hover:bg-primary-green hover:text-white hover:border-primary-green"
               }`}
             >
               As soon as possible
@@ -223,7 +223,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
               className={`text-xl py-4 px-8 border rounded-full w-80 ${
                 selectedTime === "Week"
                   ? "bg-green-900 text-white"
-                  : "border-zinc-900 hover:bg-green-700 hover:text-white hover:border-green-700"
+                  : "border-zinc-900 hover:bg-primary-green hover:text-white hover:border-primary-green"
               }`}
             >
               Within the next week
@@ -236,7 +236,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
               className={`text-xl py-4 px-8 border rounded-full w-80 ${
                 selectedTime === "Month"
                   ? "bg-green-900 text-white"
-                  : "border-zinc-900 hover:bg-green-700 hover:text-white hover:border-green-700"
+                  : "border-zinc-900 hover:bg-primary-green hover:text-white hover:border-primary-green"
               }`}
             >
               Within the next month
@@ -252,7 +252,7 @@ const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
             <div role="status">
               <svg
                 aria-hidden="true"
-                className="w-24 h-24 mr-2 text-zinc-900 animate-spin fill-green-700"
+                className="w-24 h-24 mr-2 text-zinc-900 animate-spin fill-primary-green"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

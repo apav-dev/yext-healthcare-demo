@@ -72,7 +72,7 @@ export default function FacetPopover({
         <>
           <Popover.Button
             className={twMerge(
-              `border border-green px-4 py-2.5 truncate text-sm rounded-3xl hover:bg-green-700 focus:ring-green-700 hover:text-white lg:text-base lg:px-8`,
+              `border border-green px-4 py-2.5 truncate text-sm rounded-3xl hover:bg-primary-green focus:ring-primary-green hover:text-white lg:text-base lg:px-8`,
               selectedCount > 0 && "bg-[#EDF0EB]"
             )}
           >
@@ -92,9 +92,9 @@ export default function FacetPopover({
                 customCssClasses={{
                   facetsContainer:
                     "px-6 py-4 max-h-[800px] overflow-y-auto border border-light-gray",
-                  titleLabel: "text-lg text-green-700 hidden",
+                  titleLabel: "text-lg text-primary-green hidden",
                   option: "py-2",
-                  optionInput: "accent-green-700 ",
+                  optionInput: "accent-primary-green ",
                   optionLabel: "text-base",
                   divider: "hidden",
                 }}

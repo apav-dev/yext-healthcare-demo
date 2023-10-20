@@ -1,6 +1,6 @@
 export default function SpecialistBanner({ name }) {
   return (
-    <div className="w-full p-20 bg-green-700 flex-col justify-center items-center gap-8 inline-flex">
+    <div className="w-full p-20 bg-primary-green flex-col justify-center items-center gap-8 inline-flex">
       <div className="self-stretch py-16 border border-white flex-col justify-center items-center gap-8 flex">
         <div className="text-center text-white text-4xl font-bold leading-10">
           <span>Get Care From Our Team of</span>

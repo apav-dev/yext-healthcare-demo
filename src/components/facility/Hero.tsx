@@ -6,7 +6,7 @@ import PhoneIcon from "./PhoneIcon";
 import MapPinIcon from "./MapPinIcon";
 import ClockIcon from "./ClockIcon";
 
-export default function Hero({ name, coordinates, address, phone }) {
+export default function Hero({ name, coordinates, address, phone, bannerPhotoURL }) {
   function addDashes(f: string) {
     const parsedPhone = phone.substring(2);
     const cleanPhone =
@@ -21,13 +21,13 @@ export default function Hero({ name, coordinates, address, phone }) {
   return (
     <div className="relative isolate overflow-hidden bg-gray-900">
       <img
-        src="https://s3-alpha-sig.figma.com/img/71b1/9a4c/034c67fd1437dbebf64d34725fa9a7cf?Expires=1691971200&Signature=MMSu-xuZuSVHzvLrPoP8m8dNBisClPdxQIi7OxN1Rsw1ehKND4HroeMiJVZ-Fa33EY~8LbCJ4S-tjriGWfhYukbybEwsapI1YGLQGKrj-vNK2Bvze8UqX3L3AERBPCUQMIRyXY68zTgOhpB5s6EZonfAe1O0BLuMX9PjXdTXT9i65SszdIUtVcp85tveSl4TR1NwpsDlUxtMMp7ew3NZNn8L0G-9mj4yvSyYckZwexIyonkjVcE7Y68rQKMLsmCUaTTZR~8bWA7him9TEnx5jtE5mCy7nMpK-H7KX0W3LoeNpOW09OurFJ0e4PX7I2WrbqgZRz4G3ZmruZkHPBJYrg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+        src={bannerPhotoURL}
         alt=""
         className="absolute inset-0 -z-10 h-full w-full object-cover brightness-[.6]"
       />
       <div className="px-10 lg:px-20 h-full py-10 sm:py-12 flex justify-between">
         <div className="flex flex-col gap-6 justify-center">
-          <div className="w-[88px] h-3 bg-green-700" />
+          <div className="w-[88px] h-3 bg-primary-green" />
           <h2 className="text-text-500 tracking-tight text-white sm:text-6xl">
             {name}
           </h2>
@@ -37,7 +37,7 @@ export default function Hero({ name, coordinates, address, phone }) {
               <span>Schedule Appointment</span>
             </Button>
             <Button color="secondary" href="/doctor-finder">
-              <UserIcon />
+              <UserIcon color="black"/>
               <span>Find a Specialist</span>
             </Button>
           </div>

@@ -69,7 +69,7 @@ export default function DoctorCard({
         <div className="self-stretch justify-start items-start gap-4 inline-flex">
           <div className="grow shrink basis-0 flex-col justify-start items-start gap-4 inline-flex">
             <div className="self-stretch h-[84px] flex-col justify-start items-start gap-4 flex">
-              {/* <div className="w-[88px] h-3 bg-green-700"></div>
+              {/* <div className="w-[88px] h-3 bg-primary-green"></div>
                */}
               <HorizontalDivider />
               <div className="self-stretch text-zinc-900 text-[52px] font-medium leading-[56px]">
@@ -84,7 +84,12 @@ export default function DoctorCard({
                   </div>
                 </div>
                 <div className="text-zinc-900 text-xl font-normal">
-                  <a href={`/${specialtySlug}`} className="hover:text-green-700">{specialtyName}</a>
+                  <a
+                    href={`/${specialtySlug}`}
+                    className="hover:text-primary-green"
+                  >
+                    {specialtyName}
+                  </a>
                 </div>
               </div>
               <div className="self-stretch rounded-[999px] justify-start items-start gap-2 inline-flex">
@@ -110,7 +115,7 @@ export default function DoctorCard({
             </div>
           </div>
         </div>
-        <div className="px-8 py-4 bg-green-700 rounded-[999px] border border-green-700 justify-center items-center gap-2 inline-flex">
+        <div className="px-8 py-4 bg-primary-green rounded-[999px] border border-primary-green justify-center items-center gap-2 inline-flex">
           <div className="w-6 h-6 px-[5px] py-1 justify-center items-center flex">
             <div className="text-center text-white text-base font-light">
               <CalendarIcon />

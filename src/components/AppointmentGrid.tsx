@@ -42,7 +42,7 @@ export default function AppointmentGrid() {
           {times.map((time) => (
             <button
               key={`${date}-${time}`}
-              className="h-10 px-4 py-2 bg-green-700 rounded justify-center items-center gap-2 inline-flex"
+              className="h-10 px-4 py-2 bg-primary-green rounded justify-center items-center gap-2 inline-flex"
             >
               <div className="text-center text-white text-base font-bold leading-normal">
                 {time}

@@ -18,7 +18,7 @@ export default function InfoCard({ title, description, cta }: InfoCardProps) {
         {description}
       </div>
       {cta && (
-        <div className="px-8 py-4 bg-green-700 rounded-[999px] justify-center items-center gap-2 inline-flex">
+        <div className="px-8 py-4 bg-primary-green rounded-[999px] justify-center items-center gap-2 inline-flex">
           <a
             className="text-center text-white text-base font-bold leading-normal"
             href={cta.link}

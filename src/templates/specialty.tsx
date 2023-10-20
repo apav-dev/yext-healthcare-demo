@@ -24,6 +24,7 @@ export const config: TemplateConfig = {
       "id",
       "name",
       "slug",
+      "primaryPhoto",
       "c_specialtyOverviewDescription",
       "taxonomy_relatedConditions.id",
       "taxonomy_relatedConditions.name",
@@ -83,7 +84,7 @@ const Specialty: Template<TemplateRenderProps> = ({
           ]}
         />
       </div>
-      <HeroHalfImage name={document.name} />
+      <HeroHalfImage name={document.name} photoURL={document.primaryPhoto?.image.url}/>
       <SpecialtyContent
         name={document.name}
         description={document.c_specialtyOverviewDescription}

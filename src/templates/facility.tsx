@@ -36,6 +36,7 @@ export const config: TemplateConfig = {
       "c_relatedHealthcareProfessionals.headshot",
       "c_relatedHealthcareProfessionals.taxonomy_relatedSpecialties.name",
       "c_relatedHealthcareProfessionals.slug",
+      "c_heroBannerPhoto.url"
     ],
     filter: { entityTypes: ["healthcareFacility"] },
   },
@@ -82,6 +83,7 @@ const Facility: Template<TemplateRenderProps> = ({
           coordinates={document.yextDisplayCoordinate}
           address={document.address}
           phone={document.mainPhone}
+          bannerPhotoURL={document.c_heroBannerPhoto.url}
         />
         <FacilityContent
           description={document.c_facilityDescription}

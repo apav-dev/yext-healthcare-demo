@@ -54,7 +54,7 @@ const DirectoryCityGrid = ({
           {filteredLocations && (
             <div className="flex flex-col gap-12" id="locations">
               <div className="flex flex-col gap-6">
-                <div className="w-[88px] h-3 bg-green-700" />
+                <div className="w-[88px] h-3 bg-primary-green" />
                 <h3 className="text-text-500 text-zinc-900">
                   {`Facilities in ${cityName}`}
                 </h3>
@@ -71,7 +71,7 @@ const DirectoryCityGrid = ({
           {filteredProviders && (
             <div className="flex flex-col gap-12" id="providers">
               <div className="flex flex-col gap-6">
-                <div className="w-[88px] h-3 bg-green-700" />
+                <div className="w-[88px] h-3 bg-primary-green" />
                 <h3 className="text-text-500 text-zinc-900">
                   {`Providers in ${cityName}`}
                 </h3>

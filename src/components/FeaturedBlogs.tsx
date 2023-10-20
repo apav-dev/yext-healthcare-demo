@@ -56,7 +56,7 @@ export default function FeaturedBlogs({ blogs }: FeaturedBlogsProps) {
       </div>
       <a
         href="/search?verticalKey=blog_posts"
-        className="px-8 py-4 bg-green-700 rounded-[999px] justify-center items-center gap-2 inline-flex"
+        className="px-8 py-4 bg-primary-green rounded-[999px] justify-center items-center gap-2 inline-flex"
       >
         <div className="text-center text-white text-base font-bold leading-normal">
           Explore More

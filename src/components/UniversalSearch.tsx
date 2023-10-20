@@ -128,7 +128,7 @@ export default function UniversalSearch() {
 
   return (
     <div className="min-h-[calc(100vh-184px)]">
-      <div className="w-full bg-green-700 px-20 py-8">
+      <div className="w-full bg-cta-green px-20 py-8">
         <div className="text-white mb-2">What can we help you find?</div>
         <div className="flex flex-1">
           <SearchBar
@@ -147,7 +147,7 @@ export default function UniversalSearch() {
             className="bg-white flex justify-center items-center p-4 my-auto rounded-full "
             // onClick={handleSearchClick}
           >
-            <Icon name="search" color="text-green" height={"4"} width="4" />
+            <Icon name="search" color="text-cta-green" height={"4"} width="4" />
             <p className="text-white text-sm ml-2 lg:hidden">Search</p>
           </button>
         </div>
@@ -214,7 +214,7 @@ export default function UniversalSearch() {
                           CardComponent={DoctorSearchCard}
                           verticalKey={verticalKey}
                           header={
-                            <h2 className="text-2xl font-semibold text-green-700 pb-4">
+                            <h2 className="text-2xl font-semibold text-primary-green pb-4">
                               Doctors
                             </h2>
                           }
@@ -232,7 +232,7 @@ export default function UniversalSearch() {
                           CardComponent={SpecialtyCard}
                           verticalKey={verticalKey}
                           header={
-                            <h2 className="text-2xl font-semibold text-green-700 pb-4">
+                            <h2 className="text-2xl font-semibold text-primary-green pb-4">
                               Services
                             </h2>
                           }
@@ -250,7 +250,7 @@ export default function UniversalSearch() {
                           CardComponent={BlogCard}
                           verticalKey={verticalKey}
                           header={
-                            <h2 className="text-2xl font-semibold text-green-700 pb-4">
+                            <h2 className="text-2xl font-semibold text-primary-green pb-4">
                               Blogs
                             </h2>
                           }
@@ -268,7 +268,7 @@ export default function UniversalSearch() {
                           CardComponent={FaqCard}
                           verticalKey={verticalKey}
                           header={
-                            <h2 className="text-2xl font-semibold text-green-700 pb-4">
+                            <h2 className="text-2xl font-semibold text-primary-green pb-4">
                               FAQs
                             </h2>
                           }
@@ -297,7 +297,7 @@ export default function UniversalSearch() {
               paginationContainer: "py-8 shadow-none",
               label: "font-pt-sans-regular border-0",
               selectedLabel:
-                "font-pt-sans-bold border-0 bg-green-700 text-white",
+                "font-pt-sans-bold border-0 bg-primary-green text-white",
               leftIconContainer: "border-0 px-4",
               rightIconContainer: "border-0 px-4",
             }}

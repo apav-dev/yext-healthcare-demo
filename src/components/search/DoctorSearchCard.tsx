@@ -61,7 +61,7 @@ export default function DoctorSearchCard({ result }: CardProps<HealthPro>) {
           <div className="self-stretch justify-start items-start gap-4 inline-flex">
             <div className="grow shrink basis-0 flex-col justify-start items-start gap-1 inline-flex">
               <div className="self-stretch flex-col justify-start items-start gap-4 flex">
-                {/* <div className="w-[88px] h-3 bg-green-700"></div>
+                {/* <div className="w-[88px] h-3 bg-primary-green"></div>
                  */}
                 <HorizontalDivider />
                 <a

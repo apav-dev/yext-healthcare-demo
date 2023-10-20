@@ -84,8 +84,8 @@ const DoctorLocator = () => {
                 className="flex gap-x-3 "
                 onClick={() => setShowList(false)}
               >
-                <FaMap className="text-green-700 w-5 h-5" color="" />
-                <p className="text-green-700 font-semibold">SHOW MAP</p>
+                <FaMap className="text-primary-green w-5 h-5" color="" />
+                <p className="text-primary-green font-semibold">SHOW MAP</p>
               </button>
             </div>
             <VerticalResults
@@ -99,7 +99,7 @@ const DoctorLocator = () => {
                 paginationContainer: "py-8 shadow-none",
                 label: "font-pt-sans-regular border-0",
                 selectedLabel:
-                  "font-pt-sans-bold border-0 bg-green-700 text-white",
+                  "font-pt-sans-bold border-0 bg-primary-green text-white",
                 leftIconContainer: "border-0 px-4",
                 rightIconContainer: "border-0 px-4",
               }}
@@ -111,8 +111,8 @@ const DoctorLocator = () => {
             className="absolute top-4 right-2 bg-white z-[1] rounded-sm flex gap-x-3 px-4 py-3 shadow items-center lg:hidden"
             onClick={() => setShowList(true)}
           >
-            <FaList className="text-green-700 w-5 h-5" color="" />
-            <p className="text-green-700 font-semibold ml-1">SHOW LIST</p>
+            <FaList className="text-primary-green w-5 h-5" color="" />
+            <p className="text-primary-green font-semibold ml-1">SHOW LIST</p>
           </button>
           <AppleMap
             doctors={locations}

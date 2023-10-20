@@ -7,7 +7,7 @@ export default function SearchLoading() {
         <div className="animate-spin">
           <Icon
             name="spinner"
-            classname="text-green-700"
+            classname="text-primary-green"
             height="20"
             width="20"
           />

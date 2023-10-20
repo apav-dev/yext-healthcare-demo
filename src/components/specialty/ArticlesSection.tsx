@@ -29,7 +29,7 @@ function ArticleCard({ title, imgUrl, url }) {
 export default function ArticlesSection({ articles }) {
   return (
     <div className="flex flex-col gap-6">
-      <div className="w-[88px] h-3 bg-green-700" />
+      <div className="w-[88px] h-3 bg-primary-green" />
       <h3 className="text-text-500 text-zinc-900">Articles</h3>
       <div className="justify-start items-between gap-12 inline-flex">
         {articles.slice(0, 3).map((article) => (

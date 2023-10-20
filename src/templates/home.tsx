@@ -144,7 +144,7 @@ const Home = ({ document }: TemplateRenderProps) => {
         </Section>
         <Section>
           <div className="justify-start items-center gap-12 inline-flex">
-            <div className="w-[616px] h-[861px] grow shrink basis-0 p-20 bg-green-700 flex-col justify-center items-center gap-2.5 inline-flex">
+            <div className="w-[616px] h-[861px] grow shrink basis-0 p-20 bg-primary-green flex-col justify-center items-center gap-2.5 inline-flex">
               {c_servicesHero.image ? (
                 <Image className="self-stretch" image={c_servicesHero.image} />
               ) : (
@@ -227,7 +227,7 @@ const Home = ({ document }: TemplateRenderProps) => {
                     >
                       {item.name}
                     </a>
-                    <div className="text-center text-green-700 text-base font-light">
+                    <div className="text-center text-primary-green text-base font-light">
                       +
                     </div>
                   </div>

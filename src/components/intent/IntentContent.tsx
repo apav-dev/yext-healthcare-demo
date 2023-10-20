@@ -42,13 +42,12 @@ export default function IntentContent({
     scrollIds.push("locations");
   }
 
-  
-  const filteredLocations = locations?.filter(
-    (location) => location.id.includes("facility")
+  const filteredLocations = locations?.filter((location) =>
+    location.id.includes("facility")
   );
 
-  const filteredProviders = providers?.filter(
-    (provider) => provider.id.includes("provider")
+  const filteredProviders = providers?.filter((provider) =>
+    provider.id.includes("provider")
   );
 
   return (
@@ -114,7 +113,7 @@ export default function IntentContent({
       <div className="flex flex-col gap-12 mb-20">
         <div className="flex flex-col gap-12" id="overview">
           <div className="flex flex-col gap-6">
-            <div className="w-[88px] h-3 bg-green-700" />
+            <div className="w-[88px] h-3 bg-primary-green" />
             <h3 className="text-text-500 text-zinc-900">{`About ${name}`}</h3>
           </div>
           <div className="text-neutral-500 text-base font-medium">
@@ -124,7 +123,7 @@ export default function IntentContent({
         {conditions && (
           <div className="flex flex-col gap-12" id="conditions">
             <div className="flex flex-col gap-6">
-              <div className="w-[88px] h-3 bg-green-700" />
+              <div className="w-[88px] h-3 bg-primary-green" />
               <h3 className="text-text-500 text-zinc-900">What We Treat</h3>
             </div>
             <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
@@ -139,7 +138,7 @@ export default function IntentContent({
                   .map((condition) => (
                     <li key={condition.id}>
                       <a
-                        className="hover:cursor-pointer hover:text-zinc-900 underline decoration-green-700 underline-offset-8"
+                        className="hover:cursor-pointer hover:text-zinc-900 underline decoration-primary-green underline-offset-8"
                         href={`/${condition.slug}`}
                       >
                         {condition.name}
@@ -153,10 +152,8 @@ export default function IntentContent({
         {procedures && (
           <div className="flex flex-col gap-12" id="procedures">
             <div className="flex flex-col gap-6">
-              <div className="w-[88px] h-3 bg-green-700" />
-              <h3 className="text-text-500 text-zinc-900">
-                 Services We Offer
-              </h3>
+              <div className="w-[88px] h-3 bg-primary-green" />
+              <h3 className="text-text-500 text-zinc-900">Services We Offer</h3>
             </div>
             <p className="text-neutral-500 text-base font-medium flex flex-col gap-4">
               <ul className="grid grid-cols-2 gap-4">
@@ -170,7 +167,7 @@ export default function IntentContent({
                   .map((procedure) => (
                     <li key={procedure.id}>
                       <a
-                        className="hover:cursor-pointer hover:text-zinc-900 underline decoration-green-700 underline-offset-8"
+                        className="hover:cursor-pointer hover:text-zinc-900 underline decoration-primary-green underline-offset-8"
                         href={`/${procedure.slug}`}
                       >
                         {procedure.name}
@@ -184,7 +181,7 @@ export default function IntentContent({
         {filteredProviders && (
           <div className="flex flex-col gap-12" id="providers">
             <div className="flex flex-col gap-6">
-              <div className="w-[88px] h-3 bg-green-700" />
+              <div className="w-[88px] h-3 bg-primary-green" />
               <h3 className="text-text-500 text-zinc-900">
                 {`${providerHeader}`}
               </h3>

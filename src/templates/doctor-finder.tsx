@@ -51,7 +51,7 @@ const DoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
           customCssClasses={{
             paginationContainer: "shadow-none mb-0",
             label: "border-0 text-neutral-500",
-            selectedLabel: "border-0 bg-green text-white bg-green-700",
+            selectedLabel: "border-0 bg-green text-white bg-primary-green",
             leftIconContainer: "border-0 px-4",
             rightIconContainer: "border-0 px-4",
           }}
