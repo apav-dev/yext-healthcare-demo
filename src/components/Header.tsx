@@ -334,7 +334,7 @@ export default function Header({
             })}
             {renderPopover({
               title: "Locations",
-              subtitle: "Our Locations",
+              subtitle: "Featured Locations",
               links:
                 locations?.map((location) => ({
                   name: `${location.address.city} - ${location.address.line1}`,
