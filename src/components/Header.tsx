@@ -308,8 +308,8 @@ export default function Header({
         <Popover.Group className="ml-8 block lg:self-stretch z-20">
           <div className="flex h-full space-x-8">
             {renderPopover({
-              title: "Services",
-              subtitle: "Specialties",
+              title: "Specialties",
+              subtitle: "Featured Specialties",
               links:
                 specialties?.map((specialty) => ({
                   name: specialty.name,
@@ -327,7 +327,7 @@ export default function Header({
                 description:
                   "Learn why we are top ranked in 14 adult medical specialties and 8 pediatric subspecialties.",
                 cta: {
-                  text: "View all services",
+                  text: "View All Specialties",
                   link: "/search",
                 },
               },
@@ -352,7 +352,7 @@ export default function Header({
                 description:
                   "Get access to exceptional clinical services close to where you live, work, and even on your phone.",
                 cta: {
-                  text: "View all locations",
+                  text: "View Location Directory",
                   link: "/root.html",
                 },
               },
