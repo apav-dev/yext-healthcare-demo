@@ -30,6 +30,7 @@ import DirectoryCityGrid from "../components/directory/DirectoryCityGrid";
 import Section from "../components/atoms/Section";
 import PhotoHero from "../components/PhotoHero";
 import Button from "../components/facility/Button";
+import DirectoryHero from "../components/DirectoryHero";
 
 export const config: TemplateConfig = {
   stream: {
@@ -117,19 +118,20 @@ const City: Template<TemplateRenderProps> = ({
         featuredLocations={document._site.c_featuredLocations}
         featuredSpecialties={document._site.c_featuredSpecialties}
       >
-        <Section containerClassname="p-0">
-          <PhotoHero image={c_primaryHero.image}>
-            <div className="flex flex-col gap-4 pt-14">
-              <h1 className="text-white text-center text-[64px] font-extrabold leading-[108px]">
-                {c_primaryHero.title}
-              </h1>
-              <p className="text-white text-xl font-normal">
-                {c_primaryHero.description}
-              </p>
+        <DirectoryHero image={c_primaryHero.image}>
+          <div className="flex flex-col gap-2 m-14 p-14 bg-white items-center max-w-4xl">
+            <h1 className="text-center text-[69px] font-extrabold leading-[108px]">
+              {c_primaryHero.title}
+            </h1>
+            <div className="w-fit">
+              <div className="w-[288px] h-3 bg-primary-green"></div>
             </div>
-          </PhotoHero>
-        </Section>
-        <div className="centered-container pt-4 mb-32">
+            <p className="text-xl font-normal mt-4">
+              {c_primaryHero.description}
+            </p>
+          </div>
+        </DirectoryHero>
+        <div className="centered-container pt-4 mb-72">
           <div className="px-4">
             <DirectoryBreadcrumbs
               breadcrumbs={dm_directoryParents}
