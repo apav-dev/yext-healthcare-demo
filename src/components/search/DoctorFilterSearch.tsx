@@ -26,7 +26,7 @@ const DoctorFilterSearch = ({
     console.log(params);
     if (navigateOnSearch) {
       const urlParams = new URLSearchParams({});
-      urlParams.set(`sf_${params.newFilter.fieldId}`, params.newFilter.value);
+      urlParams.set(`sf_${params.newFilter.fieldId}`, params.newDisplayName);
 
       let path = `/doctor-finder?${urlParams.toString()}`;
 
