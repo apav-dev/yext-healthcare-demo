@@ -68,11 +68,12 @@ export default function Layout({
           />
           <main className={containerClassName}>{children}</main>
           <div>
-            {!locator && <Footer footerLogoURL={footerLogoURL}/>}
+            {!locator && <Footer footerLogoURL={footerLogoURL} />}
             <ChatPopUp
               customCssClasses={{
                 headerCssClasses: {
-                  container: "bg-gradient-to-tr from-primary-green to-cta-green",
+                  container:
+                    "bg-gradient-to-tr from-primary-green to-cta-green",
                 },
                 button: "bg-gradient-to-br from-primary-green to-cta-green",
                 panelCssClasses: {
@@ -81,6 +82,13 @@ export default function Layout({
                   },
                 },
               }}
+              messageSuggestions={[
+                "What insurance does Dr Adam Collins accept?",
+                "Do you have any facilities in New Hyde Park, NY",
+                "I’m having issues understanding my bill",
+                "How do I stay healthy during flu season",
+                "I am having severe chest pain",
+              ]}
               title="Veridian Virtual Assistant"
             />
           </div>
