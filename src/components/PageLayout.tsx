@@ -84,11 +84,11 @@ export default function Layout({
                 },
               }}
               messageSuggestions={[
+                "Can you help me find a doctor?",
+                "Does Dr Smith have availability to see me?",
                 "What insurance does Dr Adam Collins accept?",
-                "Do you have any facilities in New Hyde Park, NY",
                 "I’m having issues understanding my bill",
-                "How do I stay healthy during flu season",
-                "I am having severe chest pain",
+                "How do I stay healthy during flu season?",
               ]}
               title="Veridian Virtual Assistant"
             />

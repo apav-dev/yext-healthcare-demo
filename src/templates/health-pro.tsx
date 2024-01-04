@@ -92,7 +92,7 @@ const HealthPro: Template<TemplateRenderProps> = ({
           ]}
         />
         <Section backgroundColor="bg-stone-50">
-          <ResponsiveStack className="gap-x-6">
+          <ResponsiveStack className="gap-x-6 lg:gap-x-24">
             <DoctorCard
               headshot={document.headshot}
               name={document.name}
