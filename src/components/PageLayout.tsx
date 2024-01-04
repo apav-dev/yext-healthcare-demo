@@ -77,6 +77,7 @@ export default function Layout({
                 },
                 button: "bg-gradient-to-br from-primary-green to-cta-green",
                 panelCssClasses: {
+                  container:"h-[500px]",
                   inputCssClasses: {
                     textArea: "focus:border-green-600 focus:ring-green-600",
                   },
