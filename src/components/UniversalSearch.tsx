@@ -16,6 +16,7 @@ import DoctorSearchCard, { HealthPro } from "./search/DoctorSearchCard";
 import { useEffect, useState } from "react";
 import SpecialtyCard from "./search/SpecialtyCard";
 import BlogCard from "./search/BlogCard";
+import DocumentsCard from "./search/DocumentsCard";
 import ListSection from "./search/ListSection";
 import Faq from "../types/search/faqs";
 import Ce_blogPost from "../types/search/blog_posts";
@@ -24,6 +25,7 @@ import Taxonomy_specialty from "../types/search/specialties";
 import FaqCard from "./search/FaqCard";
 import NoResults from "./search/NoResults";
 import SearchLoading from "./search/SearchLoading";
+import CustomDA from "./search/CustomDA";
 
 export default function UniversalSearch() {
   const [resultsCountMap, setResultsCountMap] = useState<
@@ -61,6 +63,7 @@ export default function UniversalSearch() {
         "specialties",
         "blog_posts",
         "faqs",
+        "documents",
       ]);
       searchActions.executeUniversalQuery();
     }
@@ -76,6 +79,8 @@ export default function UniversalSearch() {
     }
   }, [universalResults]);
 
+  const da = useSearchState((state) => state.directAnswer.result);
+
   const handleNavBarSelect = (id: string) => {
     if (id === "all") {
       searchActions.setUniversal();
@@ -84,6 +89,7 @@ export default function UniversalSearch() {
         "specialties",
         "blog_posts",
         "faqs",
+        "documents",
       ]);
       searchActions.executeUniversalQuery();
     } else {
@@ -110,6 +116,8 @@ export default function UniversalSearch() {
         return BlogCard;
       case "faqs":
         return FaqCard;
+      case "documents":
+        return DocumentsCard;
       default:
         return StandardCard;
     }
@@ -119,6 +127,8 @@ export default function UniversalSearch() {
     switch (vertical) {
       case "blog_posts":
         return "grid grid-cols-3 gap-4 ";
+      case "documents":
+        return "grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3";
       default:
         return "flex flex-col gap-y-4";
     }
@@ -183,6 +193,11 @@ export default function UniversalSearch() {
               id: "faqs",
               resultsCount: resultsCountMap["faqs"] ?? 0,
             },
+            {
+              label: "Documents",
+              id: "documents",
+              resultsCount: resultsCountMap["documents"] ?? 0,
+            },
           ]}
           selectedId={vertical ?? "all"}
         />
@@ -195,7 +210,15 @@ export default function UniversalSearch() {
                 resultsCountContainer: "font-sans-bold text-lg mb-0 p-0",
               }}
             />
-            <DirectAnswer />
+
+            {da ? (
+              <>
+                <CustomDA data={da} />
+              </>
+            ) : (
+              ""
+            )}
+
             {isUniveralSearch ? (
               universalResults && universalResults.length > 0 ? (
                 <UniversalResults
@@ -203,7 +226,7 @@ export default function UniversalSearch() {
                     universalResultsContainer: "flex flex-col gap-y-8",
                   }}
                   verticalConfigMap={{
-                    "healthcare_professionals": {
+                    healthcare_professionals: {
                       CardComponent: DoctorSearchCard,
                       SectionComponent: ({
                         results,
@@ -221,7 +244,7 @@ export default function UniversalSearch() {
                         />
                       ),
                     },
-                    "specialties": {
+                    specialties: {
                       CardComponent: SpecialtyCard,
                       SectionComponent: ({
                         results,
@@ -239,7 +262,7 @@ export default function UniversalSearch() {
                         />
                       ),
                     },
-                    "blog_posts": {
+                    blog_posts: {
                       CardComponent: BlogCard,
                       SectionComponent: ({
                         results,
@@ -257,7 +280,7 @@ export default function UniversalSearch() {
                         />
                       ),
                     },
-                    "faqs": {
+                    faqs: {
                       label: "FAQs",
                       SectionComponent: ({
                         results,
@@ -275,6 +298,25 @@ export default function UniversalSearch() {
                         />
                       ),
                       CardComponent: FaqCard,
+                    },
+                    documents: {
+                      label: "Documents",
+                      SectionComponent: ({
+                        results,
+                        verticalKey,
+                      }: SectionProps<Faq>) => (
+                        <GridSection
+                          results={results}
+                          CardComponent={DocumentsCard}
+                          verticalKey={verticalKey}
+                          header={
+                            <h2 className="text-2xl font-semibold text-primary-green pb-4">
+                              Documents
+                            </h2>
+                          }
+                        />
+                      ),
+                      CardComponent: DocumentsCard,
                     },
                   }}
                 />
